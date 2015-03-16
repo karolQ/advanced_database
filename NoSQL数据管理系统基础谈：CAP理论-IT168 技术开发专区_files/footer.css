@@ -1,0 +1,14 @@
+.clear{clear:both;height:0px;font-size:0px;overflow:hidden;}
+/*footer*/
+#footer {border-top: 1px solid #dfdfdf;line-height: 24px;margin: 10px auto;padding: 10px 0;width: 980px;}
+#footer p a{ color: #0257ae;}
+#footer p{text-align:center;color: #aaa;}
+#footer address {color: #3b3b3b;font-family: Arial,"ËÎÌו";font-style: normal;text-align:center;}
+#footer address a{color: #3b3b3b;}
+#footer .pic_div{width:518px;margin:10px auto;}
+#footer .pic_div a{float:left;color:#3b3b3b;}
+#footer .pic_div a:hover{text-decoration:none;}
+#footer a.pic1{background:url(../images/footer.png) 0px -68px no-repeat;padding:4px 0px 0px 54px;width:54px;line-height:20px;height:47px;margin-right:22px;}
+#footer a.pic2{background:url(../images/footer.png) 0px -142px no-repeat;padding:0px 0px 0px 44px;width:48px;line-height:42px;height:42px;margin-right:30px;}
+#footer a.pic3{background:url(../images/footer.png) 0px -209px no-repeat;padding:0px 0px 0px 53px;width:83px;line-height:42px;height:48px;}
+#footer a.pic4{background:url(../images/footer.png) no-repeat;width:112px;height:40px;float:right;text-indent:-99999px;}

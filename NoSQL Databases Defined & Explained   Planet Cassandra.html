@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://planetcassandra.org/what-is-nosql/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/async-ads.js"></script><script type="text/javascript" async="" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/ga.js"></script><script id="twitter-wjs" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/widgets.js"></script><script type="text/javascript" async="" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/munchkin.js"></script><script type="text/javascript" async="" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/cse.js"></script><script type="text/javascript" async="" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/page.js"></script>
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+       <meta name="twitter:widgets:csp" content="on"> 
+        
+		<meta name="viewport" content="width=device-width, user-scalable=yes">
+
+       <title>NoSQL Databases Defined &amp; Explained | Planet Cassandra</title> 
+
+        <link rel="stylesheet" href="http://planetcassandra.org/wp-content/themes/Avada/style.css">
+		<!--<link rel="stylesheet" href="http://planetcassandra.org/wp-content/themes/Avada/pc-print.css" media="print" />-->
+		<link rel="stylesheet" href="http://planetcassandra.prakashinfotech.com/wp-content/themes/Avada/css/pc-print.css" media="print">
+		
+        <!--<link rel="stylesheet" href="http://planetcassandra.org/wp-content/themes/Avada/css/stackoverflow.css" />-->
+
+        
+
+           
+
+        <!--[if IE]>
+
+        <link rel="stylesheet" href="http://planetcassandra.org/wp-content/themes/Avada/css/ie.css" />
+
+        <![endif]-->
+
+        <!--[if IE]>
+
+        <link rel="stylesheet" href="http://planetcassandra.org/wp-content/themes/Avada/css/ie9.css" />
+
+        <![endif]-->
+		
+
+		<link href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="http://planetcassandra.org/wp-content/themes/Avada/css/verticalslidercss/jquery.bxslider.css">
+
+        <script src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery-1.10.1.min.js" type="text/javascript"></script>
+
+                
+                
+                     
+            
+                         
+                         
+                         
+            
+             		
+		            
+            
+            
+            
+            
+                         
+            
+            
+
+                        
+
+                   
+             
+           <script type="text/javascript">
+		if (window.innerWidth <= 780) {
+			document.write('<link rel="stylesheet" href="http://planetcassandra.org/wp-content/themes/Avada/css/bootstrap.css" />');
+
+			document.write('<link rel="stylesheet" href="http://planetcassandra.org/wp-content/themes/Avada/css/bootstrap-formhelpers.css" />');
+
+            document.write('<script src="http://planetcassandra.org/wp-content/themes/Avada/js/bootstrap.min.js" type="text/javascript"><\/script>');
+
+            document.write('<script src="http://planetcassandra.org/wp-content/themes/Avada/js/bootstrap-formhelpers-selectbox.js" type="text/javascript"><\/script>');
+
+}
+if (screen.width <= 780) {
+			document.write('<link rel="stylesheet" href="http://planetcassandra.org/wp-content/themes/Avada/css/bootstrap.css" />');
+
+			document.write('<link rel="stylesheet" href="http://planetcassandra.org/wp-content/themes/Avada/css/bootstrap-formhelpers.css" />');
+
+            document.write('<script src="http://planetcassandra.org/wp-content/themes/Avada/js/bootstrap.min.js" type="text/javascript"><\/script>');
+
+            document.write('<script src="http://planetcassandra.org/wp-content/themes/Avada/js/bootstrap-formhelpers-selectbox.js" type="text/javascript"><\/script>');
+
+}
+</script>     
+            
+             
+                   
+            
+                
+
+
+        
+        <!--[if lt IE 9]>
+
+        <script src="http://planetcassandra.org/wp-content/themes/Avada/js/modernizr.js" type="text/javascript"></script>
+
+        <![endif]-->
+
+        <script src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery-1.10.1.min.js" type="text/javascript"></script>
+
+
+
+        
+                    
+
+        
+       
+
+        
+            <link rel="shortcut icon" href="http://planetcassandra.org/wp-content/uploads/2014/03/Clogocopy.png" type="image/x-icon">
+
+        
+
+
+                       
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("div.test_slide_div").hide();
+	$("h4.test_slide").click(function(){
+		$(this).toggleClass("active").next("div.test_slide_div").slideToggle("slow");
+		return false;
+	});
+        
+      
+});
+</script>
+
+<link rel="alternate" type="application/rss+xml" title="Planet Cassandra » Feed" href="http://planetcassandra.org/feed/">
+<link rel="alternate" type="application/rss+xml" title="Planet Cassandra » Comments Feed" href="http://planetcassandra.org/comments/feed/">
+<link rel="stylesheet" id="validate-engine-css-css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/validationEngine.jquery.css" type="text/css" media="all">
+<link rel="stylesheet" id="splw.css-css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/splw.css" type="text/css" media="all">
+<link rel="stylesheet" id="xyz_cfm_short_code_style-css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/xyz_cfm_shortcode_style.css" type="text/css" media="all">
+<link rel="stylesheet" id="tweetable-frontend-css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/main_css.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/crayon.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="jquery.prettyphoto-css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/prettyPhoto.css" type="text/css" media="all">
+<link rel="stylesheet" id="video-lightbox-css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/wp-video-lightbox.css" type="text/css" media="all">
+<link rel="stylesheet" id="events-manager-css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/events_manager.css" type="text/css" media="all">
+<link rel="stylesheet" id="newsletter-sign-up-css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/css.php" type="text/css" media="all">
+<link rel="stylesheet" id="wsp-style-css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/stackoverflow-plus.css" type="text/css" media="all">
+<link rel="stylesheet" id="images-responsive-thumbnail-slider-style-css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/images-responsive-thumbnail-slider-style.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-fullcalendar-css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/main.css" type="text/css" media="all">
+<link rel="stylesheet" id="tablepress-default-css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/default.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="jquery-ui-standard-css-css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery-ui-1.9.2.custom.min.css" type="text/css" media="">
+<link rel="stylesheet" id="squelch_taas-css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/squelch-tabs-and-accordions.css" type="text/css" media="all">
+<link rel="stylesheet" id="A2A_SHARE_SAVE-css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/addtoany.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="rotatingposts-css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/rotating-posts.css" type="text/css" media="all">
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/splw.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/scroll-post-excerpt.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.fitvids.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.easing.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"2.5.0","is_admin":"0","ajaxurl":"http:\/\/planetcassandra.org\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/crayon.min.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.prettyPhoto.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var vlpp_vars = {"prettyPhoto_rel":"wp-video-lightbox","animation_speed":"fast","slideshow":"5000","autoplay_slideshow":"false","opacity":"0.80","show_title":"true","allow_resize":"true","allow_expand":"true","default_width":"640","default_height":"480","counter_separator_label":"\/","theme":"pp_default","horizontal_padding":"20","hideflash":"false","wmode":"opaque","autoplay":"false","modal":"false","deeplinking":"false","overlay_gallery":"true","overlay_gallery_max":"30","keyboard_shortcuts":"true","ie6_fallback":"true"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/video-lightbox.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/anything-popup.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/content-text-slider-on-post.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.ui.core.min.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.ui.widget.min.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.ui.position.min.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.ui.mouse.min.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.ui.sortable.min.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.ui.datepicker.min.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.ui.menu.min.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.ui.autocomplete.min.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.ui.resizable.min.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.ui.draggable.min.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.ui.button.min.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.ui.dialog.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var EM = {"ajaxurl":"http:\/\/planetcassandra.org\/wp-admin\/admin-ajax.php","locationajaxurl":"http:\/\/planetcassandra.org\/wp-admin\/admin-ajax.php?action=locations_search","firstDay":"1","locale":"en","dateFormat":"dd\/mm\/yy","ui_css":"http:\/\/planetcassandra.org\/wp-content\/plugins\/events-manager\/includes\/css\/ui-lightness.css","show24hours":"0","is_ssl":"","bookingInProgress":"Please wait while the booking is being submitted.","tickets_save":"Save Ticket","bookingajaxurl":"http:\/\/planetcassandra.org\/wp-admin\/admin-ajax.php","bookings_export_save":"Export Bookings","bookings_settings_save":"Save Settings","booking_delete":"Are you sure you want to delete?","bb_full":"Sold Out","bb_book":"Book Now","bb_booking":"Booking...","bb_booked":"Booking Submitted","bb_error":"Booking Error. Try again?","bb_cancel":"Cancel","bb_canceling":"Canceling...","bb_cancelled":"Cancelled","bb_cancel_error":"Cancellation Error. Try again?","txt_search":"Search","txt_searching":"Searching...","txt_loading":"Loading...","event_reschedule_warning":"Are you sure you want to reschedule this recurring event? If you do this, you will lose all booking information and the old recurring events will be deleted.","event_detach_warning":"Are you sure you want to detach this event? By doing so, this event will be independent of the recurring set of events.","delete_recurrence_warning":"Are you sure you want to delete all recurrences of this event? All events will be moved to trash.","disable_bookings_warning":"Are you sure you want to disable bookings? If you do this and save, you will lose all previous bookings. If you wish to prevent further bookings, reduce the number of spaces available to the amount of bookings you currently have","booking_warning_cancel":"Are you sure you want to cancel your booking?"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/events-manager.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var Pl_Ajax = {"playajaxurl":"http:\/\/planetcassandra.org\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/playlist-ajax.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/slideshow.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/images-responsive-thumbnail-slider-jc.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPFC = {"ajaxurl":"http:\/\/planetcassandra.org\/wp-admin\/admin-ajax.php","firstDay":"1","wpfc_theme":"1","wpfc_limit":"10","wpfc_limit_txt":"more ...","wpfc_theme_css":"http:\/\/planetcassandra.org\/wp-content\/plugins\/wp-fullcalendar\/includes\/css\/ui-themes\/ui-lightness.css","wpfc_qtips":"1","wpfc_qtips_classes":"ui-tooltip-light ui-tooltip-rounded ui-tooltip-shadow","wpfc_qtips_my":"top center","wpfc_qtips_at":"bottom center","wpfc_locale":{"firstDay":"1"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/main.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/tabs.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/rotating-posts.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://planetcassandra.org/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://planetcassandra.org/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Commit Code" href="http://planetcassandra.org/commit-code/">
+<link rel="next" title="What is Apache Cassandra?" href="http://planetcassandra.org/what-is-apache-cassandra/">
+
+<link rel="canonical" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/NoSQL Databases Defined & Explained   Planet Cassandra.html">
+<link rel="shortlink" href="http://planetcassandra.org/?p=2795">
+
+<script type="text/javascript"><!--
+var a2a_config=a2a_config||{},wpa2a={done:false,html_done:false,script_ready:false,script_load:function(){var a=document.createElement('script'),s=document.getElementsByTagName('script')[0];a.type='text/javascript';a.async=true;a.src='http://static.addtoany.com/menu/page.js';s.parentNode.insertBefore(a,s);wpa2a.script_load=function(){};},script_onready:function(){if(a2a.type=='page'){wpa2a.script_ready=true;if(wpa2a.html_done)wpa2a.init();}},init:function(){for(var i=0,el,target,targets=wpa2a.targets,length=targets.length;i<length;i++){el=document.getElementById('wpa2a_'+(i+1));target=targets[i];a2a_config.linkname=target.title;a2a_config.linkurl=target.url;if(el){a2a.init('page',{target:el});el.id='';}wpa2a.done=true;}wpa2a.targets=[];}};a2a_config.tracking_callback=['ready',wpa2a.script_onready];
+//--></script>
+
+<!-- Using Simple Yearly Archive Plugin v1.6.0 | http://www.schloebe.de/wordpress/simple-yearly-archive-plugin/ // -->
+    <script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/highlight.pack.js"></script>
+    <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+    <link rel="stylesheet" href="http://planetcassandra.org/wp-content/plugins/wp-highlightjs/styles/github.css">
+    <style>pre.hljs {padding: 0px;}
+pre.hljs code {border: 1px solid #ccc; padding: 5px;}</style>
+
+<!-- All in One SEO Pack 2.1.3 by Michael Torbert of Semper Fi Web Design[511,583] -->
+<meta name="description" content="NoSQL &quot;Not Only SQL&quot; databases have become the first alternative to relational databases, with scalability, availability, and fault tolerance being key deciding factors. They go well beyond the more widely understood legacy, relational databases (such as Oracle, SQL Server and DB2 databases) in satisfying the needs of today’s modern business applications.">
+
+<meta name="keywords" content="nosql, nosql explained, nosql defined, nosql definition, what is nosql?, what is open source nosql?, mongodb, hbase, redis, mysql, nosql, cassandra, apache cassandra, what and why nosql?, why nosql, internet of things, big data, benefits of nosql, benefits of choosing nosql, when do i need nosql?, not only sql, sql, what is nosql, where nosql, what nosql, which nosql database, nosql database choices">
+
+<meta property="og:title" content="NoSQL Databases Defined &amp; Explained">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://planetcassandra.org/what-is-nosql/">
+<meta property="og:image" content="http://planetcassandra.org/wp-content/uploads/2014/05/Screen-Shot-2014-05-15-at-8.03.56-PM.png">
+<meta property="og:site_name" content="Planet Cassandra">
+<meta name="twitter:card" content="summary">
+<!-- /all in one seo pack -->
+
+
+
+                        <!--[if IE 8]>
+
+                        <script type="text/javascript">
+
+                        jQuery(document).ready(function() {
+
+                        var imgs, i, w;
+
+                        var imgs = document.getElementsByTagName( 'img' );
+
+                        for( i = 0; i < imgs.length; i++ ) {
+
+                            w = imgs[i].getAttribute( 'width' );
+
+                            if ( 615 < w ) {
+
+                                imgs[i].removeAttribute( 'width' );
+
+                                imgs[i].removeAttribute( 'height' );
+
+                            }
+
+                        }
+
+                        });
+
+                        </script>
+
+                        <![endif]-->
+
+                       
+
+
+
+                        <style type="text/css">
+
+
+                                #nav > li > a,#nav li.current-menu-ancestor a{height:40px;line-height:40px;}
+
+                                #nav > li > a,#nav li.current-menu-ancestor a{height:40px;line-height:40px;}
+
+
+
+                                #nav ul ul{top:43px;}
+
+
+
+    
+
+                        </style>
+
+
+
+                       
+
+                                
+
+
+                                
+                        <script src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jsapi" type="text/javascript"></script><link id="mktoForms2BaseStyle" rel="stylesheet" type="text/css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/forms2.css"><link id="mktoForms2ThemeStyle" rel="stylesheet" type="text/css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/forms2-theme-round.css"><style>/* Add your custom CSS below */
+.mktoForm .mktoRequiredField .mktoAsterix{
+display: none !important;}</style><style>#mktoStyleLoaded {color:#123456;}</style><style>/* Add your custom CSS below */
+.mktoForm .mktoRequiredField .mktoAsterix{
+display: none !important;}</style><script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/saved_resource"></script><script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/saved_resource(1)"></script><script></script><style type="text/css">.a2a_menu, .a2a_menu * { -moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;float:none;margin:0;padding:0;height:auto;width:auto;}.a2a_menu { border-radius: 6px;display:none;direction:ltr;background:#FFF;font: 16px sans-serif-light, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Arial, Helvetica, "Liberation Sans", sans-serif;color:#000;line-height:12px;border: 1px solid #CCC;vertical-align:baseline;overflow:hidden;}.a2a_mini {min-width:200px;position:absolute;width: 300px;z-index:9999997;}.a2a_overlay {display: none;background: #CCC; _height: expression( ((e=document.documentElement.clientHeight)?e:document.body.clientHeight)+"px" ); _width: expression( ((e=document.documentElement.clientWidth)?e:document.body.clientWidth)+"px" ); filter: alpha(opacity=50); opacity: .7;position: fixed;_position: absolute; top: 0;right: 0;left: 0;bottom: 0;z-index: 9999998;-webkit-animation: a2aFadeInOverlay .14s ease-out;animation: a2aFadeInOverlay .14s ease-out;}.a2a_full {background: #FFF;height: auto;height: calc(320px);top: 15%;_top: expression(40+((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+"px"); left: 50%;margin-left: -320px; position: fixed;_position: absolute; text-align: center;width: 640px;z-index: 9999999; -webkit-animation: a2aFadeIn .14s ease-in;    animation: a2aFadeIn .14s ease-in;}.a2a_full_header,.a2a_full_services,.a2a_full_footer {border: 0;margin: 0;padding: 12px;box-sizing: border-box;}.a2a_full_header {padding-bottom: 8px;}.a2a_full_services {height: 280px; overflow-y: scroll;padding: 0 12px;-webkit-overflow-scrolling: touch;}.a2a_full_services .a2a_i {display: inline-block;float: none;width: 181px;width: calc(33.334% - 18px);}div.a2a_full_footer {font-size: 12px;text-align: center;padding: 8px 14px;}div.a2a_full_footer a,div.a2a_full_footer a:visited {display: inline;font-size: 12px;line-height:14px;padding: 8px 14px; }div.a2a_full_footer a:hover {background: none;border: 0;color: #0166FF;}div.a2a_full_footer a span.a2a_s_a2a {background-size: 14px;border-radius: 3px;display: inline-block;height:14px;line-height:14px;margin: 0 3px 0 0;vertical-align: top;*vertical-align: middle; width:14px;}@-webkit-keyframes a2aFadeIn {from { opacity: 0; }  to { opacity: 1; }}@keyframes a2aFadeIn {from { opacity: 0; }  to { opacity: 1; }}@-webkit-keyframes a2aFadeInOverlay {from { opacity: 0; }  to { opacity: .7; }}@keyframes a2aFadeInOverlay {from { opacity: 0; }  to { opacity: .7; }}@media (max-width: 639px) {.a2a_full {top: 15%;left: 0;margin-left: auto;width: 100%;}}@media (min-width: 318px) and (max-width: 437px) {.a2a_full .a2a_full_services .a2a_i {width: calc(50% - 18px);}}@media (max-width: 317px) {.a2a_full .a2a_full_services .a2a_i {width: calc(100% - 18px);}}@media (max-height: 436px) {.a2a_full {bottom: 40px;height: auto;top: 40px;}}.a2a_menu a { color:#0166FF;text-decoration:none;font: 16px sans-serif-light, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Arial, Helvetica, "Liberation Sans", sans-serif;line-height:14px;height:auto;width:auto;outline:none;-moz-outline:none;}.a2a_menu a:visited{color:#0166FF}.a2a_menu a:hover,.a2a_menu a:active,.a2a_menu a.a2a_i:focus{color:#2A2A2A;border:1px solid #EEE;background-color:#EEE;text-decoration:none}.a2a_menu span.a2a_s_find { background-size: 24px;height:24px;left: 8px;position:absolute;top: 7px;width:24px;}.a2a_menu span.a2a_s_find svg {background-color: #FFF;}.a2a_menu span.a2a_s_find svg path {fill: #CCC;}#a2a_menu_container{display:inline-block} #a2a_menu_container{_display:inline} .a2a_menu_title_container {padding: 6px 8px;}.a2a_menu_find_container {border: 1px solid #CCC;border-radius: 6px;padding: 2px 24px 2px 0;position: relative;text-align: left;}.a2a_cols_container .a2a_col1{overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch}.a2a_menu input, .a2a_menu input[type="text"]{display:block;background-image:none;box-shadow:none;line-height:100%;margin:0;overflow:hidden;padding:0;-moz-box-shadow:none;-webkit-box-shadow:none;-webkit-appearance:none} .a2a_menu_title_container input.a2a_menu_title {background-color: #FFF;border: 0;color: #2A2A2A;font: inherit;margin: 0;padding: 0;width: 99%;}.a2a_menu_find_container input.a2a_menu_find {background-color: transparent;_background-color: #FFF;border: 0;color: #2A2A2A;font: inherit;font-size: 16px;height: 28px;line-height: 20px;left: 38px;outline: 0;padding: 2px 0;position: relative;width: 99%;}.a2a_clear{clear:both} .a2a_img { background:url(http://static.addtoany.com/menu/icons.31.png);border:0;line-height:16px}.a2a_img, .a2a_svg { background-repeat:no-repeat; display:block; overflow:hidden;}.a2a_img{height:16px;line-height:16px;width:16px;}.a2a_svg{height:32px;line-height:32px;width:32px;}a.a2a_i,i.a2a_i{display:block;float:left;border:1px solid #FFF;line-height:24px;padding:6px 8px;text-align:left;white-space:nowrap;overflow: hidden;text-overflow: ellipsis;width:132px;}a.a2a_i span, a.a2a_more span {display: inline-block;overflow: hidden;vertical-align: top;*vertical-align: middle; }a.a2a_i .a2a_img,a.a2a_i .a2a_svg {margin: 0 6px 0 0;}a.a2a_i .a2a_svg,a.a2a_more .a2a_svg {background-size: 24px;height:24px;line-height:24px;width:24px;}a.a2a_sss:hover {border-left: 1px solid #CCC;}a.a2a_menu_show_more_less{border-bottom:1px solid #FFF;border-left:0;border-right:0;line-height:24px;margin:6px 0 0;padding:6px}a.a2a_menu_show_more_less span{display:inline-block;height:24px;margin:0 6px 0 0;} .a2a_kit .a2a_svg { background-repeat: repeat; }.a2a_default_style a{float:left;line-height:16px;padding:0 2px}.a2a_default_style a:hover .a2a_img,.a2a_default_style a:hover .a2a_svg,.a2a_floating_style a:hover .a2a_img,.a2a_floating_style a:hover .a2a_svg { opacity: .7;}.a2a_default_style .a2a_count,.a2a_default_style .a2a_svg, .a2a_floating_style .a2a_svg,.a2a_menu .a2a_svg { border-radius:4px ;} .a2a_default_style .a2a_img, .a2a_default_style .a2a_dd, .a2a_default_style .a2a_svg{float:left}.a2a_default_style .a2a_img_text{margin-right:4px}.a2a_default_style .a2a_divider{border-left:1px solid #000;display:inline;float:left;height:16px;line-height:16px;margin:0 5px}.a2a_kit a{cursor:pointer}.a2a_floating_style { background-color: #fff; border-radius: 6px; padding: 4px; position: fixed; z-index: 9999995; }.a2a_vertical_style a { display: block; padding: 4px; }.a2a_floating_style.a2a_default_style { bottom: 0; }.a2a_floating_style.a2a_default_style a { padding: 4px; }.a2a_count {background-color: #fff;border: 1px solid #ccc;box-sizing: border-box;color: #2a2a2a;display: block;float: left;font: 12px Arial,Helvetica,sans-serif;height: 16px;margin-left: 4px;position: relative;text-align: center;width: 50px;}.a2a_count:before,.a2a_count:after {border: solid transparent;border-width: 4px 4px 4px 0;content: "";height: 0;left: 0;line-height: 0;margin: -4px 0 0 -4px;position: absolute;top: 50%;width: 0;}.a2a_count:before {border-right-color: #ccc;}.a2a_count:after {border-right-color: #fff;margin-left: -3px;}.a2a_count span {-webkit-animation: a2aFadeIn .14s ease-in;    animation: a2aFadeIn .14s ease-in;}.a2a_nowrap{white-space:nowrap}.a2a_note{margin:0 auto;padding:9px;font-size:12px;text-align:center}.a2a_note .a2a_note_note{margin:0;color:#2A2A2A}.a2a_wide a{display:block;margin-top:3px;border:1px solid #EEE;text-align:center}iframe.a2a_shim {background-color: transparent;border: 0;bottom: 0;filter: alpha(opacity=0); height: 100%;left: 0;right: 0;top: 0;position: absolute;width: 100%;z-index: 9999996;_height: expression( ((e=document.documentElement.clientHeight)?e:document.body.clientHeight)+"px" ); _width: expression( ((e=document.documentElement.clientWidth)?e:document.body.clientWidth)+"px" ); }.a2a_dd img {border:0;-ms-touch-action:manipulation;}iframe[id^="PIN_"][id$="_nag"] {display: none !important;}.a2a_i_a2a{background-position:0 0!important}.a2a_i_a2a_sm{background-position:0 -17px!important}.a2a_i_agregator{background-position:0 -34px!important}.a2a_i_aim{background-position:0 -51px!important}.a2a_i_amazon{background-position:0 -68px!important}.a2a_i_aol{background-position:0 -85px!important}.a2a_i_app_net{background-position:0 -102px!important}.a2a_i_baidu{background-position:0 -119px!important}.a2a_i_balatarin{background-position:0 -136px!important}.a2a_i_bibsonomy{background-position:0 -153px!important}.a2a_i_bitty{background-position:0 -170px!important}.a2a_i_blinklist{background-position:0 -187px!important}.a2a_i_blogger{background-position:0 -204px!important}.a2a_i_blogmarks{background-position:0 -221px!important}.a2a_i_bookmark{background-position:0 -238px!important}.a2a_i_bookmarks_fr{background-position:0 -255px!important}.a2a_i_box{background-position:0 -272px!important}.a2a_i_buddymarks{background-position:0 -289px!important}.a2a_i_buffer{background-position:0 -306px!important}.a2a_i_care2{background-position:0 -323px!important}.a2a_i_chrome{background-position:0 -340px!important}.a2a_i_citeulike{background-position:0 -357px!important}.a2a_i_dailyrotation{background-position:0 -374px!important}.a2a_i_default{background-position:0 -391px!important}.a2a_i_delicious{background-position:0 -408px!important}.a2a_i_designfloat{background-position:0 -425px!important}.a2a_i_diary_ru{background-position:0 -442px!important}.a2a_i_diaspora{background-position:0 -459px!important}.a2a_i_digg{background-position:0 -476px!important}.a2a_i_dihitt{background-position:0 -493px!important}.a2a_i_diigo{background-position:0 -510px!important}.a2a_i_dzone{background-position:0 -527px!important}.a2a_i_email{background-position:0 -544px!important}.a2a_i_evernote{background-position:0 -561px!important}.a2a_i_facebook{background-position:0 -578px!important}.a2a_i_fark{background-position:0 -595px!important}.a2a_i_feed{background-position:0 -612px!important}.a2a_i_feedblitz{background-position:0 -629px!important}.a2a_i_feedbucket{background-position:0 -646px!important}.a2a_i_feedly{background-position:0 -663px!important}.a2a_i_feedmailer{background-position:0 -680px!important}.a2a_i_find{background-position:0 -697px!important}.a2a_i_firefox{background-position:0 -714px!important}.a2a_i_flipboard{background-position:0 -731px!important}.a2a_i_folkd{background-position:0 -748px!important}.a2a_i_friendfeed{background-position:0 -765px!important}.a2a_i_gmail{background-position:0 -782px!important}.a2a_i_google{background-position:0 -799px!important}.a2a_i_google_plus{background-position:0 -816px!important}.a2a_i_hatena{background-position:0 -833px!important}.a2a_i_instapaper{background-position:0 -850px!important}.a2a_i_itunes{background-position:0 -867px!important}.a2a_i_jamespot{background-position:0 -884px!important}.a2a_i_kakao{background-position:0 -901px!important}.a2a_i_kindle{background-position:0 -918px!important}.a2a_i_klipfolio{background-position:0 -935px!important}.a2a_i_line{background-position:0 -952px!important}.a2a_i_linkedin{background-position:0 -969px!important}.a2a_i_livejournal{background-position:0 -986px!important}.a2a_i_mail_ru{background-position:0 -1003px!important}.a2a_i_mendeley{background-position:0 -1020px!important}.a2a_i_meneame{background-position:0 -1037px!important}.a2a_i_miro{background-position:0 -1054px!important}.a2a_i_mixi{background-position:0 -1071px!important}.a2a_i_myspace{background-position:0 -1088px!important}.a2a_i_netlog{background-position:0 -1105px!important}.a2a_i_netvibes{background-position:0 -1122px!important}.a2a_i_netvouz{background-position:0 -1139px!important}.a2a_i_newsalloy{background-position:0 -1156px!important}.a2a_i_newsisfree{background-position:0 -1173px!important}.a2a_i_newstrust{background-position:0 -1190px!important}.a2a_i_newsvine{background-position:0 -1207px!important}.a2a_i_nujij{background-position:0 -1224px!important}.a2a_i_odnoklassniki{background-position:0 -1241px!important}.a2a_i_oknotizie{background-position:0 -1258px!important}.a2a_i_oldreader{background-position:0 -1275px!important}.a2a_i_outlook_com{background-position:0 -1292px!important}.a2a_i_pinboard{background-position:0 -1309px!important}.a2a_i_pinterest{background-position:0 -1326px!important}.a2a_i_plurk{background-position:0 -1343px!important}.a2a_i_pocket{background-position:0 -1360px!important}.a2a_i_podnova{background-position:0 -1377px!important}.a2a_i_print{background-position:0 -1394px!important}.a2a_i_printfriendly{background-position:0 -1411px!important}.a2a_i_protopage{background-position:0 -1428px!important}.a2a_i_pusha{background-position:0 -1445px!important}.a2a_i_qzone{background-position:0 -1462px!important}.a2a_i_reddit{background-position:0 -1479px!important}.a2a_i_rediff{background-position:0 -1496px!important}.a2a_i_renren{background-position:0 -1513px!important}.a2a_i_segnalo{background-position:0 -1530px!important}.a2a_i_share{background-position:0 -1547px!important}.a2a_i_sina_weibo{background-position:0 -1564px!important}.a2a_i_sitejot{background-position:0 -1581px!important}.a2a_i_slashdot{background-position:0 -1598px!important}.a2a_i_springpad{background-position:0 -1615px!important}.a2a_i_stumbleupon{background-position:0 -1632px!important}.a2a_i_stumpedia{background-position:0 -1649px!important}.a2a_i_svejo{background-position:0 -1666px!important}.a2a_i_symbaloo{background-position:0 -1683px!important}.a2a_i_thefreedictionary{background-position:0 -1700px!important}.a2a_i_thefreelibrary{background-position:0 -1717px!important}.a2a_i_tuenti{background-position:0 -1734px!important}.a2a_i_tumblr{background-position:0 -1751px!important}.a2a_i_twiddla{background-position:0 -1768px!important}.a2a_i_twitter{background-position:0 -1785px!important}.a2a_i_typepad{background-position:0 -1802px!important}.a2a_i_viadeo{background-position:0 -1819px!important}.a2a_i_vk{background-position:0 -1836px!important}.a2a_i_wanelo{background-position:0 -1853px!important}.a2a_i_webnews{background-position:0 -1870px!important}.a2a_i_whatsapp{background-position:0 -1887px!important}.a2a_i_winksite{background-position:0 -1904px!important}.a2a_i_wordpress{background-position:0 -1921px!important}.a2a_i_wykop{background-position:0 -1938px!important}.a2a_i_xing{background-position:0 -1955px!important}.a2a_i_y18{background-position:0 -1972px!important}.a2a_i_yahoo{background-position:0 -1989px!important}.a2a_i_yim{background-position:0 -2006px!important}.a2a_i_yoolink{background-position:0 -2023px!important}.a2a_i_youmob{background-position:0 -2040px!important}.a2a_i_yummly{background-position:0 -2057px!important}</style><style type="text/css">object,embed{-webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;-ms-animation-duration:.001s;-ms-animation-name:playerInserted;-o-animation-duration:.001s;-o-animation-name:playerInserted;animation-duration:.001s;animation-name:playerInserted;}@-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}</style><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style><link rel="stylesheet" href="http://static.addtoany.com/menu/svg/icons.11.svg.css"><link type="text/css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/default+en.css" rel="stylesheet"><link type="text/css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/default.css" rel="stylesheet"><script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/default+en.I.js"></script><style type="text/css">
+</style><style type="text/css">.gscb_a{display:inline-block;font:27px/13px arial,sans-serif}.gsst_a .gscb_a{color:#a1b9ed;cursor:pointer}.gsst_a:hover .gscb_a,.gsst_a:focus .gscb_a{color:#36c}.gsst_a{display:inline-block}.gsst_a{cursor:pointer;padding:0 4px}.gsst_a:hover{text-decoration:none!important}.gsst_b{font-size:16px;padding:0 2px;position:relative;user-select:none;-webkit-user-select:none;white-space:nowrap}.gsst_e{opacity:0.55;}.gsst_a:hover .gsst_e,.gsst_a:focus .gsst_e{opacity:0.72;}.gsst_a:active .gsst_e{opacity:1;}.gsst_f{background:white;text-align:left}.gsst_g{background-color:white;border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);margin:-1px -3px;padding:0 6px}.gsst_h{background-color:white;height:1px;margin-bottom:-1px;position:relative;top:-1px}.gsib_a{width:100%;padding:4px 6px 0}.gsib_a,.gsib_b{vertical-align:top}.gssb_c{border:0;position:absolute;z-index:989}.gssb_e{border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);cursor:default}.gssb_f{visibility:hidden;white-space:nowrap}.gssb_k{border:0;display:block;position:absolute;top:0;z-index:988}.gsdd_a{border:none!important}.gscsep_a{display:none}.gsq_a{padding:0}.gsq_a{padding:0}.gssb_a{padding:0 7px}.gssb_a,.gssb_a td{white-space:nowrap;overflow:hidden;line-height:22px}#gssb_b{font-size:11px;color:#36c;text-decoration:none}#gssb_b:hover{font-size:11px;color:#36c;text-decoration:underline}.gssb_g{text-align:center;padding:8px 0 7px;position:relative}.gssb_h{font-size:15px;height:28px;margin:0.2em;-webkit-appearance:button}.gssb_i{background:#eee}.gss_ifl{visibility:hidden;padding-left:5px}.gssb_i .gss_ifl{visibility:visible}a.gssb_j{font-size:13px;color:#36c;text-decoration:none;line-height:100%}a.gssb_j:hover{text-decoration:underline}.gssb_l{height:1px;background-color:#e5e5e5}.gssb_m{color:#000;background:#fff}.gsfe_a{border:1px solid #b9b9b9;border-top-color:#a0a0a0;box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);-moz-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);-webkit-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);}.gsfe_b{border:1px solid #4d90fe;outline:none;box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);-moz-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);-webkit-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);}.gssb_a{padding:0 9px}.gsib_a{padding-right:8px;padding-left:8px}.gsst_a{padding-top:3px}.gssb_e{border:0}.gssb_l{margin:5px 0}.gssb_c .gsc-completion-container{position:static}.gssb_c{z-index:5000}.gsc-completion-container table{background:transparent;font-size:inherit;font-family:inherit}.gssb_c > tbody > tr,.gssb_c > tbody > tr > td,.gssb_d,.gssb_d > tbody > tr,.gssb_d > tbody > tr > td,.gssb_e,.gssb_e > tbody > tr,.gssb_e > tbody > tr > td{padding:0;margin:0;border:0}.gssb_a table,.gssb_a table tr,.gssb_a table tr td{padding:0;margin:0;border:0}</style></head>
+
+                        <body class="page page-id-2795 page-template-default" data-twttr-rendered="true" style="">
+
+                            <div id="wrapper">
+                                
+                                
+                                <div class="header-v4">
+  <!--<div class="header-social">
+		<div class="avada-row">
+			<div class="alignleft">
+            
+							</div>
+			<div class="alignright">
+				<ul id="snav" class="menu"><li id="menu-item-10557" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-10557"><a href="http://planetcassandra.org/what-is-apache-cassandra/">Getting Started</a></li>
+<li id="menu-item-10565" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-10565"><a href="http://www.planetcassandra.org/try-cassandra/">Tutorials</a></li>
+<li id="menu-item-10569" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-10569"><a href="http://www.planetcassandra.org/apache-cassandra-use-cases/">Community</a></li>
+<li id="menu-item-10577" class="download menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-10577"><a href="http://www.planetcassandra.org/cassandra/">Downloads</a></li>
+<li id="menu-item-10582" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10582"><a href="http://planetcassandra.org/blog/">Blog</a></li>
+<li id="menu-item-10587" class="download-btn-nav menu-item menu-item-type-post_type menu-item-object-page menu-item-10587"><a href="http://planetcassandra.org/cassandra/">Download Apache Cassandra</a></li>
+</ul>			</div>
+		</div>
+	</div>-->
+	<header id="header">
+		<div style="margin-top:0px;margin-bottom:0px;">
+			<div class="cf header-inner">
+				<div class="avada-row">
+					  <div class="logo alignleft" style="position: fixed;"><a title="Planet Cassandra" href="http://planetcassandra.org/">
+						  <img src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/cassandra-01311.png" alt="Planet Cassandra">
+						</a>
+					  </div>
+					<div class="header-right-block">
+						<div class="cf">
+							<div class="search-block">
+							  							  <div class="wgs_wrapper" id="wgs_widget_wrapper_id"><div id="___gcse_0"><div class="gsc-control-searchbox-only gsc-control-searchbox-only-en" dir="ltr"><form class="gsc-search-box gsc-search-box-tools" accept-charset="utf-8"><table cellspacing="0" cellpadding="0" class="gsc-search-box"><tbody><tr><td class="gsc-input"><div class="gsc-input-box" id="gsc-iw-id1"><table cellspacing="0" cellpadding="0" id="gs_id50" class="gstl_50 " style="width: 100%; padding: 0px;"><tbody><tr><td id="gs_tti50" class="gsib_a"><input autocomplete="off" type="text" size="10" class="gsc-input" name="search" title="search" id="gsc-i-id1" x-webkit-speech="" x-webkit-grammar="builtin:search" lang="en" dir="ltr" spellcheck="false" style="width: 100%; padding: 0px; border: none; margin: 0px; height: auto; outline: none;" value="Search Planet Cassandra…"></td><td class="gsib_b"><div class="gsst_b" id="gs_st50" dir="ltr"><a class="gsst_a" href="javascript:void(0)" style="display: none;"><span class="gscb_a" id="gs_cb50">×</span></a></div></td></tr></tbody></table></div><input type="hidden" name="bgresponse" id="bgresponse"></td><td class="gsc-search-button"><input type="image" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/search_box_icon.png" class="gsc-search-button gsc-search-button-v2" title="search"></td><td class="gsc-clear-button"><div class="gsc-clear-button" title="clear results">&nbsp;</div></td></tr></tbody></table><table cellspacing="0" cellpadding="0" class="gsc-branding"><tbody><tr style="display: none;"><td class="gsc-branding-user-defined"></td><td class="gsc-branding-text"><div class="gsc-branding-text">powered by</div></td><td class="gsc-branding-img"><img src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/small-logo.png" class="gsc-branding-img"></td></tr></tbody></table></form></div></div></div>							</div>
+						</div>
+				  
+					  <div id="small-nav" class="alignright">
+													<nav id="nav" class="nav-holder">
+							  							  <ul id="nav" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-10557 current-menu-ancestor current-menu-parent"><a href="http://planetcassandra.org/what-is-apache-cassandra/">Getting Started</a>
+<ul class="sub-menu">
+	<li id="menu-item-10558" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10558"><a href="http://planetcassandra.org/what-is-apache-cassandra/">What is Apache Cassandra?</a></li>
+	<li id="menu-item-10559" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2795 current_page_item menu-item-10559"><a href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/NoSQL Databases Defined & Explained   Planet Cassandra.html">NoSQL Databases Explained</a></li>
+	<li id="menu-item-10560" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10560"><a href="http://planetcassandra.org/nosql-performance-benchmarks/">NoSQL Database Benchmarks</a></li>
+	<li id="menu-item-10564" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10564"><a target="_blank" href="http://www.datastax.com/documentation/cassandra/2.1/cassandra/gettingStartedCassandraIntro.html">Apache Cassandra Documentation</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-10565"><a href="http://www.planetcassandra.org/try-cassandra/">Tutorials</a>
+<ul class="sub-menu">
+	<li id="menu-item-10566" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10566"><a href="http://planetcassandra.org/try-cassandra/">Try Apache Cassandra</a></li>
+	<li id="menu-item-10567" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10567"><a href="http://planetcassandra.org/getting-started-with-apache-cassandra-and-java/">Connect a Language Driver</a></li>
+	<li id="menu-item-10951" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10951"><a href="http://planetcassandra.org/making-the-change-from-thrift-to-cql/">Switch from Thrift to CQL</a></li>
+	<li id="menu-item-10584" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10584"><a href="http://planetcassandra.org/getting-started-with-time-series-data-modeling/">Time-Series Data Modeling</a></li>
+	<li id="menu-item-10563" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10563"><a href="http://planetcassandra.org/getting-started-with-apache-spark-and-cassandra/">Apache Spark + Cassandra</a></li>
+	<li id="menu-item-10941" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10941"><a href="http://planetcassandra.org/getting-started-with-ccm-cassandra-cluster-manager/">Launch a Local Cassandra Cluster</a></li>
+	<li id="menu-item-10568" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10568"><a href="http://planetcassandra.org/mysql-to-cassandra-migration/">Migrate to Cassandra</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-10569"><a href="http://www.planetcassandra.org/apache-cassandra-use-cases/">Community</a>
+<ul class="sub-menu">
+	<li id="menu-item-10570" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10570"><a href="http://planetcassandra.org/apache-cassandra-usecases/">Use Cases</a></li>
+	<li id="menu-item-11313" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11313"><a href="http://planetcassandra.org/virtual-office-hours/">Free Virtual Office Hours</a></li>
+	<li id="menu-item-10571" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10571"><a href="http://planetcassandra.org/cassandra-training/">Free Virtual Training</a></li>
+	<li id="menu-item-10572" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10572"><a href="http://planetcassandra.org/join-your-local-meetup/">Join a Local Meetup</a></li>
+	<li id="menu-item-10721" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10721"><a target="_blank" href="http://www.youtube.com/planetcassandra">Video Presentations</a></li>
+	<li id="menu-item-10574" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10574"><a href="http://planetcassandra.org/how-do-i-get-cassandra-swag/">Get Free SWAG</a></li>
+	<li id="menu-item-10575" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10575"><a href="http://planetcassandra.org/get-involved/">Contribute</a></li>
+	<li id="menu-item-11023" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11023"><a href="http://planetcassandra.org/related-projects/">Related Projects</a></li>
+	<li id="menu-item-11303" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11303"><a href="http://planetcassandra.org/events/">Events Calendar</a></li>
+	<li id="menu-item-11576" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11576"><a href="http://planetcassandra.org/general-faq/">Q&amp;A</a></li>
+</ul>
+</li>
+<li class="download menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-10577"><a href="http://www.planetcassandra.org/cassandra/">Downloads</a>
+<ul class="sub-menu">
+	<li id="menu-item-10588" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10588"><a href="http://planetcassandra.org/cassandra/">Download Apache Cassandra</a></li>
+	<li id="menu-item-10579" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10579"><a href="http://planetcassandra.org/opscenter/">OpsCenter Monitoring Tool</a></li>
+	<li id="menu-item-10580" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10580"><a href="http://planetcassandra.org/devcenter/">DevCenter Visual Query Tool</a></li>
+	<li id="menu-item-10581" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10581"><a href="http://planetcassandra.org/client-drivers-tools/">Language Drivers</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10582"><a href="http://planetcassandra.org/blog/">Blog</a></li>
+<li class="download-btn-nav menu-item menu-item-type-post_type menu-item-object-page menu-item-10587"><a href="http://planetcassandra.org/cassandra/">Download Apache Cassandra</a></li>
+</ul>							  <div class="bfh-selectbox mobile-url">
+								<input type="hidden" name="selectbox1" value="">
+								  <a class="bfh-selectbox-toggle" role="button" data-toggle="bfh-selectbox" href="http://planetcassandra.org/what-is-nosql/#">
+								  
+								  											 <span class="bfh-selectbox-option input-medium" data-option="2">What is NoSQL?</span>
+
+																				<b class="caret"></b>
+								  </a>
+								  <div class="bfh-selectbox-options">
+									<div role="listbox">
+									  <ul role="option">
+										<li>
+										  <a tabindex="-1" onclick="redirect(&#39;http://planetcassandra.org/blog/&#39;)" href="http://planetcassandra.org/what-is-nosql/#" data-option="1">Blog</a>
+										</li>
+										<li>
+										  <a tabindex="-1" onclick="redirect(&#39;http://planetcassandra.org/what-is-nosql/&#39;)" href="http://planetcassandra.org/what-is-nosql/#" data-option="2">What is NoSQL?</a>
+										</li>
+										<li>
+										  <a tabindex="-1" onclick="redirect(&#39;http://planetcassandra.org/nosql-performance-benchmarks/&#39;)" href="http://planetcassandra.org/what-is-nosql/#" data-option="3">NoSQL Performance Benchmarks</a>
+										</li>
+										<li>
+										  <a tabindex="-1" onclick="redirect(&#39;http://planetcassandra.org/what-is-apache-cassandra/&#39;)" href="http://planetcassandra.org/what-is-nosql/#" data-option="4">What is Cassandra?</a>
+										</li>
+										<li>
+										  <a tabindex="-1" onclick="redirect(&#39;http://planetcassandra.org/apache-cassandra-use-cases/&#39;)" href="http://planetcassandra.org/what-is-nosql/#" data-option="5">Apache Cassandra Use Cases</a>
+										</li>
+										<li>
+										  <a tabindex="-1" onclick="redirect(&#39;http://planetcassandra.org/documentation/&#39;)" href="http://planetcassandra.org/what-is-nosql/#" data-option="7">Documentation</a>
+										</li>
+									  </ul>
+									</div>
+								  </div>
+							  </div>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		  		  	   
+			</div>
+	</header>
+</div>
+
+<script type="text/javascript">
+
+$(document).ready(function(){ 
+
+setTimeout(function(){ 
+ $('#gsc-i-id1').attr('value','Search Planet Cassandra…');;
+  $('.gsc-search-box-tools #gsc-i-id1')
+  .on('focus', function(){
+      var $this = $(this);
+      if($this.val() == 'Search Planet Cassandra…'){
+          $this.val('');
+      }
+  })
+  .on('blur', function(){
+      var $this = $(this);
+      if($this.val() == ''){
+          $this.val('Search Planet Cassandra…');
+      }
+  });}, 5000); 
+});
+
+
+  function redirect(str)
+  {
+     window.location.assign(str);
+  }
+</script>
+
+                              
+
+                            </div>
+
+
+
+                            
+                                
+
+
+    
+    
+                                                
+                                                
+                                            
+
+
+
+
+
+
+<script type="text/javascript">
+$(".menu .menu-item-10278").hide();
+ </script>
+
+<div id="main" style="overflow:visible !important;">
+
+    <div class="avada-row">
+
+                                <div id="content" style="float:left;">
+            <div id="post-2795" class="post-2795 page type-page status-publish hentry">
+		                            <div class="post-content">
+                <div class="multi_lang_outer cf">
+<ul>
+<li class="multi_lang_inner"><a class="multi_lang_p icon-us" href="http://planetcassandra.org/what-is-nosql/#">English</a><b class="caret"></b>
+<ul class="multi_lang">
+<li class="japan"><a href="http://planetcassandra.org/what-is-nosql-jp">日本語</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1>NoSQL Databases Defined and Explained</h1>
+<p><strong>What is NoSQL?</strong></p>
+<p>• <a href="http://planetcassandra.org/what-is-nosql/#nosql-explained">What is a NoSQL (Not Only SQL) database?</a></p>
+<p>• <a href="http://planetcassandra.org/what-is-nosql/#nosql-database-types">Types of NoSQL Databases</a></p>
+<p>&nbsp;</p>
+<p><strong>Why NoSQL?</strong></p>
+<p>• <a href="http://planetcassandra.org/what-is-nosql/#nosql-advantages">Advantages of NoSQL Databases over&nbsp;Relational Databases</a></p>
+<p>• <a href="http://planetcassandra.org/what-is-nosql/#big-data">The Growth of Big Data</a></p>
+<p>• <a href="http://planetcassandra.org/what-is-nosql/#continuous-availability">Continuous Availability</a></p>
+<p>• <a href="http://planetcassandra.org/what-is-nosql/#location-independence">Real Location Independence</a></p>
+<p>• <a href="http://planetcassandra.org/what-is-nosql/#transaction-capabilities">Modern Transactional Capabilities</a></p>
+<p>• <a href="http://planetcassandra.org/what-is-nosql/#data-model">Flexible Data Models</a></p>
+<p>• <a href="http://planetcassandra.org/what-is-nosql/#architecture">Better Architecture</a></p>
+<p>• <a href="http://planetcassandra.org/what-is-nosql/#analytics">Analytics and Business Intelligence</a><br>
+<a href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/WhatIsNoSQL-Image1.png"><img class="alignnone size-medium wp-image-2860" alt="WhatIsNoSQL-Image1" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/WhatIsNoSQL-Image1.png" width="1" height="1"></a></p>
+<p>&nbsp;</p>
+<p><strong>Which NoSQL database should you choose?</strong></p>
+<p>• <a href="http://planetcassandra.org/what-is-nosql/#choosing-nosql">Choosing The Right NoSQL Database</a></p>
+<p>&nbsp;</p>
+<h2 id="nosql-explained">What is NoSQL?</h2>
+<h3 id="nosql-explained">What is a NoSQL (Not Only SQL) Database?</h3>
+<p>A NoSQL database environment is, simply put, a non-relational and largely distributed database system that enables rapid, ad-hoc organization and analysis of extremely high-volume, disparate data types. NoSQL databases are sometimes referred to as cloud databases, non-relational databases, Big Data databases and a myriad of other terms and were developed in response to the sheer volume of data being generated, stored and analyzed by modern users (user-generated data) and their applications (machine-generated data).</p>
+<p>In general, NoSQL databases have become the first alternative to relational databases, with scalability, availability, and fault tolerance being key deciding factors. They go well beyond the more widely understood legacy, relational databases (such as Oracle, SQL Server and DB2 databases) in satisfying the needs of today’s modern business applications. A very flexible and <a href="http://www.planetcassandra.org/blog/post/schema-vs-schema-less">schema-less data model</a>, horizontal scalability, distributed architectures, and the use of languages and interfaces that are “not only” SQL typically characterize this technology.</p>
+<p>From a business standpoint, considering a NoSQL or ‘Big Data’ environment has been shown to provide a clear competitive advantage in numerous industries. In the ‘age of data’, this is compelling information as a great saying about the importance of data is summed up&nbsp;with the following “if your data isn’t growing then neither is your business”.</p>
+<p><a href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/What-Is-NoSQL-Image-4.png"><img class="wp-image-5185 aligncenter" alt="What Is NoSQL Image 4" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/What-Is-NoSQL-Image-4.png" height="350"></a></p>
+<p>&nbsp;</p>
+<h3 id="nosql-database-types">Types of NoSQL Databases</h3>
+<p>There are four general types of NoSQL databases, each with their own&nbsp;specific attributes:</p>
+<ul>
+<li>Key-Value store – we start with this type of database because&nbsp;these are some of the least complex NoSQL options. These databases are&nbsp;designed for storing data in a schema-less way. In a key-value store,&nbsp;all of the data within consists of an indexed key and a value, hence&nbsp;the name. Examples of this type of database include: <a href="http://www.datastax.com/resources/tutorials/cassandra-overview">Cassandra</a>,&nbsp;DyanmoDB, Azure&nbsp;Table Storage (ATS), Riak, BerkeleyDB.</li>
+<li>Column store – (also known as wide-column stores) instead of&nbsp;storing data in rows, these&nbsp;databases are designed for storing data tables as sections of columns&nbsp;of data, rather than as rows of data. While this simple description&nbsp;sounds like the inverse of a standard database, wide-column stores&nbsp;offer very high performance and a highly scalable architecture.&nbsp;Examples include: HBase, BigTable and HyperTable.</li>
+<li>Document database – expands on the basic idea of key-value stores&nbsp;where “documents” are more complex, in that they contain data and&nbsp;each document is assigned a unique key, which is used to retrieve the&nbsp;document. These are designed for storing, retrieving, and managing&nbsp;document-oriented information, also known as semi-structured&nbsp;data. Examples include: MongoDB and CouchDB.</li>
+<li>Graph database – Based on <a href="http://en.wikipedia.org/wiki/Graph_theory">graph theory</a>,&nbsp;these databases are designed for data whose relations are well&nbsp;represented as a graph and&nbsp;has elements which are interconnected, with an undetermined number of&nbsp;relations between them. Examples include: Neo4J and Polyglot.</li>
+</ul>
+<p>The following table lays out some of the key attributes that should be&nbsp;considered when evaluating NoSQL databases.</p>
+<table style="text-align: left; width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">Datamodel</span></td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">Performance</span></td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">Scalability</span></td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">Flexibility</span></td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">Complexity</span></td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">Functionality</span></td>
+</tr>
+<tr>
+<td style="vertical-align: top;">Key-value store</td>
+<td style="vertical-align: top;">High</td>
+<td style="vertical-align: top;">High</td>
+<td style="vertical-align: top;">High</td>
+<td style="vertical-align: top;">None</td>
+<td style="vertical-align: top;">Variable (None)</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">Column Store</td>
+<td style="vertical-align: top;">High</td>
+<td style="vertical-align: top;">High</td>
+<td style="vertical-align: top;">Moderate</td>
+<td style="vertical-align: top;">Low</td>
+<td style="vertical-align: top;">Minimal</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">Document Store</td>
+<td style="vertical-align: top;">High</td>
+<td style="vertical-align: top;">Variable (High)</td>
+<td style="vertical-align: top;">High</td>
+<td style="vertical-align: top;">Low</td>
+<td style="vertical-align: top;">Variable (Low)</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">Graph Database</td>
+<td style="vertical-align: top;">Variable</td>
+<td style="vertical-align: top;">Variable</td>
+<td style="vertical-align: top;">High</td>
+<td style="vertical-align: top;">High</td>
+<td style="vertical-align: top;">Graph Theory</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h2 id="nosql-advantages">Why NoSQL?</h2>
+<h3 id="nosql-advantages">Advantages of NoSQL Databases over Relational&nbsp;Databases</h3>
+<p>The reasons for businesses to adopt <a href="http://www.datastax.com/2013/10/why-nosql-can-be-safer-than-an-rdbms">a&nbsp;NoSQL database environment over a relational database</a> have almost&nbsp;everything to do with the following market drivers and technical&nbsp;requirements.</p>
+<p>When making the switch, consider checking out this roadmap <a href="http://www.datastax.com/relational-database-to-nosql">relational database to NoSQL database</a>&nbsp;for a walkthrough of NoSQL education, migration and success.</p>
+<h4 id="big-data">The Growth of Big Data</h4>
+<p>Big Data is one of the key forces driving the growth and popularity&nbsp;of NoSQL for business. The almost limitless array of data collection&nbsp;technologies ranging from simple online actions to point of sale&nbsp;systems to GPS tools to smartphones and tablets to sophisticated&nbsp;sensors – and many more – act as force multipliers for data growth.</p>
+<p>In fact, one of the first reasons to use NoSQL is because you have a&nbsp;Big Data project to tackle. A <a href="http://www.datastax.com/big-data-challenges">Big Data</a>&nbsp;project is normally typified by:</p>
+<ol>
+<li>High data velocity – lots of data coming in very quickly,&nbsp;possibly from different locations.</li>
+<li>Data variety – storage of data that is structured,&nbsp;semi-structured and unstructured.</li>
+<li>Data volume – data that involves many terabytes or petabytes in&nbsp;size.</li>
+<li>Data complexity – data that is stored and managed in different&nbsp;locations or data centers.</li>
+</ol>
+<h4><img class="size-full wp-image-5232 aligncenter" alt="What-is-NoSQL-Image-2" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/What-is-NoSQL-Image-2.png" height="200"></h4>
+<h4 id="continuous-availability">Continuous Data Availability</h4>
+<p>In today’s marketplace, where the competition is just a click away,&nbsp;downtime can be deadly to a company’s bottom line and reputation.&nbsp;Hardware failures can and will occur, fortunately NoSQL database&nbsp;environments are built with a distributed architecture so there are no&nbsp;single points of failure and there is built-in redundancy of both&nbsp;function and data. &nbsp;If one or more database servers, or ‘nodes’ goes&nbsp;down, the other nodes in the system are able to continue with&nbsp;operations without data loss, thereby showing true fault tolerance. &nbsp;In&nbsp;this way, NoSQL database environments are able to provide continuous&nbsp;availability whether in single locations, across data centers and in&nbsp;the cloud. &nbsp;When deployed appropriately, NoSQL databases can supply high&nbsp;performance at massive scale, which never go down. &nbsp;This is immensely&nbsp;beneficial as any system updates or modifications can be made without&nbsp;having to take the database offline. &nbsp;This fact alone draws the&nbsp;attention of businesses that are serving customers who expect&nbsp;availability of applications and where downtime equates to real dollars&nbsp;lost.</p>
+<h4 id="location-independence">Real Location Independence</h4>
+<p>The term “location independence” means the ability to read and&nbsp;write to a database regardless of where that I/O operation physically&nbsp;occurs and to have any write functionality propagated out from that&nbsp;location, so that it’s available to users and machines at other sites.&nbsp;Such functionality is very difficult to architect for relational&nbsp;databases. &nbsp;Some techniques can be employed such as master/slave&nbsp;architectures and database sharding can sometimes meet the need for&nbsp;location independent read operations, but writing data everywhere is a&nbsp;different matter, especially when those data volumes are high. Other&nbsp;scenarios where location independence is an advantage are many and&nbsp;include servicing customers in many different geographies and needing&nbsp;to keep data local at those sites for fast access.</p>
+<h4 id="transaction-capabilities">Modern Transactional Capabilities</h4>
+<p>The concept of transactions appears to be changing in the Internet&nbsp;age, and it’s been demonstrated that ACID transactions are no longer a&nbsp;requirement in database driven systems.&nbsp;At first blush, this assertion sounds extreme, as transactional&nbsp;integrity is a characteristic of most every data system – especially&nbsp;those with information requirements that demand accuracy and safety.&nbsp;However, what this refers to is not the jeopardizing of data, but&nbsp;rather the new way modern applications ensure transactional consistency&nbsp;across widely distributed systems. &nbsp;The “C” in ACID refers to <a href="http://www.datastax.com/resources/tutorials/data-consistency">data&nbsp;Consistency</a> in relational database management systems which is enforced via foreign keys/referential integrity constraints. &nbsp;This type&nbsp;of consistency is not utilized in progressive data management systems&nbsp;such as NoSQL databases because there are no JOIN operations, as this&nbsp;would require more rigid enforcement of consistency. &nbsp;Instead, the “Consistency” that concerns NoSQL databases is found in&nbsp;the CAP theorem, which signifies the immediate or eventual consistency&nbsp;of data across all nodes that participate in a distributed database. &nbsp;The data is still safe and meets the AID portion of the RDBMS ACID&nbsp;definition, but its consistency is maintained differently given the&nbsp;nature and architecture of the system.</p>
+<h4 id="data-model">Flexible Data Models</h4>
+<p>One of the major reasons businesses move to a NoSQL database system&nbsp;from a relational database management system (RDBMS) is the more <a href="http://www.youtube.com/watch?v=px6U2n74q3g&feature=youtu.be">flexible&nbsp;data model</a> that’s found in most NoSQL databases. The relational&nbsp;data model is based on defined relationships between tables, which&nbsp;themselves are defined by a determined column structure, all of which&nbsp;are explicitly organized in a database schema – all very strict and&nbsp;uniform. Problems begin to arise with the relational model around&nbsp;scalability and performance when trying to manage the large data&nbsp;volumes that are becoming a fact of life in a modern IT and business&nbsp;environment. &nbsp; A NoSQL data model – often referred to as schema-less -&nbsp;can support many of these use cases and others that don’t fit well into&nbsp;a RDBMS. &nbsp;A NoSQL database is able to accept all types of data -&nbsp;structured, semi-structured, and unstructured – much more easily than a&nbsp;relational database which rely on a predefined schema. This&nbsp;characteristic of a relational database can be a hindrance on&nbsp;flexibility because a predefined schema rigidly determines how the&nbsp;database and database data are organized. Many of today’s business&nbsp;applications actually have the ability to enforce rules on data usage&nbsp;themselves making a schema-less database platform a viable option.</p>
+<p>Finally, performance factors come into play with an RDBMS’ data model,&nbsp;especially where “wide rows” are involved and update actions are many,&nbsp;which can have real implications on performance. However, a NoSQL data&nbsp;model easily handles such situations and delivers very fast performance&nbsp;for both read and write operations.</p>
+<h4 id="architecture">Better Architecture</h4>
+<p>Another reason to use a NoSQL database is because you need a more&nbsp;suitable architecture for a particular application. It’s critical that&nbsp;organizations adopt a NoSQL platform that allows them to keep their&nbsp;very high volume data in the context of their applications. Some, but&nbsp;not all, NoSQL solutions provide modern architectures that can tackle&nbsp;the type of applications that require high degrees of scale, data&nbsp;distribution, and continuous availability.&nbsp; Data center support,&nbsp;and as is more common, multiple data center support, should be a use&nbsp;case with which a NoSQL environment complies.&nbsp; It’s not just what&nbsp;your big data needs look like today but also out to greater time&nbsp;horizons that decisions should be made.</p>
+<h4 id="analytics">Analytics and Business Intelligence</h4>
+<p>A key strategic driver of implementing a NoSQL database environment&nbsp;is the ability to mine the data that is being collected so as to derive&nbsp;insights that puts your business at a competitive advantage. Extracting&nbsp;meaningful business intelligence from very high volumes of data is a&nbsp;very difficult task to achieve with traditional relational database&nbsp;systems. Modern NoSQL database systems not only provide storage and&nbsp;management of business application data but also deliver integrated&nbsp;data analytics that deliver instant understanding of complex data sets&nbsp;and facilitate flexible decision-making.</p>
+<p>&nbsp;</p>
+<h2 id="choosing-nosql">Which NoSQL database should you use?</h2>
+<h3 id="choosing-nosql">Choosing the Right NoSQL Database</h3>
+<p>To this point we have been able to detail many <a href="http://www.youtube.com/watch?v=Je9BKVBM818&feature=youtu.be">reasons&nbsp;for a business to adopt a NoSQL</a>, or non-relational database&nbsp;platform, and also covered different types of NoSQL database options.&nbsp;Determining which NoSQL database to adopt is an exercise that requires&nbsp;a business to a long hard look at itself and its applications – which&nbsp;is always good. Understand clearly what your business goals are, what&nbsp;your application(s) needs – and challenges – are today, and what those&nbsp;needs may be on the horizon. Also, make sure that both the business and&nbsp;the technology goals are aligned so that the platform decision made&nbsp;delivers for all key stakeholders. Then work back to the NoSQL platform&nbsp;that will satisfy these needs and provide the most solid foundation for&nbsp;you to build on.</p>
+<p>Key considerations when choosing your NoSQL platform include:</p>
+<ul>
+<li><span style="font-weight: bold;">Workload diversity</span> – Big&nbsp;Data comes in all shapes, colors and sizes. Rigid schemas have no place&nbsp;here; instead you need a more flexible design. You want your technology&nbsp;to fit your data, not the other way around. And you want to be able to&nbsp;do more with all of that data – perform transactions in real-time, run<br>
+analytics just as fast and find anything you want in an instant from&nbsp;oceans of data, no matter what from that data may take.</li>
+<li><span style="font-weight: bold;">Scalability</span> – With big&nbsp;data you want to be able to scale very rapidly and elastically,&nbsp;whenever and wherever you want. This applies to all situations, whether<br>
+scaling across multiple data centers and even to the cloud if needed.</li>
+<li><span style="font-weight: bold;">Performance</span> – As has&nbsp;already been discussed, in an online world where nanosecond delays can&nbsp;cost you sales, Big Data must move at extremely high velocities no&nbsp;matter how much you scale or what workloads your database must perform.&nbsp;Performance of your environment, namely your applications, should be&nbsp;high on the list of requirements for deploying a NoSQL platform.</li>
+<li><span style="font-weight: bold;">Continuous</span> <span style="font-weight: bold;">Availability&nbsp;</span>- Building off of the performance consideration, when you rely on big&nbsp;data to feed your essential, revenue-generating 24/7 business&nbsp;applications, even high availability is not high enough. Your data can&nbsp;never go down, therefore there should be no single point of failure in&nbsp;your NoSQL environment, thus ensuring applications are always available.</li>
+<li><span style="font-weight: bold;">Manageability</span> -&nbsp;Operational complexity of a NoSQL platform should be kept at a minimum.&nbsp;Make sure that the administration and development required to both&nbsp;maintain and maximize the benefits of moving to a NoSQL environment are&nbsp;achievable.</li>
+<li><span style="font-weight: bold;">Cost</span> – This is certainly&nbsp;a glaring reason for making the move to a NoSQL platform as meeting&nbsp;even one of the considerations presented here with relational database&nbsp;technology can cost become prohibitively expensive. Deploying NoSQL&nbsp;properly allows for all of the benefits above while also lowering&nbsp;operational costs.</li>
+<li><span style="font-weight: bold;">Strong</span> <span style="font-weight: bold;">Community&nbsp;</span>- This is perhaps one of the more important factors to keep in mind as&nbsp;you move to a NoSQL platform. Make sure there is a solid and capable&nbsp;community around the technology, as this will provide an invaluable&nbsp;resource for the individuals and teams that will be managing the&nbsp;environment. Involvement on the part of the vendor should not only&nbsp;include strong support and technical resource availability, but also&nbsp;consistent outreach to the user base. Good local user groups and&nbsp;meetups will provide many opportunities for communicating with other&nbsp;individuals and teams that will provide great insight into how to work&nbsp;best with the platform of choice.</li>
+</ul>
+                            </div>
+                    </div>
+    </div>
+<div id="sidebar" style="float:right;"><div id="nav_menu-11" class="widget widget_nav_menu" style="position: fixed; display: block;"><div class="menu-basics-container"><ul id="menu-basics" class="menu"><li id="menu-item-9581" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9581"><a href="http://planetcassandra.org/what-is-apache-cassandra/">Apache Cassandra Explained</a></li>
+<li id="menu-item-9584" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2795 current_page_item menu-item-9584"><a href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/NoSQL Databases Defined & Explained   Planet Cassandra.html">NoSQL Databases Explained</a></li>
+<li id="menu-item-9582" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9582"><a href="http://planetcassandra.org/nosql-performance-benchmarks/">NoSQL Database Benchmarks</a></li>
+<li id="menu-item-9583" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9583"><a href="http://planetcassandra.org/data-replication-in-nosql-databases-explained/">NoSQL Data Replication</a></li>
+</ul></div></div>
+     
+
+        <!--<div class="trycassimage">
+            <div class="left-news-letter">
+                <h2>Newsletter Signup</h2>
+                    <p>Signup for our monthly newsletter to receive updates on the most recent use cases, popular blog postings, free virtual office hours registration & more. </p>
+                <h4>We promise not to spam!</h4></div>
+           <a href='/try-cassandra'> <img src="/wp-content/themes/Avada/images/trycass.png"> </a> 
+           
+            </div> -->
+        <div class="trycassimage" style="margin-top: 107px; position: fixed;">
+		<div class="info-outer" style="display: block;">
+			<h2>Become a Registered Cassandra User</h2>
+			<span class="info-icon"></span>
+			<div class="info-inner">
+			<span></span>
+			<ul>
+			<div class="title-info">Become a Registered Cassandra User to receive:</div>
+				<li>Monthly newsletters with the most popular use cases, blog postings, &amp; presentations</li>
+				<li>Registration for free virtual office-hour sessions with a technical evangelist</li>
+				<li>Notification when new versions of Apache Cassandra Become available</li>
+				<li>Notification when free Apache Cassandra events will be in your area</li>
+			</ul>
+			</div>
+		</div>
+
+            <script src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/forms2.js"></script>
+            <form id="mktoForm_1195" novalidate="novalidate" class="mktoForm mktoHasWidth mktoLayoutLeft" style="font-family: Helvetica, Arial, sans-serif; font-size: 13px; color: rgb(51, 51, 51); width: 237px;"><style type="text/css">.mktoForm .mktoButtonWrap.mktoRound .mktoButton {
+color:#fff;
+border:1px solid #a3bee2;
+-webkit-border-radius:5px;
+-moz-border-radius:5px;
+border-radius:5px;
+background-color:#779dd5;
+background-image: -webkit-gradient(linear, left top, left bottom, from(#779dd5), to(#5186cb));
+background-image: -webkit-linear-gradient(top, #779dd5, #5186cb);
+background-image: -moz-linear-gradient(top, #779dd5, #5186cb);
+background-image: linear-gradient(to bottom, #779dd5, #5186cb);
+padding:0.4em 1em;
+font-size:1em;
+}
+.mktoForm .mktoButtonWrap.mktoRound .mktoButton:hover {
+border:1px solid #45638c;
+}
+.mktoForm .mktoButtonWrap.mktoRound .mktoButton:focus {
+outline:none;
+border:1px solid #45638c;
+}
+.mktoForm .mktoButtonWrap.mktoRound .mktoButton:active{
+background-color:#5186cb;
+background-image: -webkit-gradient(linear, left top, left bottom, from(#5186cb), to(#779dd5));
+background-image: -webkit-linear-gradient(top, #5186cb, #779dd5);
+background-image: -moz-linear-gradient(top, #5186cb, #779dd5);
+background-image: linear-gradient(to bottom, #5186cb, #779dd5);
+}
+
+.mktoForm .mktoButtonWrap.mktoRound button.mktoButton {background:#e73732;}
+</style><div class="mktoFormRow"><div class="mktoFieldDescriptor mktoFormCol" style="margin-bottom: 10px;"><div class="mktoOffset" style="width: 10px;"></div><div class="mktoFieldWrap mktoRequiredField"><label for="FirstName" class="mktoLabel mktoHasWidth" style="width: 0px;"><div class="mktoAsterix">*</div></label><div class="mktoGutter mktoHasWidth" style="width: 10px;"></div><input id="FirstName" name="FirstName" placeholder="First Name" maxlength="255" title="First Name" type="text" class="mktoField mktoTextField mktoHasWidth mktoRequired" style="width: 125px;"><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoFormRow"><div class="mktoFieldDescriptor mktoFormCol" style="margin-bottom: 10px;"><div class="mktoOffset" style="width: 10px;"></div><div class="mktoFieldWrap mktoRequiredField"><label for="LastName" class="mktoLabel mktoHasWidth" style="width: 0px;"><div class="mktoAsterix">*</div></label><div class="mktoGutter mktoHasWidth" style="width: 10px;"></div><input id="LastName" name="LastName" placeholder="Last Name" maxlength="255" title="Last Name" type="text" class="mktoField mktoTextField mktoHasWidth mktoRequired" style="width: 125px;"><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoFormRow"><div class="mktoFieldDescriptor mktoFormCol" style="margin-bottom: 10px;"><div class="mktoOffset" style="width: 10px;"></div><div class="mktoFieldWrap mktoRequiredField"><label for="Email" class="mktoLabel mktoHasWidth" style="width: 0px;"><div class="mktoAsterix">*</div></label><div class="mktoGutter mktoHasWidth" style="width: 10px;"></div><input id="Email" name="Email" placeholder="Email" maxlength="255" title="Email" type="email" class="mktoField mktoEmailField mktoHasWidth mktoRequired" style="width: 125px;"><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoFormRow"><div class="mktoFieldDescriptor mktoFormCol" style="margin-bottom: 10px;"><div class="mktoOffset" style="width: 10px;"></div><div class="mktoFieldWrap"><label for="Phone" class="mktoLabel mktoHasWidth" style="width: 0px;"><div class="mktoAsterix">*</div></label><div class="mktoGutter mktoHasWidth" style="width: 10px;"></div><input id="Phone" name="Phone" placeholder="Phone (optional)" maxlength="255" title="Phone (optional)" type="tel" class="mktoField mktoTelField mktoHasWidth" style="width: 125px;"><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoFormRow"><div class="mktoFieldDescriptor mktoFormCol" style="margin-bottom: 10px;"><div class="mktoOffset" style="width: 10px;"></div><div class="mktoFieldWrap mktoRequiredField"><label for="Company" class="mktoLabel mktoHasWidth" style="width: 0px;"><div class="mktoAsterix">*</div></label><div class="mktoGutter mktoHasWidth" style="width: 10px;"></div><input id="Company" name="Company" placeholder="Company" maxlength="255" title="Company" type="text" class="mktoField mktoTextField mktoHasWidth mktoRequired" style="width: 125px;"><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoFormRow"><div class="mktoFieldDescriptor mktoFormCol" style="margin-bottom: 10px;"><div class="mktoOffset" style="width: 10px;"></div><div class="mktoFieldWrap mktoRequiredField"><label for="Title" class="mktoLabel mktoHasWidth" style="width: 0px;"><div class="mktoAsterix">*</div></label><div class="mktoGutter mktoHasWidth" style="width: 10px;"></div><input id="Title" name="Title" placeholder="Job Title" maxlength="255" title="Job Title" type="text" class="mktoField mktoTextField mktoHasWidth mktoRequired" style="width: 125px;"><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoFormRow"><div class="mktoFieldDescriptor mktoFormCol" style="margin-bottom: 10px;"><div class="mktoOffset" style="width: 10px;"></div><div class="mktoFieldWrap mktoRequiredField"><label for="Country" class="mktoLabel mktoHasWidth" style="width: 0px;"><div class="mktoAsterix">*</div></label><div class="mktoGutter mktoHasWidth" style="width: 10px;"></div><select id="Country" name="Country" class="mktoField mktoHasWidth mktoRequired" style="width: 125px;"><option value="">Select Country</option><option value="United States">United States</option><option value="Afghanistan">Afghanistan</option><option value="Aland Islands">Aland Islands</option><option value="Albania">Albania</option><option value="Algeria">Algeria</option><option value="American Samoa">American Samoa</option><option value="Andorra">Andorra</option><option value="Angola">Angola</option><option value="Anguilla">Anguilla</option><option value="Antarctica">Antarctica</option><option value="Antigua and Barbuda">Antigua and Barbuda</option><option value="Argentina">Argentina</option><option value="Armenia">Armenia</option><option value="Aruba">Aruba</option><option value="Australia">Australia</option><option value="Austria">Austria</option><option value="Azerbaijan">Azerbaijan</option><option value="Bahamas">Bahamas</option><option value="Bahrain">Bahrain</option><option value="Bangladesh">Bangladesh</option><option value="Barbados">Barbados</option><option value="Belarus">Belarus</option><option value="Belgium">Belgium</option><option value="Belize">Belize</option><option value="Benin">Benin</option><option value="Bermuda">Bermuda</option><option value="Bhutan">Bhutan</option><option value="Bolivia, Plurinational State of">Bolivia, Plurinational State of</option><option value="Bonaire, Sint Eustatius and Saba">Bonaire, Sint Eustatius and Saba</option><option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option><option value="Botswana">Botswana</option><option value="Bouvet Island">Bouvet Island</option><option value="Brazil">Brazil</option><option value="British Indian Ocean Territory">British Indian Ocean Territory</option><option value="Brunei Darussalam">Brunei Darussalam</option><option value="Bulgaria">Bulgaria</option><option value="Burkina Faso">Burkina Faso</option><option value="Burundi">Burundi</option><option value="Cambodia">Cambodia</option><option value="Cameroon">Cameroon</option><option value="Canada">Canada</option><option value="Cape Verde">Cape Verde</option><option value="Cayman Islands">Cayman Islands</option><option value="Central African Republic">Central African Republic</option><option value="Chad">Chad</option><option value="Chile">Chile</option><option value="China">China</option><option value="Christmas Island">Christmas Island</option><option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option><option value="Colombia">Colombia</option><option value="Comoros">Comoros</option><option value="Congo">Congo</option><option value="Congo, the Democratic Republic of the">Congo, the Democratic Republic of the</option><option value="Cook Islands">Cook Islands</option><option value="Costa Rica">Costa Rica</option><option value="Cote d&#39;Ivoire">Cote d'Ivoire</option><option value="Croatia">Croatia</option><option value="Curaçao">Curaçao</option><option value="Cyprus">Cyprus</option><option value="Czech Republic">Czech Republic</option><option value="Denmark">Denmark</option><option value="Djibouti">Djibouti</option><option value="Dominica">Dominica</option><option value="Dominican Republic">Dominican Republic</option><option value="Ecuador">Ecuador</option><option value="Egypt">Egypt</option><option value="El Salvador">El Salvador</option><option value="Equatorial Guinea">Equatorial Guinea</option><option value="Eritrea">Eritrea</option><option value="Estonia">Estonia</option><option value="Ethiopia">Ethiopia</option><option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option><option value="Faroe Islands">Faroe Islands</option><option value="Fiji">Fiji</option><option value="Finland">Finland</option><option value="France">France</option><option value="French Guiana">French Guiana</option><option value="French Polynesia">French Polynesia</option><option value="French Southern Territories">French Southern Territories</option><option value="Gabon">Gabon</option><option value="Gambia">Gambia</option><option value="Georgia">Georgia</option><option value="Germany">Germany</option><option value="Ghana">Ghana</option><option value="Gibraltar">Gibraltar</option><option value="Greece">Greece</option><option value="Greenland">Greenland</option><option value="Grenada">Grenada</option><option value="Guadeloupe">Guadeloupe</option><option value="Guam">Guam</option><option value="Guatemala">Guatemala</option><option value="Guernsey">Guernsey</option><option value="Guinea">Guinea</option><option value="Guinea-Bissau">Guinea-Bissau</option><option value="Guyana">Guyana</option><option value="Haiti">Haiti</option><option value="Heard Island and McDonald Islands">Heard Island and McDonald Islands</option><option value="Holy See (Vatican City State)">Holy See (Vatican City State)</option><option value="Honduras">Honduras</option><option value="Hong Kong">Hong Kong</option><option value="Hungary">Hungary</option><option value="Iceland">Iceland</option><option value="India">India</option><option value="Indonesia">Indonesia</option><option value="Iraq">Iraq</option><option value="Ireland">Ireland</option><option value="Isle of Man">Isle of Man</option><option value="Israel">Israel</option><option value="Italy">Italy</option><option value="Jamaica">Jamaica</option><option value="Japan">Japan</option><option value="Jersey">Jersey</option><option value="Jordan">Jordan</option><option value="Kazakhstan">Kazakhstan</option><option value="Kenya">Kenya</option><option value="Kiribati">Kiribati</option><option value="Korea, Republic of">Korea, Republic of</option><option value="Kuwait">Kuwait</option><option value="Kyrgyzstan">Kyrgyzstan</option><option value="Lao People&#39;s Democratic Republic">Lao People's Democratic Republic</option><option value="Latvia">Latvia</option><option value="Lebanon">Lebanon</option><option value="Lesotho">Lesotho</option><option value="Liberia">Liberia</option><option value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya</option><option value="Liechtenstein">Liechtenstein</option><option value="Lithuania">Lithuania</option><option value="Luxembourg">Luxembourg</option><option value="Macao">Macao</option><option value="Macedonia, the former Yugoslav Republic of">Macedonia, the former Yugoslav Republic of</option><option value="Madagascar">Madagascar</option><option value="Malawi">Malawi</option><option value="Malaysia">Malaysia</option><option value="Maldives">Maldives</option><option value="Mali">Mali</option><option value="Malta">Malta</option><option value="Marshall Islands">Marshall Islands</option><option value="Martinique">Martinique</option><option value="Mauritania">Mauritania</option><option value="Mauritius">Mauritius</option><option value="Mayotte">Mayotte</option><option value="Mexico">Mexico</option><option value="Moldova, Republic of">Moldova, Republic of</option><option value="Monaco">Monaco</option><option value="Mongolia">Mongolia</option><option value="Montenegro">Montenegro</option><option value="Montserrat">Montserrat</option><option value="Morocco">Morocco</option><option value="Mozambique">Mozambique</option><option value="Namibia">Namibia</option><option value="Nauru">Nauru</option><option value="Needs Review">Needs Review</option><option value="Nepal">Nepal</option><option value="Netherlands">Netherlands</option><option value="Netherlands Antilles">Netherlands Antilles</option><option value="New Caledonia">New Caledonia</option><option value="New Zealand">New Zealand</option><option value="Nicaragua">Nicaragua</option><option value="Niger">Niger</option><option value="Nigeria">Nigeria</option><option value="Niue">Niue</option><option value="Norfolk Island">Norfolk Island</option><option value="Northern Mariana Islands">Northern Mariana Islands</option><option value="Norway">Norway</option><option value="Oman">Oman</option><option value="Pakistan">Pakistan</option><option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option><option value="Panama">Panama</option><option value="Papua New Guinea">Papua New Guinea</option><option value="Paraguay">Paraguay</option><option value="Peru">Peru</option><option value="Philippines">Philippines</option><option value="Pitcairn">Pitcairn</option><option value="Poland">Poland</option><option value="Portugal">Portugal</option><option value="Qatar">Qatar</option><option value="Reunion">Reunion</option><option value="Romania">Romania</option><option value="Russian Federation">Russian Federation</option><option value="Rwanda">Rwanda</option><option value="Saint Barthélemy">Saint Barthélemy</option><option value="Saint Helena, Ascension and Tristan da Cunha">Saint Helena, Ascension and Tristan da Cunha</option><option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option><option value="Saint Lucia">Saint Lucia</option><option value="Saint Martin (French part)">Saint Martin (French part)</option><option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option><option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option><option value="Samoa">Samoa</option><option value="San Marino">San Marino</option><option value="Sao Tome and Principe">Sao Tome and Principe</option><option value="Saudi Arabia">Saudi Arabia</option><option value="Senegal">Senegal</option><option value="Serbia">Serbia</option><option value="Serbia and Montenegro">Serbia and Montenegro</option><option value="Seychelles">Seychelles</option><option value="Sierra Leone">Sierra Leone</option><option value="Singapore">Singapore</option><option value="Sint Maarten (Dutch part)">Sint Maarten (Dutch part)</option><option value="Slovakia">Slovakia</option><option value="Slovenia">Slovenia</option><option value="Solomon Islands">Solomon Islands</option><option value="Somalia">Somalia</option><option value="South Africa">South Africa</option><option value="South Georgia and the South Sandwich Islands">South Georgia and the South Sandwich Islands</option><option value="South Sudan">South Sudan</option><option value="Spain">Spain</option><option value="Sri Lanka">Sri Lanka</option><option value="Suriname">Suriname</option><option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option><option value="Swaziland">Swaziland</option><option value="Sweden">Sweden</option><option value="Switzerland">Switzerland</option><option value="Taiwan">Taiwan</option><option value="Tajikistan">Tajikistan</option><option value="Tanzania, United Republic of">Tanzania, United Republic of</option><option value="Thailand">Thailand</option><option value="Timor-Leste">Timor-Leste</option><option value="Togo">Togo</option><option value="Tokelau">Tokelau</option><option value="Tonga">Tonga</option><option value="Trinidad and Tobago">Trinidad and Tobago</option><option value="Tunisia">Tunisia</option><option value="Turkey">Turkey</option><option value="Turkmenistan">Turkmenistan</option><option value="Turks and Caicos Islands">Turks and Caicos Islands</option><option value="Tuvalu">Tuvalu</option><option value="Uganda">Uganda</option><option value="Ukraine">Ukraine</option><option value="United Arab Emirates">United Arab Emirates</option><option value="United Kingdom">United Kingdom</option><option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option><option value="Uruguay">Uruguay</option><option value="Uzbekistan">Uzbekistan</option><option value="Vanuatu">Vanuatu</option><option value="Venezuela, Bolivarian Republic of">Venezuela, Bolivarian Republic of</option><option value="Viet Nam">Viet Nam</option><option value="Virgin Islands, British">Virgin Islands, British</option><option value="Wallis and Futuna">Wallis and Futuna</option><option value="Western Sahara">Western Sahara</option><option value="Yemen">Yemen</option><option value="Zambia">Zambia</option><option value="Zimbabwe">Zimbabwe</option></select><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoFormRow"><div class="mktoPlaceholder mktoPlaceholderState"></div><div class="mktoClear"></div></div><div class="mktoFormRow"><div class="mktoFieldDescriptor mktoFormCol" style="margin-bottom: 10px;"><div class="mktoOffset" style="width: 10px;"></div><div class="mktoFieldWrap"><label for="virtualOfficeHours" class="mktoLabel mktoHasWidth" style="width: 0px;"><div class="mktoAsterix">*</div></label><div class="mktoGutter mktoHasWidth" style="width: 10px;"></div><div title="Yes, I&#39;d like to be contacts about free virtual office hours" class="mktoLogicalField mktoCheckboxList mktoHasWidth" style="width: 16px;"><input name="virtualOfficeHours" id="virtualOfficeHours" type="checkbox" value="yes" class="mktoField"><label for="virtualOfficeHours"></label></div><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoFormCol" style="margin-bottom: 10px;"><div class="mktoOffset mktoHasWidth" style="width: 10px;"></div><div class="mktoFieldWrap"><div class="mktoHtmlText mktoHasWidth" style="width: 180px;"><p>Yes, I'd like to be contacted about free virtual office hours</p></div><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoButtonRow"><span class="mktoButtonWrap mktoRound" style="margin-left: 55px;"><button type="submit" class="mktoButton">Register </button></span></div><input type="hidden" name="formid" class="mktoField mktoFieldDescriptor" value="1195"><input type="hidden" name="munchkinId" class="mktoField mktoFieldDescriptor" value="059-YLZ-577"></form>
+            <script>MktoForms2.loadForm("//app-abq.marketo.com", "059-YLZ-577", 1195);</script>
+        </div>
+
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.mktoButtonWrap').css("margin-left", "30px");
+    });
+</script>
+</div>
+</div>
+    
+     	
+    <footer class="footer-area">
+        <div class="top-scroll" style="display: none;">456</div>
+        <div class="avada-row">
+            <section class="columns columns-3">
+                <div id="stay-connect">
+                    <div class="stay-connect-inner">
+                        <h4>STAY CONNECTED</h4>
+                        <div class="cf connect-block">
+                            <div class="social-media alignleft">
+                                <ul class="cf">
+                                    <li class="twitter">
+                                        <a title="Twitter" href="https://twitter.com/PlanetCassandra" target="_blank">Twitter</a>
+                                    </li>
+                                    <li class="linkedn">
+                                        <a title="LinkedIn" href="http://www.linkedin.com/groups?home=&gid=6616290" target="_blank">Linkedin</a>
+                                    </li>
+                                    <li class="facebook">
+                                        <a title="Facebook" href="https://www.facebook.com/PlanetCassandra" target="_blank">Facebook</a>
+                                    </li>
+                                    <li class="google">
+                                        <a title="Google +" href="https://plus.google.com/111584201185986648098/posts" target="_blank">Google +</a>
+                                    </li>
+                                    <li class="youtube">
+                                        <a title="YouTube" href="http://www.youtube.com/user/PlanetCassandra" target="_blank">Youtube</a>
+                                    </li>
+                                </ul>
+                                <a title="" href="mailto:info@planetcassandra.org" class="info">info@PlanetCassandra.org</a>
+                            </div>
+                            <div class="newletter-block alignleft">
+                                <p>SIGN UP FOR OUR NEWSLETTER</p>
+                                                                                                
+                                <!--<script src="http://planetcassandra.org/wp-content/themes/Avada/js/forms2.js"></script>-->
+                                
+<script src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/forms2.js"></script>
+<form id="mktoForm_1187" novalidate="novalidate" class="mktoForm mktoHasWidth mktoLayoutLeft" style="font-family: Helvetica, Arial, sans-serif; font-size: 13px; color: rgb(51, 51, 51); width: 581px;"><style type="text/css">.mktoForm .mktoButtonWrap.mktoRound .mktoButton {
+color:#fff;
+border:1px solid #a3bee2;
+-webkit-border-radius:5px;
+-moz-border-radius:5px;
+border-radius:5px;
+background-color:#779dd5;
+background-image: -webkit-gradient(linear, left top, left bottom, from(#779dd5), to(#5186cb));
+background-image: -webkit-linear-gradient(top, #779dd5, #5186cb);
+background-image: -moz-linear-gradient(top, #779dd5, #5186cb);
+background-image: linear-gradient(to bottom, #779dd5, #5186cb);
+padding:0.4em 1em;
+font-size:1em;
+}
+.mktoForm .mktoButtonWrap.mktoRound .mktoButton:hover {
+border:1px solid #45638c;
+}
+.mktoForm .mktoButtonWrap.mktoRound .mktoButton:focus {
+outline:none;
+border:1px solid #45638c;
+}
+.mktoForm .mktoButtonWrap.mktoRound .mktoButton:active{
+background-color:#5186cb;
+background-image: -webkit-gradient(linear, left top, left bottom, from(#5186cb), to(#779dd5));
+background-image: -webkit-linear-gradient(top, #5186cb, #779dd5);
+background-image: -moz-linear-gradient(top, #5186cb, #779dd5);
+background-image: linear-gradient(to bottom, #5186cb, #779dd5);
+}
+
+.mktoForm .mktoButtonWrap.mktoRound button.mktoButton {background:#e73732;}
+</style><div class="mktoFormRow"><div class="mktoFieldDescriptor mktoFormCol" style="margin-bottom: 10px;"><div class="mktoOffset" style="width: 10px;"></div><div class="mktoFieldWrap mktoRequiredField"><label for="FirstName" class="mktoLabel mktoHasWidth" style="width: 0px;"><div class="mktoAsterix">*</div></label><div class="mktoGutter mktoHasWidth" style="width: 10px;"></div><input id="FirstName" name="FirstName" placeholder="First Name" maxlength="255" title="First Name" type="text" class="mktoField mktoTextField mktoHasWidth mktoRequired" style="width: 125px;"><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoFieldDescriptor mktoFormCol" style="margin-bottom: 10px;"><div class="mktoOffset" style="width: 10px;"></div><div class="mktoFieldWrap mktoRequiredField"><label for="LastName" class="mktoLabel mktoHasWidth" style="width: 0px;"><div class="mktoAsterix">*</div></label><div class="mktoGutter mktoHasWidth" style="width: 10px;"></div><input id="LastName" name="LastName" placeholder="Last Name" maxlength="255" title="Last Name" type="text" class="mktoField mktoTextField mktoHasWidth mktoRequired" style="width: 125px;"><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoFieldDescriptor mktoFormCol" style="margin-bottom: 10px;"><div class="mktoOffset" style="width: 10px;"></div><div class="mktoFieldWrap mktoRequiredField"><label for="Email" class="mktoLabel mktoHasWidth" style="width: 0px;"><div class="mktoAsterix">*</div></label><div class="mktoGutter mktoHasWidth" style="width: 10px;"></div><input id="Email" name="Email" placeholder="Email" maxlength="255" title="Email" type="email" class="mktoField mktoEmailField mktoHasWidth mktoRequired" style="width: 125px;"><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoFieldDescriptor mktoFormCol" style="margin-bottom: 10px;"><div class="mktoOffset" style="width: 10px;"></div><div class="mktoFieldWrap mktoRequiredField"><label for="Company" class="mktoLabel mktoHasWidth" style="width: 0px;"><div class="mktoAsterix">*</div></label><div class="mktoGutter mktoHasWidth" style="width: 10px;"></div><input id="Company" name="Company" placeholder="Company" maxlength="255" title="Company" type="text" class="mktoField mktoTextField mktoHasWidth mktoRequired" style="width: 125px;"><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoButtonRow"><span class="mktoButtonWrap mktoRound" style="margin-left: 490px;"><button type="submit" class="mktoButton">Subscribe!</button></span></div><input type="hidden" name="formid" class="mktoField mktoFieldDescriptor" value="1187"><input type="hidden" name="munchkinId" class="mktoField mktoFieldDescriptor" value="059-YLZ-577"></form>
+<script>MktoForms2.loadForm("//app-abq.marketo.com", "059-YLZ-577", 1187);</script>
+                                                                <!--      <form method="post" action="http://192.168.10.70:1000/PlanetCassandra-V2/">
+                                        <input type="text" class="text-box" placeholder="Full Name" name="name" id="name"/>
+                                          <input type="text" class="text-box" placeholder="Email" name="email" id="email" />
+                                            <input type="submit" class="btn-submit btn orange-btn" value="Submit" />
+                                                    </form>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </footer>
+    <footer id="footer">
+
+        <div class="copy-right">
+            <div class="inner alignright">
+                <p>A Datastax Community Service</p>
+                <p>© Copyright 2015, Planet Cassandra</p>
+                <p>Apache, Apache Cassandra, and Cassandra are trademarks of </p>
+                <p>
+                    the <a href="http://www.apache.org/foundation/marks/" target="_blank">Apache Software Foundation.</a>
+
+                    <a href="http://planetcassandra.org/planet-cassandra-terms-of-use">Terms &amp; Conditions</a></p>
+            </div>
+        </div>
+
+        <a href="http://www.datastax.com/download" target="_blank">
+            <div class="visit-block">
+
+                <div class="inner">
+                    Visit DataStax for Production-Ready Apache Cassandra
+                </div>
+
+            </div>
+        </a>
+
+    </footer>
+<!-- wrapper -->
+
+<script type="text/javascript"><!--
+wpa2a.targets=[];
+wpa2a.html_done=true;if(wpa2a.script_ready&&!wpa2a.done)wpa2a.init();wpa2a.script_load();
+//--></script>
+<link rel="stylesheet" id="wgs-css" href="./NoSQL Databases Defined & Explained   Planet Cassandra_files/wgs.css" type="text/css" media="all">
+<script type="text/javascript">
+/* <![CDATA[ */
+var scriptParams = {"google_search_engine_id":"000664736158990468382:pj6rp0wpseg"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/google_cse_v2.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/modernizr.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.elastislide.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.prettyPhoto(1).js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.isotope.min.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.cycle.lite.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.hoverIntent.minified.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.eislideshow.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/froogaloop.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.placeholder.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.waypoint.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/main(1).js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.ui.tabs.min.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/jquery.ui.accordion.min.js"></script>
+<script type="text/javascript" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/squelch-tabs-and-accordions.js"></script>
+<script type="text/javascript">
+document.write(unescape("%3Cscript src='//munchkin.marketo.net/munchkin.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/munchkin(1).js" type="text/javascript"></script><div id="mktoStyleLoaded" style="display: none; border-top-color: rgb(18, 52, 86);"></div><script charset="UTF-8" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/zh-CN.js"></script><div id="mktoStyleLoaded" style="display: none; border-top-color: rgb(18, 52, 86);"></div>
+<script>Munchkin.init('059-YLZ-577');</script>
+
+<div style="display:none;">
+    <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/follow_button.547a83a757127354d7bdaf471b59d0d0.en.html" class="twitter-follow-button twitter-follow-button" title="Twitter Follow Button" data-twttr-rendered="true" style="width: 135px; height: 28px;"></iframe>
+<script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (!d.getElementById(id)) {
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//platform.twitter.com/widgets.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }
+        })(document, "script", "twitter-wjs");</script>
+   
+</div>
+<script type="text/javascript">
+
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37307016-1']);
+    _gaq.push(['_setDomainName', 'planetcassandra.org']);
+    _gaq.push(['_setAllowLinker', true]);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        //ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<script type="text/javascript">
+$(document).ready(function () {
+    if(window.location.href.indexOf("blog") > -1) {
+       $(".menu-item-10582").addClass('current_page_item');
+    }
+});
+</script>
+<div style="display:none"></div><script type="text/javascript" async="" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/visitor.js"></script><form novalidate="novalidate" class="mktoForm mktoHasWidth mktoLayoutLeft" style="font-family: Helvetica, Arial, sans-serif; font-size: 13px; color: rgb(51, 51, 51); visibility: hidden; position: absolute; top: -500px; left: -1000px; width: 1349px;"></form><div style="position: static;"><div class="a2a_overlay" id="a2apage_overlay"></div><div class="a2a_menu a2a_full" id="a2apage_full"><div class="a2a_full_header"><div id="a2apage_find_container" class="a2a_menu_find_container"><input id="a2apage_find" class="a2a_menu_find" type="text" onclick="a2a.focus_find()" onkeyup="a2a.do_find()" autocomplete="off" title="快速查找您使用的服务"><span id="a2apage_find_icon" class="a2a_svg a2a_s_find" onclick="a2a.focus_find()"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0" width="24" height="24" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><path fill="#CCCCCC" d="M19.7 18.2l-4.5-4.5c0.7-1.1 1.2-2.3 1.2-3.6 0-3.5-2.8-6.3-6.3-6.3 -3.5 0-6.3 2.8-6.3 6.3 0 3.5 2.8 6.3 6.3 6.3 1.4 0 2.6-0.4 3.6-1.2l4.5 4.5c0.6 0.6 1.3 0.7 1.7 0.2C20.4 19.5 20.3 18.8 19.7 18.2zM10.1 14.6c-2.5 0-4.5-2.1-4.5-4.5 0-2.5 2.1-4.5 4.5-4.5 2.5 0 4.5 2.1 4.5 4.5C14.6 12.5 12.6 14.6 10.1 14.6z"></path></svg></span></div></div><div class="a2a_full_services" id="a2apage_full_services"><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_facebook"></span>Facebook</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_twitter"></span>Twitter</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_google_plus"></span>Google+</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_pinterest"></span>Pinterest</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_email"></span>Email</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_linkedin"></span>LinkedIn</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_reddit"></span>Reddit</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_tumblr"></span>Tumblr</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_wordpress"></span>WordPress</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_stumbleupon"></span>StumbleUpon</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_gmail"></span>Google Gmail</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_whatsapp"></span>WhatsApp</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_aim"></span>AIM</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_amazon"></span>Amazon Wish List</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_aol"></span>AOL Mail</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_app_net"></span>App.net</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_baidu"></span>Baidu</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_balatarin"></span>Balatarin</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_bibsonomy"></span>BibSonomy</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_bitty"></span>Bitty Browser</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_blinklist"></span>Blinklist</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_blogger"></span>Blogger Post</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_blogmarks"></span>BlogMarks</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_bookmarks_fr"></span>Bookmarks.fr</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_box"></span>Box.net</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_buddymarks"></span>BuddyMarks</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_buffer"></span>Buffer</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_care2"></span>Care2 News</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_citeulike"></span>CiteULike</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_delicious"></span>Delicious</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_designfloat"></span>Design Float</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_diary_ru"></span>Diary.Ru</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_diaspora"></span>Diaspora</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_digg"></span>Digg</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_dihitt"></span>diHITT</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_diigo"></span>Diigo</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_dzone"></span>DZone</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_evernote"></span>Evernote</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_fark"></span>Fark</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_flipboard"></span>Flipboard</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_folkd"></span>Folkd</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_friendfeed"></span>FriendFeed</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_google"></span>Google Bookmarks</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_y18"></span>Hacker News</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_hatena"></span>Hatena</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_instapaper"></span>Instapaper</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_jamespot"></span>Jamespot</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_kakao"></span>Kakao</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_kindle"></span>Kindle It</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_line"></span>Line</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_livejournal"></span>LiveJournal</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_mail_ru"></span>Mail.Ru</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_mendeley"></span>Mendeley</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_meneame"></span>Meneame</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_mixi"></span>Mixi</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_myspace"></span>MySpace</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_netlog"></span>Netlog</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_netvouz"></span>Netvouz</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_newstrust"></span>NewsTrust</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_newsvine"></span>NewsVine</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_nujij"></span>NUjij</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_odnoklassniki"></span>Odnoklassniki</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_oknotizie"></span>Oknotizie</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_outlook_com"></span>Outlook.com</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_pinboard"></span>Pinboard</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_plurk"></span>Plurk</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_pocket"></span>Pocket</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_print"></span>Print</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_printfriendly"></span>PrintFriendly</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_protopage"></span>Protopage Bookmarks</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_pusha"></span>Pusha</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_qzone"></span>Qzone</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_rediff"></span>Rediff MyPage</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_renren"></span>Renren</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_segnalo"></span>Segnalo</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_sina_weibo"></span>Sina Weibo</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_sitejot"></span>SiteJot</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_slashdot"></span>Slashdot</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_springpad"></span>Springpad</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_stumpedia"></span>Stumpedia</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_svejo"></span>Svejo</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_symbaloo"></span>Symbaloo Feeds</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_tuenti"></span>Tuenti</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_twiddla"></span>Twiddla</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_typepad"></span>TypePad Post</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_viadeo"></span>Viadeo</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_vk"></span>VK</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_wanelo"></span>Wanelo</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_webnews"></span>Webnews</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_wykop"></span>Wykop</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_xing"></span>XING</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yahoo"></span>Yahoo Bookmarks</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yahoo"></span>Yahoo Mail</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yim"></span>Yahoo Messenger</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yoolink"></span>Yoolink</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_youmob"></span>YouMob</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yummly"></span>Yummly</a><i class="a2a_i"></i><i class="a2a_i"></i></div><div class="a2a_full_footer"><a href="https://www.addtoany.com/" title="Share Buttons" target="_blank"><span class="a2a_svg a2a_s_a2a"></span>AddToAny</a></div></div><div id="a2apage_dropdown" class="a2a_menu a2a_mini" onmouseover="a2a.onMouseOver_stay()" onmouseout="a2a.onMouseOut_delay()" style="display:none"><div id="a2apage_title_container" class="a2a_menu_title_container" style="display:none"><input id="a2apage_title" class="a2a_menu_title"></div><div class="a2a_mini_services" id="a2apage_mini_services"><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_facebook"></span>Facebook</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_twitter"></span>Twitter</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_google_plus"></span>Google+</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_pinterest"></span>Pinterest</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_email"></span>Email</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_linkedin"></span>LinkedIn</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_reddit"></span>Reddit</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_tumblr"></span>Tumblr</a></div><div id="a2apage_cols_container" class="a2a_cols_container"><div class="a2a_col1" id="a2apage_col1"></div><div id="a2apage_2_col1" style="display:none"><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_gmail"></span>Google Gmail</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_aol"></span>AOL Mail</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_outlook_com"></span>Outlook.com</a><a rel="nofollow" class="a2a_i" href="http://planetcassandra.org/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yahoo"></span>Yahoo Mail</a><a rel="nofollow" class="a2a_i a2a_emailer" href="http://planetcassandra.org/" target="_blank" id="a2apage_any_email"><span class="a2a_svg a2a_s__default a2a_s_email"></span>Any email</a><a rel="nofollow" class="a2a_i a2a_emailer a2a_email_client" href="http://planetcassandra.org/" target="" id="a2apage_email_client"><span class="a2a_svg a2a_s__default a2a_s_email"></span>Email app</a></div><div class="a2a_clear"></div></div><div class="a2apage_wide a2a_wide"><a href="" id="a2apage_show_more_less" class="a2a_menu_show_more_less a2a_more" title="显示全部/展开"><span class="a2a_svg a2a_s_a2a"></span>更多…</a></div></div><div style="height: 1px; width: 1px; position: absolute; z-index: 100000; top: 0px; visibility: hidden;"><iframe id="a2apage_sm_ifr" height="1" width="1" title="AddToAny Utility Frame" transparency="true" allowtransparency="true" frameborder="0" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/sm12.html" style="height: 1px; width: 1px; border: 0px; left: 0px; top: 0px; position: absolute; z-index: 100000; display: none;"></iframe></div></div><script type="text/javascript">var vglnk = {api_url: '//api.viglink.com/api', key: '084c74521c465af0d8f08b63422103cc'};</script><script type="text/javascript" async="" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/vglnk.js"></script><iframe name="mktoFormsXDIframe0.6288650468923151" id="MktoForms2XDIframe" src="./NoSQL Databases Defined & Explained   Planet Cassandra_files/XDFrame.html" style="display: none;"></iframe><form novalidate="novalidate" class="mktoForm mktoHasWidth mktoLayoutLeft" style="font-family: Helvetica, Arial, sans-serif; font-size: 13px; color: rgb(51, 51, 51); visibility: hidden; position: absolute; top: -500px; left: -1000px; width: 1349px;"></form><table cellspacing="0" cellpadding="0" class="gstl_50 gssb_c" style="width: 191px; display: none; top: 38px; position: absolute; left: 965px;"><tbody><tr><td class="gssb_f"></td><td class="gssb_e" style="width: 100%;"></td></tr></tbody></table></body></html>

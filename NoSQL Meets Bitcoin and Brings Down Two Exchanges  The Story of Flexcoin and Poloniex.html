@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)http://hackingdistributed.com/2014/04/06/another-one-bites-the-dust-flexcoin/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>NoSQL Meets Bitcoin and Brings Down Two Exchanges: The Story of Flexcoin and Poloniex</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/docutils.css">
+    <link href="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/style.css">
+    <link rel="alternate" type="application/atom+xml" title="Hacking Distributed" href="http://hackingdistributed.com/hackingdistributed.atom">
+    <link rel="icon" href="http://hackingdistributed.com/favicon.ico" sizes="64x64 16x16 24x24 48x48" type="image/vnd.microsoft.icon">
+
+<!--
+    <script type="text/javascript" src="http://hackingdistributed.com/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://hackingdistributed.com/js/jquery.cookies.js"></script>
+    <script type="application/x-social-share-privacy-settings">{"path_prefix":"http://hackingdistributed.com/","layout":"line","services":{"buffer":{"status":false},"delicious":{"status":false},"disqus":{"status":false},"fbshare":{"status":false},"flattr":{"status":false},"hackernews":{"status":false},"linkedin":{"status":false},"mail":{"status":false},"pinterest":{"status":false},"reddit":{"status":false},"stumbleupon":{"status":false},"tumblr":{"status":false},"xing":{"status":false}}}</script>
+-->
+
+<script type="text/javascript" async="" src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/dc.js"></script><script id="twitter-wjs" src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/widgets.js"></script><script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "f9d02b70-9547-444e-bc73-7c2dde17305d", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  <script type="text/javascript" async="" src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/embed.js"></script><script type="text/javascript" src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/getAllAppDefault.esi"></script><script></script><script type="text/javascript" src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/checkOAuth.esi"></script><style type="text/css">object,embed{-webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;-ms-animation-duration:.001s;-ms-animation-name:playerInserted;-o-animation-duration:.001s;-o-animation-name:playerInserted;animation-duration:.001s;animation-name:playerInserted;}@-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}</style><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style><link rel="stylesheet" type="text/css" href="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/buttons.1be8af3324f0d6a3f57225413b0da78b.css"></head>
+  <body data-twttr-rendered="true"><iframe id="twttrHubFrameSecure" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" name="twttrHubFrameSecure" src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/hub.0e7931819b6cfb483aa5ddbe7670a1c6(1).html" style="position: absolute; top: -9999em; width: 10px; height: 10px;"></iframe><iframe id="twttrHubFrame" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" name="twttrHubFrame" src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/hub.0e7931819b6cfb483aa5ddbe7670a1c6.html" style="position: absolute; top: -9999em; width: 10px; height: 10px;"></iframe>
+    <div id="header" class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a id="title" class="navbar-brand" href="http://hackingdistributed.com/">Hacking, Distributed</a>
+        </div><!-- navbar-header -->
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a id="feed" href="http://hackingdistributed.com/hackingdistributed.atom">
+              <img alt="Hacking Distributed News Feed" src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/feed-icon.png">
+            </a>
+          </li>
+        </ul>
+      </div><!-- container -->
+    </div><!-- header -->
+    <div id="body" ,="" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          
+<div id="contents">
+<h1 class="post-title">NoSQL Meets Bitcoin and Brings Down Two Exchanges: The Story of Flexcoin and Poloniex</h1>
+<div class="well well-sm post-metadata">
+  
+    <span class="pull-right post-tags">
+    
+       
+          
+       
+    <a href="http://hackingdistributed.com/tag/nosql/">nosql</a>
+    
+       
+          
+       
+    <a href="http://hackingdistributed.com/tag/bitcoin/">bitcoin</a>
+    
+       
+          
+       
+    <a href="http://hackingdistributed.com/tag/mongo/">mongo</a>
+    
+       
+          
+       
+    <a href="http://hackingdistributed.com/tag/broken/">broken</a>
+    
+    </span>
+
+
+<span class="clearfix post-published">
+  <span class="pull-right post-date">
+    
+      April 06, 2014 at 12:15 PM
+    
+  </span>
+  <span class="pull-left post-authors">
+    
+      
+      
+      
+      
+        <a href="http://hackingdistributed.com/egs/">Emin Gün Sirer</a>
+      
+    
+  </span>
+</span>
+
+</div>
+
+
+<nav>
+  <ul class="pager">
+    <li class="previous "><a href="http://hackingdistributed.com/2014/04/05/another-one-bites-the-dust-neo-bee/"><span aria-hidden="true">←</span> Older</a></li>
+    <li class="next "><a href="http://hackingdistributed.com/2014/05/16/macaroons-are-better-than-cookies/">Newer <span aria-hidden="true">→</span></a></li>
+  </ul>
+</nav>
+
+
+<p><a class="reference external" href="http://flexcoin.com/">Flexcoin</a> was a Bitcoin exchange that shut down on March 3rd, 2014, when someone allegedly hacked in and made off with 896 BTC in the hot wallet. Because the half-million dollar heist from the hot wallet was too large for the company to bear, it folded.</p>
+<p>I'll resist the urge to ask why they did not have deposit insurance for their hot wallet, because the technical story
+of what happened is even more colorful and fascinating.</p>
+<p>In their own words:</p>
+<blockquote>
+The attacker successfully exploited a flaw in the code which
+allows transfers between flexcoin users. By sending thousands of
+simultaneous requests, the attacker was able to "move" coins from
+one user account to another until the sending account was overdrawn,
+before balances were updated.</blockquote>
+<p>It's not every day when one's professional interests in NoSQL databases collide with one's interest in cryptocurrencies, especially
+in such a monumental train wreck. So, before I go on, allow me to link to <a class="reference external" href="https://www.youtube.com/watch?v=Uz1Jwyxd4tE&feature=kp#t=64">appropriate background music for this occasion</a>.</p>
+<p>What happened here is a standard problem covered in every undergrad computer science curriculum. It's known as concurrency.
+Let's look carefully into <em>what</em> must have happened here, before we examine <em>why</em>
+it happened. The what-part is technical, and frankly, simple, with many well-known solutions. But it's the why-part that is as fascinating as it is disheartening. It points to a social failure: a failure of distributed systems academics to educate developers and to equip them with clear-thinking frameworks. There is far too much noise in the valley around how to build distributed systems, much of it
+being generated by people who stand to profit from selling broken-by-design software. And it all has consequences and ends
+with not just broken websites, but with stolen cash and broken dreams.</p>
+<p>But first, let me illustrate the problem. Here's the simplest code one might write to dispense cash from an ATM (I'll illustrate with an ATM example because Flexcoin is a trusted Bitcoin wallet and exchange, which is really a glorified bank. Their withdrawal code is multithreaded, but for those who don't know what that means, it's simplest to think of it as ATM witdrawals. Real code will also check to see if there are sufficient funds, as well as a ton of other things, but they are not germane to the bug so let's leave them out for now):</p>
+<div class="highlight"><pre><span class="n">mybalance</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s">"account-number"</span><span class="p">)</span>
+<span class="n">newbalance</span> <span class="o">=</span> <span class="n">mybalance</span> <span class="o">-</span> <span class="n">amount</span>
+<span class="n">database</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"account-number"</span><span class="p">,</span> <span class="n">newbalance</span><span class="p">)</span>
+<span class="n">dispense_cash</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>   <span class="o">//</span> <span class="ow">or</span> <span class="n">send</span> <span class="n">bitcoins</span> <span class="n">to</span> <span class="n">customer</span></pre></div>
+<p>Now, consider what would happen if I duplicated my debit card, gave it to my best friend, synchronized our watches, and performed withdrawals at two different ATMs at the same time.</p>
+<div class="figure align-right">
+<img alt="Manna from heaven" src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/manna-from-heaven.jpg" style="width: 300px;">
+<p class="caption">God used to send manna to Israelites. Now he sends fungible Bitcoins to hackers, courtesy of first-generation NoSQL databases that are broken by design.</p>
+</div>
+<p>What's that I hear you say? Absolutely nothing bizarre would happen. My account would be deducted the right amount. That's because banks employ systems that guard against this kind of elementary error. They are based on transactions with <a class="reference external" href="http://hackingdistributed.com/2013/02/05/hyperdex-warp/">ACID guarantees</a>.</p>
+<p>But if our bank was implemented using a first-generation NoSQL datastore, say MongoDB, we'd see something very different. Specifically, if multiple people simultaneously execute the code above, they might just go through those operations in lockstep. They would simultaneously read the amount of money I have in my bank account, say $1000. They would simultaneously subtract the amount to be dispensed, say $100, and end up with $900 in the variable newbalance. And they would simultaneously write back the new balance to the database, while dispensing $100 in crisp green bills at two different locations. I would end up with a bank account that says $900, and two fresh $100 bills in hand, for a sum total of $1100! Manna from heaven!</p>
+<p>Any computer scientist worth her salt would immediately repeat this process all day, at web scale, until
+she emptied out all the cash at the exchange. And that's exactly what the attackers did.</p>
+<div class="section" id="what-happened">
+<h2>What Happened</h2>
+<p>The problem here stemmed from the broken-by-design interface and semantics offered by MongoDB. And the situation would not
+have been any different if we had used Cassandra or Riak. All of these first-generation NoSQL
+datastores were early because they are easy to build. When the datastore does not provide any tangible guarantees
+besides "best effort," building it is simple. Any masters student in a top school can build an eventually consistent datastore
+over a weekend, and students in our courses at Cornell routinely do. What they don't do is go from door to door in the valley,
+peddling the resulting code as if it could or should be deployed. Yes, yes, the broken-by-design apologists will trot out the usual refrain
+that goes "there is nothing wrong with MongoDB as long as you always deploy it knowing that it can give you back bogus
+answers." Yeah well, <strong>there is nothing wrong with flammable mattresses either</strong>, just make sure there is no source of
+ignition nearby. It just turns out that we then get charred family tragedies, because people are fallible. Little
+websites that start out as a <a class="reference external" href="http://hackingdistributed.com/2013/02/03/when-data-is-worthless/">pokemon collection</a> or <a class="reference external" href="http://mtgox.com/">Magic the Gathering trading cards</a> suddenly turn into
+world's largest Bitcoin exchange handling half a billion dollars, and oops.</p>
+<p>Bitcoin coincided with a particularly dark time in distributed systems when people, armed with an incorrect interpretation of the CAP Theorem, thought that they just had to give up on
+<a class="reference external" href="http://hackingdistributed.com/2013/03/23/consistency-alphabet-soup/">consistency</a> in their databases, that no one could build distributed data stores that provided strong guarantees. Marketers went from door to door in the valley, peddling weak data stores
+that could not uphold the simple guarantee that a READ should return the result of the latest successful WRITE. Even now, after next-generation NoSQL data stores,
+such as <a class="reference external" href="http://hyperdex.org/">HyperDex</a> and Google's <a class="reference external" href="http://research.google.com/archive/spanner.html">Spanner</a>, showed that the tradeoffs in first-generation NoSQL systems are neither necessary nor desirable, there are still
+people who are trying to beat the dead horse of eventual consistency and weak APIs.</p>
+<p>Well, tell all that to the Flexcoin folks. These are honest people who put in many hours of work to build a product that they believed in, using the latest technology available to them,
+and they <a class="reference external" href="http://www.reddit.com/r/Bitcoin/comments/1zmwdd/flexcoin_hack_exploited_racecondition_flaw_in/">fell prey</a> to one of the <a class="reference external" href="http://www.businessinsider.com/r-bitcoin-bank-flexcoin-shuts-down-after-theft-2014-04">best documented problems in the book</a>.</p>
+</div>
+<div class="section" id="flexcoin-not-alone-poloniex">
+<h2>Flexcoin Not Alone: Poloniex</h2>
+<p>One might claim that the Flexcoin folks were particularly bad at their craft, that they should never have deployed a bank
+without concurrency controls, that they should have known better. I don't know these devs, but as a techie, I can detect
+when I'm dealing with other genuine, well-meaning, hard-working techies, and the Flexcoin online presence
+pushes all these buttons. They did what anyone would do after reading one too many astroturf articles on Hacker News.
+Sure, their system failed, but in a sense, the overall system failed them.</p>
+<p>And they are far from alone. Another exchange, <a class="reference external" href="http://poloniex.com/">Poloniex</a>, suffered <em>from the exact same bug</em>. Here
+are the <a class="reference external" href="https://bitcointalk.org/index.php?topic=499580">gory details</a>, which are remarkable in how similar they are
+to the Flexcoin bug. It's a well-known result in software engineering that even when you have N different teams independently
+developing software that has nothing in common, they will run into the same issues around the same pain points.</p>
+<p>Historically, Bitcoin exchanges that suffered significant
+losses turned into fractional reserve banks, only to fold later.
+Luckily, Poloniex did not go under and is currently back online.</p>
+</div>
+<div class="section" id="totally-not-alone-third-site">
+<h2>Totally Not Alone: Third Site</h2>
+<p>This problem is so wide-spread, so embarassingly endemic that there have even been <a class="reference external" href="http://www.reddit.com/r/Bitcoin/comments/1wtbiu/how_i_stole_roughly_100_btc_from_an_exchange_and/">public discussions and possibly a third affected site</a>. It's a dirty little secret that everyone knows: Bitcoin exchanges built on top of first-generation NoSQL infrastructure lack even the most basic measures to guarantee the integrity of their accounts.</p>
+</div>
+<div class="section" id="not-a-security-flaw">
+<h2>Not A Security Flaw</h2>
+<p>And typical security audits may not uncover these flaws, for it's not the case that the hackers gained unauthorized access
+through some cross-site scripting vulnerability, or some other flaw, well within the arsenal of security auditing firms.
+It wasn't a fault of the authentication scheme; they were using state-of-the-art 2-factor authentication.
+It wasn't a fault of their authorization scheme, either; the hackers did not do anything they were not allowed to do.
+The problems lie with the fundamentally weak semantics offered by the data stores behind these websites. The site was itself broken from the ground up. The hackers simply got it to do what it was programmed to do, a lot faster than normal.</p>
+<p>What happened at Flexcoin, or Poloniex, or any of the other Bitcoin exchanges beset by technical problems (and I'm looking at you Coinbase!), was not an outlier or unexpected or unforeseable. The infrastructure is broken. And it is <a class="reference external" href="http://hackingdistributed.com/2013/01/29/mongo-ft/">broken by design</a>.</p>
+</div>
+<div class="section" id="the-fix">
+<h2>The Fix</h2>
+<p>There are many ways of avoiding these kinds of problems. They all start by switching to better infrastructure.</p>
+<p>Here's how one would write the same code in HyperDex:</p>
+<div class="highlight"><pre><span class="n">hd</span> <span class="o">=</span> <span class="n">hyperdex</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="s">'127.0.0.1'</span><span class="p">,</span> <span class="mi">1982</span><span class="p">)</span>
+<span class="n">success</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">success</span><span class="p">:</span>
+    <span class="n">mybalance</span> <span class="o">=</span> <span class="n">hd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'accounts'</span><span class="p">,</span> <span class="s">'account-number'</span><span class="p">)[</span><span class="s">'balance'</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">mybalance</span> <span class="o">&lt;</span> <span class="n">amount</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InsufficientFunds</span><span class="p">()</span>
+    <span class="n">newbalance</span> <span class="o">=</span> <span class="n">mybalance</span> <span class="o">-</span> <span class="n">amount</span>
+    <span class="n">success</span> <span class="o">=</span> <span class="n">hd</span><span class="o">.</span><span class="n">cond_put</span><span class="p">(</span><span class="s">'accounts'</span><span class="p">,</span> <span class="s">"account-number"</span><span class="p">,</span>
+                          <span class="p">{</span><span class="n">balance</span><span class="p">:</span> <span class="n">mybalance</span><span class="p">},</span> <span class="c"># require balance == old balance</span>
+                          <span class="p">{</span><span class="n">balance</span><span class="p">:</span> <span class="n">newbalance</span><span class="p">})</span> <span class="c"># set balance = new balance</span>
+<span class="n">dispense_cash</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span> <span class="c"># or send bitcoins to customer</span></pre></div>
+<p>This code is not only correct, but HyperDex is faster than MongoDB by a factor of 2 to 10X. And it provides a fault-tolerance
+guarantee that your data will be protected even through multiple simultaneous failures. And you can take online,
+<a class="reference external" href="http://hackingdistributed.com/2014/01/14/back-that-nosql-up/">instantenous backups</a> that are consistent across a cluster. You cannot do any of this with MongoDB.</p>
+<p><strong>Atomic Operations</strong></p>
+<p>In domains outside banking, there are scenarios where atomicity is required, but where the operations can be reordered at will.
+A next-generation NoSQL store like HyperDex provides even faster mechanisms for providing the necessary atomicity when operations are
+commutative.  Suppose, for instance, one might want to
+keep track of up and downvotes in a reddit-like website. HyperDex provides atomic addition (as well as atomic subtraction, multiplication, division, string prepend, string append, list prepend, list append, etc) operations that greatly simplify the task:</p>
+<div class="highlight"><pre><span class="c"># upboat!</span>
+<span class="n">hd</span> <span class="o">=</span> <span class="n">hyperdex</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="s">'127.0.0.1'</span><span class="p">,</span> <span class="mi">1982</span><span class="p">)</span>
+<span class="n">hd</span><span class="o">.</span><span class="n">atomic_add</span><span class="p">(</span><span class="s">'threads'</span><span class="p">,</span> <span class="s">"thread-key"</span><span class="p">,</span> <span class="p">{</span><span class="n">upvotes</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span></pre></div>
+<p>Mongo does not support such atomic operations. Replicas may diverge, and merging the sums correctly would be non-trivial.</p>
+<p><strong>Full Blown Transactions</strong></p>
+<p>Here's another trick, possible with next-generation NoSQL data stores like HyperDex (with the Warp add-on), that is impossible with Mongo, Cassandra, and the like.</p>
+<p>Suppose we want to move some funds between two accounts, "egs" and "robert", atomically.</p>
+<div class="highlight"><pre><span class="n">hd</span> <span class="o">=</span> <span class="n">hyperdex</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="s">'127.0.0.1'</span><span class="p">,</span><span class="mi">1982</span><span class="p">)</span>
+<span class="n">success</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">success</span><span class="p">:</span>
+    <span class="n">xaction</span> <span class="o">=</span> <span class="n">hd</span><span class="o">.</span><span class="n">begin_transaction</span><span class="p">()</span>
+    <span class="n">mybalance</span> <span class="o">=</span> <span class="n">xaction</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'accounts'</span><span class="p">,</span> <span class="s">'egs'</span><span class="p">)[</span><span class="s">'balance'</span><span class="p">]</span>
+    <span class="n">hisbalance</span> <span class="o">=</span> <span class="n">xaction</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'accounts'</span><span class="p">,</span> <span class="s">'robert'</span><span class="p">)[</span><span class="s">'balance'</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">mybalance</span> <span class="o">&lt;</span> <span class="n">amount</span><span class="p">:</span>
+        <span class="n">xaction</span><span class="o">.</span><span class="n">abort</span><span class="p">()</span>
+        <span class="k">raise</span> <span class="n">InsufficientFunds</span><span class="p">()</span>
+    <span class="n">mynewbalance</span> <span class="o">=</span> <span class="n">mybalance</span> <span class="o">-</span> <span class="n">amount</span>
+    <span class="n">hisnewbalance</span> <span class="o">=</span> <span class="n">hisbalance</span> <span class="o">+</span> <span class="n">amount</span>
+    <span class="n">xaction</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">'accounts'</span><span class="p">,</span> <span class="s">'egs'</span><span class="p">,</span> <span class="p">{</span><span class="n">balance</span><span class="p">:</span> <span class="n">mynewbalance</span><span class="p">})</span>
+    <span class="n">xaction</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">'accounts'</span><span class="p">,</span> <span class="s">'robert'</span><span class="p">,</span> <span class="p">{</span><span class="n">balance</span><span class="p">:</span> <span class="n">hisnewbalance</span><span class="p">})</span>
+    <span class="n">success</span> <span class="o">=</span> <span class="n">xaction</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span></pre></div>
+<p>In this case, the code is modifying two separate objects, one that holds EGS's balance and another one that holds Robert's balance.
+Since the data store is horizontally scalable, these two balances are quite likely stored on separate servers. Ensuring that
+these two transactions are atomic, consistent, isolated and fault-tolerant is a difficult thing to do. But it's not impossible.
+We now have the technology to do it correctly, and to do so with higher performance than the NoSQL systems of yesterday.</p>
+</div>
+<div class="section" id="related">
+<h2>Related</h2>
+<ul class="simple">
+<li><a class="reference external" href="http://hyperdex.org/">HyperDex is free and open source</a></li>
+<li><a class="reference external" href="http://hyperdex.org/doc/">HyperDex documentation</a> is quite extensive. We follow the <a class="reference external" href="http://hackingdistributed.com/2013/02/11/principled-documentation/">principled documentation</a> manifesto.</li>
+<li>Earlier, I wrote about another collapse at <a class="reference external" href="http://hackingdistributed.com/2014/04/05/another-one-bites-the-dust-neo-bee/">Neo &amp; Bee</a>, a Cyprus-based Bitcoin exchange that collapsed 25 days after its IPO.</li>
+<li>Everyone knows what <a class="reference external" href="http://hackingdistributed.com/2014/03/01/what-did-not-happen-at-mtgox/">may or may not have happened at Mt. Gox</a>.</li>
+<li>This post should get an award for the most catchy title: <a class="reference external" href="http://www.reddit.com/r/Bitcoin/comments/1wtbiu/how_i_stole_roughly_100_btc_from_an_exchange_and/">How I stole roughly 100 BTC from an exchange and how I could have stolen more!</a></li>
+</ul>
+</div>
+
+
+<!---
+<div data-social-share-privacy='true'></div>
+
+<script type="text/javascript">(function () {var s = document.createElement('script');var t = document.getElementsByTagName('script')[0];s.type = 'text/javascript';s.async = true;s.src = '/js/jquery.socialshareprivacy.min.autoload.js';t.parentNode.insertBefore(s, t);})();</script>
+ -->
+
+<div class="sharebuttons">
+  <span class="st_facebook" displaytext="Facebook" st_processed="yes"><span style="text-decoration:none;color:#000000;display:inline-block;cursor:pointer;" class="stButton"><span class="chicklets facebook">Facebook</span></span></span>
+  <span class="st_twitter" displaytext="Tweet" st_processed="yes"><span style="text-decoration:none;color:#000000;display:inline-block;cursor:pointer;" class="stButton"><span class="chicklets twitter">Tweet</span></span></span>
+  <span class="st_googleplus" displaytext="Google +" st_processed="yes"><span style="text-decoration:none;color:#000000;display:inline-block;cursor:pointer;" class="stButton"><span class="chicklets googleplus">Google +</span></span></span>
+</div>
+<br>
+
+
+<nav>
+  <ul class="pager">
+    <li class="previous "><a href="http://hackingdistributed.com/2014/04/05/another-one-bites-the-dust-neo-bee/"><span aria-hidden="true">←</span> Older</a></li>
+    <li class="next "><a href="http://hackingdistributed.com/2014/05/16/macaroons-are-better-than-cookies/">Newer <span aria-hidden="true">→</span></a></li>
+  </ul>
+</nav>
+
+
+<div id="disqus_thread"><iframe id="dsq-2" data-disqus-uid="2" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/saved_resource.html" style="width: 100% !important; border: none !important; overflow: hidden !important; height: 8867px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'hackingdistributed'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;</noscript>
+
+</div>
+
+        </div>
+        <div id="sidebar" class="col-md-4">
+          
+
+  <div class="well well-sm">
+  <h3 class="sidebar-title">Emin Gün Sirer</h3>
+  <div class="pull-right">
+    <a href="http://hackingdistributed.com/egs/"><img src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/egs-small3.jpg" width="96"></a>
+  </div>
+
+  <p>Hacker and professor at Cornell, with interests that span distributed
+  systems, OSes and networking.  Current projects include HyperDex, OpenReplica
+  and the Nexus OS. <a href="http://hackingdistributed.com/egs/">more...</a></p>
+
+  <div>
+  <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/follow_button.547a83a757127354d7bdaf471b59d0d0.en.html" class="twitter-follow-button twitter-follow-button" title="Twitter Follow Button" data-twttr-rendered="true" style="width: 136px; height: 20px;"></iframe>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  </div>
+</div>
+
+<div class="well well-sm">
+  <h3 class="sidebar-title">Subscribe</h3>
+
+  <div id="subscription-buttons">
+    <a href="http://hackingdistributed.com/hackingdistributed.atom"><img alt="Atom Feed" src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/rss-32px.png"></a>
+    <a href="https://www.facebook.com/egsirer"><img alt="Facebook" src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/facebook-32px.png"></a>
+    <a href="http://twitter.com/el33th4xor/"><img alt="Twitter" src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/twitter-32px.png"></a>
+  </div>
+
+</div>
+
+<div class="well well-sm">
+  <h3 class="sidebar-title">Projects</h3>
+  <ul>
+    <li><a href="http://hyperdex.org/">HyperDex</a></li>
+    <li><a href="http://weaver.systems/">Weaver</a></li>
+    <li><a href="http://openreplica.org/">OpenReplica</a></li>
+    <li><a href="http://www.cs.cornell.edu/people/egs/nexus/">Nexus</a></li>
+    <li><a href="http://frenetic-lang.org/merlin/">Merlin</a></li>
+  </ul>
+</div>
+
+<div class="well well-sm">
+  <h3 class="sidebar-title">Recent Posts</h3>
+  <ul>
+    <dd><a href="http://hackingdistributed.com/calendar/">Archive By Date</a>
+  </dd></ul>
+  <ul>
+    <li><a href="http://hackingdistributed.com/2015/01/12/more-mongo-than-mongo/">More Mongo than Mongo</a></li><li><a href="http://hackingdistributed.com/2015/01/12/hyperdex-1.6.0/">HyperDex 1.6.0:  MongoDB Compatibility</a></li><li><a href="http://hackingdistributed.com/2014/12/31/costs-of-micropayments/">Micropayments and Cognitive Costs</a></li><li><a href="http://hackingdistributed.com/2014/12/29/tips-for-changetip/">Tips for ChangeTip</a></li><li><a href="http://hackingdistributed.com/2014/12/19/to-shard-or-not-to-shard-a-graph/">To Shard or Not To Shard (A Graph)?</a></li><li><a href="http://hackingdistributed.com/2014/12/17/changetip-must-die/">ChangeTip Must Die</a></li><li><a href="http://hackingdistributed.com/2014/12/16/introducing-weaver/">Introducing Weaver</a></li><li><a href="http://hackingdistributed.com/2014/12/03/the-miners-dilemma/">The Miner's Dilemma</a></li><li><a href="http://hackingdistributed.com/2014/11/30/reasonable-bitcoin-security-precautions/">State of Computer Security, 2014 Edition</a></li><li><a href="http://hackingdistributed.com/2014/11/28/futility-of-custom-consistency/">On the Futility of Custom Consistency Models</a></li>
+	<dd><a href="http://hackingdistributed.com/page/2/">more...</a></dd>
+  </ul>
+</div>
+
+
+<div class="well well-sm">
+  <h3 class="sidebar-title">Popular</h3>
+  <ul>
+        <li><a href="http://hackingdistributed.com/2014/12/16/introducing-weaver/">Introducing Weaver</a>
+	</li><li><a href="http://hackingdistributed.com/2014/06/18/how-to-disincentivize-large-bitcoin-mining-pools/">How to Disincentivize Large Bitcoin Mining Pools</a>
+	</li><li><a href="http://hackingdistributed.com/2014/06/16/how-a-mining-monopoly-can-attack-bitcoin/">How A Mining Monopoly Can Attack Bitcoin</a>
+	</li><li><a href="http://hackingdistributed.com/2014/03/01/what-did-not-happen-at-mtgox/">What Did Not Happen At Mt. Gox</a>
+	</li><li><a href="http://hackingdistributed.com/2013/11/04/bitcoin-is-broken/">Bitcoin is Broken</a>
+	</li><li><a href="http://hackingdistributed.com/2013/08/24/stack-ranking-did-not-kill-microsoft/">Stack Ranking Is Not The Cause of Microsoft's Problems</a>
+	</li><li><a href="http://hackingdistributed.com/2013/08/01/framework-for-surveillance/">How the Snowden Saga Will End</a>
+	</li><li><a href="http://hackingdistributed.com/2013/03/26/summly/">What's Actually Wrong with Yahoo's Purchase of Summly</a>
+	</li><li><a href="http://hackingdistributed.com/2013/01/29/mongo-ft/">Broken By Design: MongoDB Fault Tolerance</a>
+	</li><li><a href="http://hackingdistributed.com/2013/06/20/virtual-notary-intro/">Introducing Virtual Notary</a>
+	</li><li><a href="http://hackingdistributed.com/2013/02/11/principled-documentation/">The Principled Documentation Manifesto</a>
+	</li><li><a href="http://hackingdistributed.com/2013/02/05/hyperdex-warp/">Introducing HyperDex Warp: ACID Transactions for NoSQL</a>
+  </li></ul>
+</div>
+
+<div class="well well-sm">
+  <h3 class="sidebar-title">Blog Tags</h3>
+
+  <p>
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/bitcoin/">bitcoin</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/security/">security</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/hyperdex/">hyperdex</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/release/">release</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/selfish-mining/">selfish-mining</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/nosql/">nosql</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/privacy/">privacy</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/broken/">broken</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/surveillance/">surveillance</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/nsa/">nsa</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/mongo/">mongo</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/leveldb/">leveldb</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/51%25/">51%</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/meta/">meta</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/snowden/">snowden</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/philosophy/">philosophy</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/mt.%20gox/">mt. gox</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/mining%20pools/">mining pools</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/micropayments/">micropayments</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/hyperleveldb/">hyperleveldb</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/docker/">docker</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/weaver/">weaver</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/silly/">silly</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/replication/">replication</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/partition-tolerant/">partition-tolerant</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/partition-oblivious/">partition-oblivious</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/macaroons/">macaroons</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/graph%20stores/">graph stores</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/ghash/">ghash</a> / 
+    
+      
+      
+        <a href="http://hackingdistributed.com/tag/fault-tolerance/">fault-tolerance</a>
+    
+  </p>
+</div>
+
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      <div class="container">
+        Copyright © 2013-2015
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-9339334-8']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher: "a31119a5-31b6-441a-a318-dceab22f99e7", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+  
+<div style="display:none"></div><script type="text/javascript" async="" src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/visitor.js"></script><iframe id="stSegmentFrame" name="stSegmentFrame" src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/getSegment.html" frameborder="0" scrolling="no" width="0px" height="0px" style="display:none;"></iframe><script type="text/javascript">var vglnk = {api_url: '//api.viglink.com/api', key: '084c74521c465af0d8f08b63422103cc'};</script><script type="text/javascript" async="" src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/vglnk.js"></script><div id="stwrapper" class="stwrapper stwrapper5x" style="display: none;"><iframe allowtransparency="true" id="stLframe" class="stLframe" name="stLframe" frameborder="0" scrolling="no" src="./NoSQL Meets Bitcoin and Brings Down Two Exchanges  The Story of Flexcoin and Poloniex_files/index.6a1a5a46d355839f37b36b759d50a16f.html"></iframe></div><div id="stOverlay" onclick="javascript:stWidget.closeWidget();"></div></body></html>

@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)http://tech.it168.com/a2013/1016/1545/000001545780.shtml -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=GBK"><script src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/plugin.js" async="" charset="utf-8" mod_name="tkapi-plugin"></script><script src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/main.js" async="" charset="utf-8" mod_name="tkapi-main"></script><script charset="gbk" async="" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/tkapi.js"></script><script type="text/javascript" async="" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/ga.js"></script>
+<script charset="utf-8" type="text/javascript" async="" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/ax"></script><script charset="utf-8" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/mz_ad_serving.js"></script><script async="" type="text/javascript" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/gpt.js"></script><script type="text/javascript">
+if(/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){
+	try{
+		if(/iPad/i.test(navigator.userAgent)){
+		}else{
+			var re = /^[\S]*[\\\/]([0-9]+)_*([0-9])*\.shtml/;
+			var wapUrl = window.location.pathname.replace(re,function(m,p1,p2){
+				if(p1){
+					if(p2){
+						return "http://m.it168.com/article_" + parseInt(p1,10) + "_p" + parseInt(p2,10) + ".html";					
+					}else{					
+						return "http://m.it168.com/article_" + parseInt(p1,10) + ".html";
+					}
+				}else{
+					return "http://m.it168.com";
+				}
+			});
+			window.location.href = wapUrl;			
+		}
+	}catch(e){}
+}
+</script>
+<title>NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区</title>
+<meta name="description" content="CAP理论由Eric Brewer在ACM PODC会议上的主题报告中提出，这个理论是NoSQL数据管理系统构建的基础，其中字母“C”、“A”、“P”分别代表以下三个特征。?强一致性(Consistency)。系统在执行过某项操作后仍然处于一致的状态。在分布式系统中，更新操作执行成功后所有的用户都应该读取到最新的值，这样的系统被认为具有强一致性。">
+<meta charset="gb2312">
+<!--<base target="_blank">--><base href="." target="_blank">
+<script type="text/javascript" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/h96.js"></script><script type="text/javascript" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/h96(1).js"></script>
+<link rel="StyleSheet" href="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/articlestyle20140828.css" type="text/css" media="screen">
+<link rel="StyleSheet" href="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/It168Article.css" type="text/css" media="screen">
+<script type="text/javascript" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/headcommon.js"></script>
+<script type="text/javascript" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/jquery-1.7.2.min.js"></script>
+<script src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/wb.js" type="text/javascript" charset="utf-8"></script>
+<script src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/k.js" type="text/javascript"></script>
+
+<style>
+	#selectsearch-icon{ position:absolute;z-index:1000;cursor:pointer;margin:-25px 0 0 5px;}
+	#selectsearch-icon.selectsearch-hide{display:none;}
+</style>
+
+<script type="text/javascript">
+	var reqUrl = window.location.href.toLowerCase();
+	if (reqUrl.lastIndexOf("itpub.net")>0)
+	{
+		document.domain='itpub.net';
+	}
+	else
+	{
+				document.domain='it168.com';
+			}
+	var articleONeCode = "000000001545780";
+	var articleCode = "1545780";
+	var articlePath = "http://tech.it168.com/a2013/1016/1545/000001545780.shtml";
+	var articleUrl = "http://tech.it168.com/a2013/1016/1545/000001545780.shtml";
+	var articleTitle = "NoSQL数据管理系统基础谈：CAP理论";
+	var articlecuPage = 1;
+	var articlePageCount = 1;
+	var articleChannelCode = "4";
+	var chanstr = "4";
+	var articleTypeName="评论";
+        var channelNameSt = "技术开发";
+	var typeid = "";
+	var pinpaiid = "";
+	var productid ="";
+	var brndnamestr="";
+	var pageType = "article";
+	</script>
+<script type="text/javascript" async="" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/embed.js" charset="UTF-8"></script><script type="text/javascript" async="" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/embed.js" charset="UTF-8"></script><script src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/share.js"></script><script></script><style type="text/css">object,embed{-webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;-ms-animation-duration:.001s;-ms-animation-name:playerInserted;-o-animation-duration:.001s;-o-animation-name:playerInserted;animation-duration:.001s;animation-name:playerInserted;}@-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}</style><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style><link type="text/css" rel="stylesheet" href="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/embed.default.css"><style type="text/css">.ds-comment-body img {display: inline}
+
+@media (max-width: 400px) {
+	#ds-smilies-tooltip{
+		width:auto;
+	}
+
+	#ds-smilies-tooltip .ds-smilies-tabs{
+		display:none;
+	}
+
+	#ds-smilies-tooltip .ds-smilies-container{
+		margin-left:0px;
+	}
+
+	.ds-post-repost{
+		display:none;
+	}
+
+}
+
+#ds-thread #ds-reset .ds-replybox .ds-textarea-wrapper{background: url(http://adshow.it168.com/newImage/23.gif) no-repeat 410px 0px;}
+
+</style><link rel="stylesheet" href="http://bdimg.share.baidu.com/static/api/css/share_style0_16.css?v=81615bb9.css"><link rel="stylesheet" href="http://bdimg.share.baidu.com/static/api/css/imgshare.css?v=754091cd.css"><link rel="stylesheet" href="http://bdimg.share.baidu.com/static/api/css/share_popup.css?v=ab97b9a4.css"><link rel="stylesheet" href="http://bdimg.share.baidu.com/static/api/css/select_share.css?v=3bb1899a.css"></head>
+<body>
+<div id="ADV_20300" style="margin: 0pt auto 8px; width: 980px;"><script>LG('ADV_20300');</script></div>
+<div id="ADV_1311 style=" margin:="" 0pt="" auto="" 8px;="" width:="" 980px;display:none;"=""><script>LG('ADV_1311');</script></div>
+<div id="ADV_20769 style=" margin:="" 0pt="" auto="" 8px;="" width:="" 980px;display:none;"=""><script>LG('ADV_20769');</script></div>
+<div class="daoh">
+	<div class="hq" id="hq" onmouseover="document.getElementById(&#39;hq&#39;).style.display=&#39;block&#39;" onmouseout="document.getElementById(&#39;hq&#39;).style.display=&#39;none&#39;">
+		<div class="hqBox"><a href="http://bj.it168.com/">北京行情</a><a href="http://sh.it168.com/">上海行情</a><a href="http://gz.it168.com/">广东行情</a> <a href="http://sz.it168.com/">深圳行情</a> <a href="http://dg.it168.com/">东莞行情</a> <a href="http://sy.it168.com/">辽宁行情</a> <a href="http://jn.it168.com/">山东行情</a> <a href="http://zz.it168.com/">河南行情</a> <a href="http://wh.it168.com/">湖北行情</a> <a href="http://cs.it168.com/">湖南行情</a> <a href="http://jiangsu.it168.com/">江苏行情</a> <a href="http://xian.it168.com/">陕西行情</a> <a href="http://cd.it168.com/">四川行情</a><a href="http://cq.it168.com/">重庆行情</a><a href="http://km.it168.com/">云南行情</a><a href="http://hz.it168.com/">浙江行情</a>
+		  <div class="clear"></div>
+		</div>
+	 </div>
+	<a id="LoginFalse" style="display: block;" href="http://u.it168.com/Login?returnUrl=http%3A//tech.it168.com/a2013/1016/1545/000001545780.shtml" class="r">通行证登录</a><span id="LoginTrue" style="display: none;"><a id="logintrueName" href="http://u.it168.com/"></a><em class="login_em1">|</em><a id="log_out" target="_self">退出</a></span>
+	<div class="div"><a href="http://www.it168.com/">首页</a> | <a href="http://product.it168.com/">产品报价</a> <a onmouseover="document.getElementById(&#39;hq&#39;).style.display=&#39;block&#39;" onmouseout="document.getElementById(&#39;hq&#39;).style.display=&#39;none&#39;">全国行情</a> <a href="http://product.it168.com/top/">产品排行榜</a> | <a href="http://www.qudao168.com/">渠道商情</a> | <a href="http://labs.it168.com/">评测</a> <a href="http://www.igeek.com.cn/">iGeek</a> | <a href="http://wenku.it168.com/">文库</a> <a href="http://dialogue.it168.com/">高端访谈</a> <a href="http://www.it168.com/itclub/artclub/">IT选型顾问</a> | <a href="http://benyouhui.it168.com/">本友会</a> <a href="http://b.it168.com/">板友会</a> <a href="http://photobbs.it168.com/">摄友会</a></div>
+</div>
+
+<div class="daoh2">
+	<div class="l">
+		<b><a href="http://personal.it168.com/">消费数码</a></b><span>|</span> <a href="http://notebook.it168.com/">笔记本</a>  <a href="http://mobile.it168.com/">手机</a>  <a href="http://pad.it168.com/">平板电脑</a>  <a href="http://ultrabook.it168.com/">超极本</a>  <a href="http://dc.it168.com/">数码相机</a>  <a href="http://dv.it168.com/">摄像机</a>  <a href="http://projector.it168.com/">投影机</a>  <a href="http://elec.it168.com/">家电</a>  <a href="http://earphone.it168.com/">耳机</a>  <a href="http://digital.it168.com/">MP3|MP4</a>  <a href="http://tv.it168.com/">智能电视机</a><br>
+			<b><a href="http://diy.it168.com/">硬件设备</a></b><span>|</span>  <a href="http://lcd.it168.com/">显示器</a>  <a href="http://vga.it168.com/">显卡</a>  <a href="http://aio.it168.com/">一体电脑</a>  <a href="http://pc.it168.com/">台式机</a>  <a href="http://cpu.it168.com/">CPU内存硬盘</a>  <a href="http://mb.it168.com/">主板</a>  <a href="http://mouse.it168.com/">键鼠</a>  <a href="http://sound.it168.com/">音箱</a>  <a href="http://power.it168.com/">机箱|电源</a>  <a href="http://software.it168.com/" class="mr0">软件|</a><a href="http://down.it168.com/">下载</a>  
+	</div>
+	<div class="r">
+		<b><a href="http://oa.it168.com/">办公</a></b><span>|</span> <a href="http://server.it168.com/">服务器</a>  <a href="http://net.it168.com/">网络通信</a>  <a href="http://cio.it168.com/">信息化</a>  <a href="http://www.chinaunix.net/">CU社区</a> <a href="http://www.afjk.com/">安防监控</a><br>
+		<b><a href="http://storage.it168.com/">存储</a></b><span>|</span>  <a href="http://wenku.it168.com/">IT文库</a>  <a href="http://tech.it168.com/">技术开发</a>  <a href="http://safe.it168.com/">企业安全</a>  <a href="http://print.it168.com/">打印扫描</a>  <a href="http://virtual.it168.com/">虚拟化</a></div>
+</div>
+<script language="javascript"> 
+        if(getCookie("sso_username_utf8")!=null && getCookie("sso_username_utf8")!="undefined"){  
+            document.getElementById("LoginFalse").style.display="none"; 
+            document.getElementById("LoginTrue").style.display="block";  
+			document.getElementById("logintrueName").innerHTML = getCookie("sso_username_utf8");
+			document.getElementById("log_out").setAttribute("href","http://u.it168.com/Logout?returnUrl="+location.href);
+        }
+        else{
+            document.getElementById("LoginTrue").style.display="none"; 
+            document.getElementById("LoginFalse").style.display="block"; 
+			document.getElementById("LoginFalse").href="http://u.it168.com/Login?returnUrl="+escape(top.document.URL);
+        }
+		function getCookie(sName)
+		{
+		 var aCookie = document.cookie.split("; ");
+		  for (var i=0; i < aCookie.length; i++){
+			var aCrumb = aCookie[i].split("=");
+			if (encodeURIComponent(sName) == aCrumb[0])
+			  return decodeURIComponent(aCrumb[1]);
+		  }
+		  return null;
+		}
+</script>
+<div class="daoh1">
+	<a href="http://tech.it168.com/" class="l">IT168<span>技术开发</span>频道</a>
+	<div class="search">
+	<form id="SouSearch" name="SouSearch" method="post" onsubmit="return keySearch02()">
+			<input type="text" class="inp1" id="q" name="q" value="" onfocus="this.select();">
+					
+		<input type="submit" class="btn1" value="">
+   </form>
+	</div>
+</div>
+<div class="posi"><a href="http://www.it168.com/">IT168首页</a> &gt; <a href="http://tech.it168.com/">技术开发</a>  &gt; NoSQL数据管理系统基础谈：CAP理论</div>
+
+
+				
+
+
+
+<div class="w980" style="margin-top:3px">
+	<div class="l2" style="display: block;">
+		<div><div style="display: block;">
+<div id="ADV_1417"><a href="http://dtcc.it168.com/" target="_blank"><img src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/20150303102907118.jpg" border="0" width="670" height="90" data-bd-imgshare-binded="1"></a></div>
+</div>
+</div>
+<form action="" method="get" target="_blank" id="urlFrm" style="display:none"></form>
+		
+		<div class="bor1">
+			<h1>NoSQL数据管理系统基础谈：CAP理论</h1>
+			<div class="cen01">
+			2013年10月17日00:05 
+
+		<a href="http://www.it168.com/" target="_blank" rel="nofollow">it168网站</a>原创
+作者：陆嘉恒 编辑：<a href="http://archive.it168.com/user/%cd%f5%d3%f1%d4%b2/" target="_blank" rel="nofollow">王玉圆</a> <a href="http://tech.it168.com/a2013/1016/1545/000001545780_all.shtml" target="_self" rel="nofollow">查看全文</a></div>	
+		 <div class="box0822"><a href="javascript:void(0);" target="_self" class="zan" id="IT168zanclass" onclick="It168CommonAjax.addArtGrade(1545780, 1)"><i id="IT168zan">赞</i>（<b id="IT168zanNum">0</b>）</a><a href="http://tech.it168.com/a2013/1016/1545/000001545780.shtml#articlecomment" target="_self" class="ping">评论（<b id="duoshuo_commentcount">0</b>）</a><a href="javascript:void(0);" target="_self" class="gmai" id="It168_ArticleDs" style="display:none;">购买（<b id="It168_ArticleDsCount">0</b>）</a>
+		 <span class="fengxiang">分享<div class="div3" id="share" style="display:none;"><div class="bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1426494657128"><a title="分享到微信" class="bds_weixin" target="_self" href="javascript:void(0)" data-cmd="weixin">微信</a>
+                <a title="分享到QQ空间" class="bds_qzone" target="_self" href="javascript:void(0)" data-cmd="qzone">QQ空间</a>
+                <a title="分享到新浪微博" class="bds_tsina" target="_self" href="javascript:void(0)" data-cmd="tsina">新浪微博</a>
+                <a title="分享到腾讯微博" class="bds_tqq" target="_self" href="javascript:void(0)" data-cmd="tqq">腾讯微博</a>
+                <a title="分享到人人网" class="bds_renren" target="_self" href="javascript:void(0)" data-cmd="renren">人人网</a></div>
+</div></span>
+		 </div>
+		 
+		 			<div class="biaoq">标签：
+					<a href="http://www.it168.com/tag/3902_1.shtml" target="_blank">NoSQL</a>
+										</div>
+				<div class="cont1" id="detailWord">
+				
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;【IT168&nbsp;评论】CAP理论由Eric Brewer在ACM PODC会议上的主题报告中提出，这个理论是NoSQL数据管理系统构建的基础，如下图所示：</p><p style="text-align: center"><a target="_blank" href="http://www.it168.com/picshow/index1602083.shtml"><img border="1" alt="CAP理论概述：NoSQL数据管理系统的基础" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/644cf0d834d42360.png" data-bd-imgshare-binded="1"></a><br>▲CAP理论</p><p>　<b>　其中字母“C”、“A”、“P”分别代表以下三个特征：</b></p><p>　　<b>·强一致性(Consistency)。</b>系统在执行过某项操作后仍然处于一致的状态。在分布式系统中，更新操作执行成功后所有的用户都应该读取到最新的值，这样的系统被认为具有强一致性。</p><p>　　<b>·可用性(Availability)。</b>每一个操作总是能够在一定的时间内返回结果，这里需要注意的是“一定时间内”和“返回结果”。</p><p>　　“一定时间内”是指，系统的结果必须在给定时间内返回，如果超时则被认为不可用。这是至关重要的。比如通过网上银行的网络支付功能购买物品。当等待了很长时间，如15分钟，系统还是没有返回任务操作结果，购买者一直处于等待状态，那么购买者就不知道现在是否支付成功，还是需要进行其他操作。这样当下次购买者再次使用网络支付功能时必将心有余悸。</p><p>　　“返回结果”同样非常重要。还是拿这个例子来说，假如购买者点击支付之后很快出现了结果，但是结果却是“java.lang.error……”之类的错误信息。这对于普通购买者来说相当于没有返回任何结果。因为他仍旧不知道系统处于什么状态，是支付成功还是失败，或者需要重新操作。</p><p>　　<b>·分区容错性(Partition Tolerance)。</b>分区容错性可以理解为系统在存在网络分区的情况下仍然可以接受请求(满足一致性和可用性)。这里网络分区是指由于某种原因网络被分成若干个孤立的区域，而区域之间互不相通。还有一些人将分区容错性理解为系统对节点动态加入和离开的处理能力，因为节点的加入和离开可以认为是集群内部的网络分区。</p><p>　　CAP是在分布式环境中设计和部署系统时所要考虑的三个重要的系统需求。根据CAP理论，数据共享系统只能满足这三个特性中的两个，而不能同时满足三个条件。因此系统设计者必须在这三个特性之间做出权衡。例如Amazon的Dynamo具有高可用性和分区容错性但不支持强一致性，也就是说用户不能立即看到其他用户更新的内容。</p><p>　　下面通过图示来解释数据共享系统为什么不能同时满足CAP理论三个条件。</p><p>　　如下图所示，在网络中有两个节点分别为G1和G2，这两个节点上存储着同一数据的不同副本，现在数据是一致的，两个副本的值都为V0，A、B分别是运行在G1、G2上与数据交互的应用程序。</p><p style="text-align: center"><a target="_blank" href="http://www.it168.com/picshow/index1602084.shtml"><img border="1" alt="CAP理论概述：NoSQL数据管理系统的基础" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/7035844281c268b0.png" data-bd-imgshare-binded="1"></a><br>▲网络节点及数据分布图</p><p>　　在正常情况下，操作过程如下(如下图所示)：</p><p>　　(1)A将V0更新，数据值为V1;</p><p>　　(2)G1发送消息m给G2，数据V0更新为V1;</p><p>　　(3)B读取到G2中的数据V1。</p><p style="text-align: center"><a target="_blank" href="http://www.it168.com/picshow/index1602085.shtml"><img border="1" alt="CAP理论概述：NoSQL数据管理系统的基础" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/f7bae9d51a70402c.png" data-bd-imgshare-binded="1"></a><br>▲正常情况</p><p>　　如果发生网络分区故障，那么在操作的步骤(2)将发生错误：G1发送的消息不能传送到G2上。这样数据就处于不一致的状态，B读取到的就不是最新的数据，如图2-3所示。如果我们采用一些技术如阻塞、加锁、集中控制等来保证数据的一致，那么必然会影响到系统的可用性和分区容错性。</p><p style="text-align: center"><a target="_blank" href="http://www.it168.com/picshow/index1602086.shtml"><img border="1" alt="CAP理论概述：NoSQL数据管理系统的基础" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/b971a0348af33be8.png" data-bd-imgshare-binded="1"></a><br>▲网络分区故障</p><p>　　CAP理论告诉我们如果系统具有较高的可用性和较小延迟，那么节点必须能够容忍网络分区，但这时候应用程序可能会得到不同的数据(B读取到的值为V1)。</p><p>　　有人可能会想，如果我们对步骤(2)的操作加一个同步消息，问题会不会解决呢(同时满足CAP理论三个特性)?答案是否定的。不加同步的情况下，G1到G2的更新是不可知的，也就是说，B读取到得数据可能是V1也可能是V2，但是服务是可用的。即同时满足了“A”和“P”，但是不保证“C”一定满足。加了同步消息之后，将能够保证B读取到数据V1。但是这个同步操作必定要消耗一定的时间，尤其是在网络规模较大的情况下，当节点规模成百上千的时候，不一定能保证此时的服务是可用的。这种情况下只能满足“C”和“P”，而不能保证“A”一定满足。</p><p>　　CAP理论不但对此网络和通信模型有效，对其他模型同样有效，有兴趣的读者可以换其他的网络和通信模型来验证CAP理论。</p><p>　　根据CAP理论，系统满足三个条件中不同的两个条件会具有不同的特点，见下表：处理CAP问题的选择。</p><div align="center"><table class="MsoNormalTable" style="border-top: medium none; border-right: medium none; border-collapse: collapse; border-bottom: medium none; border-left: medium none; mso-border-alt: solid #AAAAAA .5pt; mso-yfti-tbllook: 160; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt; mso-border-insideh: .5pt solid #AAAAAA; mso-border-insidev: .5pt solid #AAAAAA" cellspacing="0" cellpadding="0" border="1"><tbody><tr style="mso-yfti-irow: 0; mso-yfti-firstrow: yes"><td style="border-top: #aaaaaa 1pt solid; border-right: #aaaaaa 1pt solid; background: #cccccc; border-bottom: #aaaaaa 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 5.4pt; border-left: #aaaaaa 1pt solid; padding-right: 5.4pt; mso-border-alt: solid #AAAAAA .5pt"><p class="a" style="text-align: center; margin: 0cm 0cm 0pt" align="center"><span style="font-size: 9pt; font-family: 黑体; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">序</span><span lang="EN-US" style="font-size: 9pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; mso-fareast-font-family: 黑体"><span style="mso-spacerun: yes">&nbsp; </span></span><span style="font-size: 9pt; font-family: 黑体; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">号</span><span lang="EN-US" style="font-size: 9pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; mso-fareast-font-family: 黑体"><o:p></o:p></span></p></td><td style="border-top: #aaaaaa 1pt solid; border-right: #aaaaaa 1pt solid; background: #cccccc; border-bottom: #aaaaaa 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 5.4pt; border-left: #f0f0f0; padding-right: 5.4pt; mso-border-alt: solid #AAAAAA .5pt; mso-border-left-alt: solid #AAAAAA .5pt"><p class="a" style="text-align: center; margin: 0cm 0cm 0pt" align="center"><span style="font-size: 9pt; font-family: 黑体; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">选</span><span lang="EN-US" style="font-size: 9pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; mso-fareast-font-family: 黑体"><span style="mso-spacerun: yes">&nbsp; </span></span><span style="font-size: 9pt; font-family: 黑体; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">择</span><span lang="EN-US" style="font-size: 9pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; mso-fareast-font-family: 黑体"><o:p></o:p></span></p></td><td style="border-top: #aaaaaa 1pt solid; border-right: #aaaaaa 1pt solid; background: #cccccc; border-bottom: #aaaaaa 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 5.4pt; border-left: #f0f0f0; padding-right: 5.4pt; mso-border-alt: solid #AAAAAA .5pt; mso-border-left-alt: solid #AAAAAA .5pt"><p class="a" style="text-align: center; margin: 0cm 0cm 0pt" align="center"><span style="font-size: 9pt; font-family: 黑体; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">特</span><span lang="EN-US" style="font-size: 9pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; mso-fareast-font-family: 黑体"><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 9pt; font-family: 黑体; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">点</span><span lang="EN-US" style="font-size: 9pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; mso-fareast-font-family: 黑体"><o:p></o:p></span></p></td><td style="border-top: #aaaaaa 1pt solid; border-right: #aaaaaa 1pt solid; background: #cccccc; border-bottom: #aaaaaa 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 5.4pt; border-left: #f0f0f0; padding-right: 5.4pt; mso-border-alt: solid #AAAAAA .5pt; mso-border-left-alt: solid #AAAAAA .5pt"><p class="a" style="text-align: center; margin: 0cm 0cm 0pt" align="center"><span style="font-size: 9pt; font-family: 黑体; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">例</span><span lang="EN-US" style="font-size: 9pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; mso-fareast-font-family: 黑体"><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 9pt; font-family: 黑体; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">子</span><span lang="EN-US" style="font-size: 9pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; mso-fareast-font-family: 黑体"><o:p></o:p></span></p></td></tr><tr style="mso-yfti-irow: 1"><td style="border-top: #f0f0f0; border-right: #aaaaaa 1pt solid; border-bottom: #aaaaaa 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 5.4pt; border-left: #aaaaaa 1pt solid; padding-right: 5.4pt; background-color: transparent; mso-border-alt: solid #AAAAAA .5pt; mso-border-top-alt: solid #AAAAAA .5pt"><p class="a" style="text-align: center; margin: 0cm 0cm 0pt" align="center"><span lang="EN-US" style="font-size: 9pt"><font face="Times New Roman">1<o:p></o:p></font></span></p></td><td style="border-top: #f0f0f0; border-right: #aaaaaa 1pt solid; border-bottom: #aaaaaa 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 5.4pt; border-left: #f0f0f0; padding-right: 5.4pt; background-color: transparent; mso-border-alt: solid #AAAAAA .5pt; mso-border-left-alt: solid #AAAAAA .5pt; mso-border-top-alt: solid #AAAAAA .5pt"><p class="a" style="text-align: center; margin: 0cm 0cm 0pt" align="center"><span lang="EN-US" style="font-size: 9pt"><font face="Times New Roman">C</font></span><span style="font-size: 9pt; font-family: 宋体; mso-ascii-font-family: &#39;Times New Roman&#39;; mso-hansi-font-family: &#39;Times New Roman&#39;">、</span><span lang="EN-US" style="font-size: 9pt"><font face="Times New Roman">A<o:p></o:p></font></span></p></td><td style="border-top: #f0f0f0; border-right: #aaaaaa 1pt solid; border-bottom: #aaaaaa 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 5.4pt; border-left: #f0f0f0; padding-right: 5.4pt; background-color: transparent; mso-border-alt: solid #AAAAAA .5pt; mso-border-left-alt: solid #AAAAAA .5pt; mso-border-top-alt: solid #AAAAAA .5pt"><p class="a" style="margin: 0cm 0cm 0pt"><span style="font-size: 9pt; font-family: 宋体; mso-ascii-font-family: &#39;Times New Roman&#39;; mso-hansi-font-family: &#39;Times New Roman&#39;">两阶段提交、缓存验证协议</span><span lang="EN-US" style="font-size: 9pt"><o:p></o:p></span></p></td><td style="border-top: #f0f0f0; border-right: #aaaaaa 1pt solid; border-bottom: #aaaaaa 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 5.4pt; border-left: #f0f0f0; padding-right: 5.4pt; background-color: transparent; mso-border-alt: solid #AAAAAA .5pt; mso-border-left-alt: solid #AAAAAA .5pt; mso-border-top-alt: solid #AAAAAA .5pt"><p class="a" style="margin: 0cm 0cm 0pt"><span style="font-size: 9pt; font-family: 宋体; mso-ascii-font-family: &#39;Times New Roman&#39;; mso-hansi-font-family: &#39;Times New Roman&#39;">传统数据库、集群数据库、</span><span lang="EN-US" style="font-size: 9pt"><font face="Times New Roman">LDAP</font></span><span style="font-size: 9pt; font-family: 宋体; mso-ascii-font-family: &#39;Times New Roman&#39;; mso-hansi-font-family: &#39;Times New Roman&#39;">、</span><span lang="EN-US" style="font-size: 9pt"><font face="Times New Roman">GFS</font></span><span style="font-size: 9pt; font-family: 宋体; mso-ascii-font-family: &#39;Times New Roman&#39;; mso-hansi-font-family: &#39;Times New Roman&#39;">文件系统</span><span lang="EN-US" style="font-size: 9pt"><o:p></o:p></span></p></td></tr><tr style="mso-yfti-irow: 2"><td style="border-top: #f0f0f0; border-right: #aaaaaa 1pt solid; border-bottom: #aaaaaa 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 5.4pt; border-left: #aaaaaa 1pt solid; padding-right: 5.4pt; background-color: transparent; mso-border-alt: solid #AAAAAA .5pt; mso-border-top-alt: solid #AAAAAA .5pt"><p class="a" style="text-align: center; margin: 0cm 0cm 0pt" align="center"><span lang="EN-US" style="font-size: 9pt"><font face="Times New Roman">2<o:p></o:p></font></span></p></td><td style="border-top: #f0f0f0; border-right: #aaaaaa 1pt solid; border-bottom: #aaaaaa 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 5.4pt; border-left: #f0f0f0; padding-right: 5.4pt; background-color: transparent; mso-border-alt: solid #AAAAAA .5pt; mso-border-left-alt: solid #AAAAAA .5pt; mso-border-top-alt: solid #AAAAAA .5pt"><p class="a" style="text-align: center; margin: 0cm 0cm 0pt" align="center"><span lang="EN-US" style="font-size: 9pt"><font face="Times New Roman">C</font></span><span style="font-size: 9pt; font-family: 宋体; mso-ascii-font-family: &#39;Times New Roman&#39;; mso-hansi-font-family: &#39;Times New Roman&#39;">、</span><span lang="EN-US" style="font-size: 9pt"><font face="Times New Roman">P<o:p></o:p></font></span></p></td><td style="border-top: #f0f0f0; border-right: #aaaaaa 1pt solid; border-bottom: #aaaaaa 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 5.4pt; border-left: #f0f0f0; padding-right: 5.4pt; background-color: transparent; mso-border-alt: solid #AAAAAA .5pt; mso-border-left-alt: solid #AAAAAA .5pt; mso-border-top-alt: solid #AAAAAA .5pt"><p class="a" style="margin: 0cm 0cm 0pt"><span lang="EN-US" style="font-size: 9pt"><o:p>悲观加锁</o:p></span></p></td><td style="border-top: #f0f0f0; border-right: #aaaaaa 1pt solid; border-bottom: #aaaaaa 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 5.4pt; border-left: #f0f0f0; padding-right: 5.4pt; background-color: transparent; mso-border-alt: solid #AAAAAA .5pt; mso-border-left-alt: solid #AAAAAA .5pt; mso-border-top-alt: solid #AAAAAA .5pt"><p class="a" style="margin: 0cm 0cm 0pt"><span style="font-size: 9pt; font-family: 宋体; mso-ascii-font-family: &#39;Times New Roman&#39;; mso-hansi-font-family: &#39;Times New Roman&#39;">分布式数据库、分布式加锁</span><span lang="EN-US" style="font-size: 9pt"><o:p></o:p></span></p></td></tr><tr style="mso-yfti-irow: 3; mso-yfti-lastrow: yes"><td style="border-top: #f0f0f0; border-right: #aaaaaa 1pt solid; border-bottom: #aaaaaa 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 5.4pt; border-left: #aaaaaa 1pt solid; padding-right: 5.4pt; background-color: transparent; mso-border-alt: solid #AAAAAA .5pt; mso-border-top-alt: solid #AAAAAA .5pt"><p class="a" style="text-align: center; margin: 0cm 0cm 0pt" align="center"><span lang="EN-US" style="font-size: 9pt"><font face="Times New Roman">3<o:p></o:p></font></span></p></td><td style="border-top: #f0f0f0; border-right: #aaaaaa 1pt solid; border-bottom: #aaaaaa 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 5.4pt; border-left: #f0f0f0; padding-right: 5.4pt; background-color: transparent; mso-border-alt: solid #AAAAAA .5pt; mso-border-left-alt: solid #AAAAAA .5pt; mso-border-top-alt: solid #AAAAAA .5pt"><p class="a" style="text-align: center; margin: 0cm 0cm 0pt" align="center"><span lang="EN-US" style="font-size: 9pt"><font face="Times New Roman">A</font></span><span style="font-size: 9pt; font-family: 宋体; mso-ascii-font-family: &#39;Times New Roman&#39;; mso-hansi-font-family: &#39;Times New Roman&#39;">、</span><span lang="EN-US" style="font-size: 9pt"><font face="Times New Roman">P<o:p></o:p></font></span></p></td><td style="border-top: #f0f0f0; border-right: #aaaaaa 1pt solid; border-bottom: #aaaaaa 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 5.4pt; border-left: #f0f0f0; padding-right: 5.4pt; background-color: transparent; mso-border-alt: solid #AAAAAA .5pt; mso-border-left-alt: solid #AAAAAA .5pt; mso-border-top-alt: solid #AAAAAA .5pt"><p class="a" style="margin: 0cm 0cm 0pt"><span style="font-size: 9pt; font-family: 宋体; mso-ascii-font-family: &#39;Times New Roman&#39;; mso-hansi-font-family: &#39;Times New Roman&#39;">冲突处理、乐观</span><span lang="EN-US" style="font-size: 9pt"><o:p></o:p></span></p></td><td style="border-top: #f0f0f0; border-right: #aaaaaa 1pt solid; border-bottom: #aaaaaa 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 5.4pt; border-left: #f0f0f0; padding-right: 5.4pt; background-color: transparent; mso-border-alt: solid #AAAAAA .5pt; mso-border-left-alt: solid #AAAAAA .5pt; mso-border-top-alt: solid #AAAAAA .5pt"><p class="a" style="margin: 0cm 0cm 0pt"><span lang="EN-US" style="font-size: 9pt"><font face="Times New Roman">DNS</font></span><span style="font-size: 9pt; font-family: 宋体; mso-ascii-font-family: &#39;Times New Roman&#39;; mso-hansi-font-family: &#39;Times New Roman&#39;">、</span><span lang="EN-US" style="font-size: 9pt"><font face="Times New Roman">Coda<o:p></o:p></font></span></p></td></tr></tbody></table></div><p>　　可以看出，三种不同的组合对应着放弃了CAP三个特性当中的一个。</p><p>　　<b>·放弃P：</b>如果想避免分区容错性问题的发生，一种做法是将所有的数据(与事务相关的)都放到一台机器上。虽然无法100%地保证系统不会出错，但不会碰到由分区带来的负面效果。当然，这个选择会严重影响系统的扩展性。</p><p>　　<b>·放弃A：</b>相对于放弃“分区容错性”来说，其反面就是放弃可用性。一旦遇到分区容错故障，那么受到影响的服务需要等待数据一致，因此在等待期间系统就无法对外提供服务。</p><p>　　<b>·放弃C：</b>这里所说的放弃一致性，并不是完全放弃数据的一致性，而是放弃数据的强一致性，而保留数据的最终一致性。以网络购物为例，对只剩最后一件库存的商品，如果同时接收到了两份订单，那么较晚的订单将被告知商品售罄。</p><p>　　<b>·其他选择：</b>引入BASE(Basically Available, Soft-state, Eventually consistent)，该方法支持最终一致性，其实是放弃C的一个特例，我们将在后文进行介绍。</p><p>　　传统关系型数据管理系统注重数据的强一致性，但是对于海量数据的分布式存储和处理其性能不能满足人们的需求，因此现在许多NoSQL数据库牺牲了强一致性来提高性能，CAP理论对于非关系性数据库的设计有很大的影响并被NoSQL阵营所认可。</p><p>　　CAP理论已经得到人们的普遍认同，但是并不是所有人都这样认为，这种不同的声音主要是因为对CAP的概念有不同的理解所造成的。此外，我们不能说一种解决方案在任何时间任何环境下永远都是正确的，因为随着时间和环境的变迁情况将会有所不同，正如随着海量数据的出现，传统关系型数据库已经不能完全满足人们的需求一样。因此，我们应该肯定CAP理论对海量数据管理的研究与发展所作出的贡献。</p><p>　　作者简介：陆嘉恒，《Hadoop实战》、《大数据挑战与NoSQL数据库技术》作者，中国人民大学副教授，新加坡国立大学博士，美国加利福尼亚大学尔湾分校(University of California，Irvine) 博士后。</p>
+						
+				
+<!--wordend-->
+</div>			
+
+			
+				 				<!--电商-->
+<!--电商-->
+
+			<div class="bor3" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;blockArea&#39;, &#39;Click&#39;, &#39;relateArticle&#39;,1,true]);">
+				<div class="tit2">相关阅读</div>
+					<ul class="list1">
+			<li><a title="详解企业部署NoSQL数据库的优势与陷阱" href="http://tech.it168.com/a2014/0324/1605/000001605918.shtml" target="_blank">详解企业部署NoSQL数据库的优势与陷阱</a></li><li><a title="大数据浪潮袭来 企业该如何选择NoSQL？" href="http://tech.it168.com/a2014/0314/1602/000001602807.shtml" target="_blank" _hover-ignore="1">大数据浪潮袭来 企业该如何选择NoSQL？</a></li><li><a title="详谈MongoDB数据库语法上的五大缺陷" href="http://tech.it168.com/a2014/0317/1603/000001603160.shtml" target="_blank">详谈MongoDB数据库语法上的五大缺陷</a></li><li><a title="2013年数据库工程师薪酬调查报告" href="http://tech.it168.com/a2014/0313/1601/000001601995.shtml" target="_blank">2013年数据库工程师薪酬调查报告</a></li><li><a title="淘宝阳振坤:关系数据库的变革正当其时" href="http://storage.it168.com/a2014/0307/1600/000001600140.shtml" target="_blank">淘宝阳振坤:关系数据库的变革正当其时</a></li><li><a title="数据库流行指数榜：Oracle仍居首位" href="http://tech.it168.com/a2014/0211/1591/000001591775.shtml" target="_blank">数据库流行指数榜：Oracle仍居首位</a></li>			</ul>
+		</div>
+			<style>a.weibo2{width:168px;height:43px;background:url(http://www.it168.com/weibo/image/weibo.png) no-repeat;margin:10px auto 0px;display:block;}</style>
+	<a href="javascript:void(0);" class="weibo2" onclick="weibo();" target="_self"></a>
+<div class="bor3" id="bor3dealer" style="display:none">
+</div>
+</div>
+	<div id="ADV_20260" style="text-align: center; margin-top: 10px; font-weight: bold; font-size: 14px;"><div style="margin-right: 10px;">·<a href="http://dtcc.it168.com/" target="_blank"><font color="red">2015第六届数据库技术大会报名</font></a></div></div>
+	 
+        <div id="MC_Area" class="pt10"></div>
+		<div name="articlecomment" id="articlecomment"></div>
+		<div class="mt10"><div class="ds-thread" data-thread-key="1545780" data-title="NoSQL数据管理系统基础谈：CAP理论" data-author-key="" data-channel-key="4" data-url="http://tech.it168.com/a2013/1016/1545/000001545780.shtml" id="ds-thread"><div id="ds-reset"><a name="respond"></a><div class="ds-login-buttons"><p>社交帐号登录:</p><div class="ds-social-links"><ul class="ds-service-list"><li><a href="http://it168.duoshuo.com/login/weibo/" rel="nofollow" class="ds-service-link ds-weibo">微博</a></li><li><a href="http://it168.duoshuo.com/login/qq/" rel="nofollow" class="ds-service-link ds-qq">QQ</a></li><li><a href="http://it168.duoshuo.com/login/renren/" rel="nofollow" class="ds-service-link ds-renren">人人</a></li><li><a href="http://it168.duoshuo.com/login/douban/" rel="nofollow" class="ds-service-link ds-douban">豆瓣</a></li><li><a class="ds-more-services" href="javascript:void(0)">更多&#187;</a></li></ul><ul class="ds-service-list ds-additional-services"><li><a href="http://it168.duoshuo.com/login/kaixin/" rel="nofollow" class="ds-service-link ds-kaixin">开心</a></li><li><a href="http://it168.duoshuo.com/login/netease/" rel="nofollow" class="ds-service-link ds-netease">网易</a></li><li><a href="http://it168.duoshuo.com/login/sohu/" rel="nofollow" class="ds-service-link ds-sohu">搜狐</a></li><li><a href="http://it168.duoshuo.com/login/baidu/" rel="nofollow" class="ds-service-link ds-baidu">百度</a></li><li><a href="http://it168.duoshuo.com/login/google/" rel="nofollow" class="ds-service-link ds-google">谷歌</a></li></ul></div></div><div class="ds-replybox"><a class="ds-avatar" href="javascript:void(0);" onclick="return false"><img src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/106624.jpg" alt="" data-bd-imgshare-binded="1"></a><form method="post"><input type="hidden" name="thread_id" value="1328796120422266994">
+<input type="hidden" name="parent_id" value="">
+<input type="hidden" name="nonce" value="54ea14b2442bd"><div class="ds-textarea-wrapper ds-rounded-top"><textarea name="message" title="Ctrl+Enter快捷提交" placeholder="说点什么吧…"></textarea><pre class="ds-hidden-text"></pre></div><div class="ds-post-toolbar"><div class="ds-post-options ds-gradient-bg"><span class="ds-sync"></span></div><button class="ds-post-button" type="submit">发布</button><div class="ds-toolbar-buttons"><a class="ds-toolbar-button ds-add-emote" title="插入表情"></a></div></div></form></div><div class="ds-comments-info"><div class="ds-sort"><a class="ds-order-desc ds-current">最新</a><a class="ds-order-asc">最早</a><a class="ds-order-hot">最热</a></div><ul class="ds-comments-tabs"><li class="ds-tab"><a class="ds-comments-tab-duoshuo ds-current" href="javascript:void(0);">0条评论</a></li>  </ul></div><ul class="ds-comments"><li class="ds-post ds-post-placeholder">还没有评论，沙发等你来抢</li></ul><div class="ds-paginator" style="display: none;"><div class="ds-border"></div><a data-page="1" href="javascript:void(0);" class="ds-current">1</a></div><p class="ds-powered-by"><a href="http://duoshuo.com/" target="_blank" rel="nofollow">IT168正在使用多说</a></p></div></div></div>
+		<div class="mt8" style="display:none;">
+<div id="ADV_1905"><script>LG('ADV_1905');</script></div>
+</div>
+		<!-- 版权声明-->
+		<div class="bor4 mt8">
+				<b>本文欢迎转载，转载请注明：</b><br>转载自IT168：<a id="copyrightit168" href="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区.html" target="_blank">http://tech.it168.com/a2013/1016/1545/000001545780.shtml</a> [<a href="javascript:" onclick="window.clipboardData.setData(&#39;Text&#39;,&#39;转载自IT168：http://tech.it168.com/a2013/1016/1545/000001545780.shtml&#39;);alert(&#39;\n已成功复制到剪切板。&#39;)" target="_self">复制</a>]
+				</div>
+		
+				<div id="ADV_19317" class="mt10"><script>LG('ADV_19317');</script></div>
+		
+		<!-- 版权声明-->
+	</div>
+	<div class="r2">
+		<!-- ad -->
+		<div style="display:none;">
+<div id="ADV_1907"><script>LG('ADV_1907');</script><script type="text/javascript">var googletag = googletag || {};googletag.cmd = googletag.cmd || [];(function() {var gads = document.createElement('script');gads.async = true;gads.type = 'text/javascript';var useSSL = 'https:' == document.location.protocol;gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';var node = document.getElementsByTagName('script')[0];node.parentNode.insertBefore(gads, node);})();</script><script type="text/javascript">googletag.cmd.push(function() {googletag.defineSlot('/8456/IDG.CN_B2C_it168.com', [300, 250], 'div-gpt-ad-1423811516750-0').addService(googletag.pubads());googletag.pubads().enableSingleRequest()googletag.pubads().collapseEmptyDivs();googletag.enableServices();});</script><div id="div-gpt-ad-1423811516750-0"></div><script type="text/javascript">googletag.cmd.push(function() { googletag.display('div-gpt-ad-1423811516750-0'); });</script></div>
+</div>
+		<div style="display: block;" class="mt8">
+<div id="ADV_1274"><div id="ADid" style="margin:0 auto"><div style="position:absolute; z-index:2; "><a href="http://ad.doubleclick.net/ddm/clk/289010714;115557038;c" target="_blank"><img border="0" width="300" height="120" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/23.gif" data-bd-imgshare-binded="1"></a></div><embed height="120" width="300" wmode="opaque" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/shockwave/download/" src="http://168.it168.com/newImage/20150312/20150312025443979.swf"></div></div>
+</div>
+		
+		
+		
+<div class="mt8" style="display:none;">
+<div id="ADV_1275"><script>LG('ADV_1275');</script></div>
+</div>
+<div class="mt8" style="display:none;">
+<div id="ADV_1276"><script>LG('ADV_1276');</script><script type="text/javascript" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/ad.html"></script><iframe src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/container.html" style="visibility: hidden; display: none;"></iframe><script type="text/javascript" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/ad_init.js"></script><script type="text/javascript">(function(doc) {var js = doc.createElement("script"), fs = doc.getElementsByTagName("script")[0];js.charset = "utf-8";js.src = "http://js.miaozhen.com/mz_ad_serving.js";fs.parentNode.insertBefore(js, fs);})(document);</script><div id="MZADX_4811" style="width: 300px; height: 250px;"><div id="MZADX_MASK_4811" style="position:absolute;width:300px;height:250px;cursor:pointer;background-color:rgb(255,255,255);opacity:0;filter:alpha(opacity=0);"></div><img height="250" width="300" border="0" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/162930.jpg" style="width:300px;height:250px;line-height:250px" data-bd-imgshare-binded="1"></div><script type="text/javascript">function callback() {if(window.console){console.log("mz_callback--0--callback" );}var iframe = document.createElement("iframe");iframe.setAttribute("width","300");iframe.setAttribute("height","250");iframe.setAttribute("marginwidth", "0", 0);iframe.setAttribute("marginheight", "0", 0);iframe.setAttribute("border", "0");iframe.setAttribute("frameborder", "0", 0);iframe.setAttribute("scrolling", "no");iframe.setAttribute("allowtransparency", "true");iframe.src = "http://www.adhufeng.com/ads/adexchange/ad.html?auId=1&siteId=859";var i = document.getElementById("MZADX_4811");if (i) {i.style.display = "none";i.parentNode.insertBefore(iframe, i);}}(function(win) {if(true){var params = {};params["l"] = [4811];params["r"] = "1";params["_srv"] = "MZADX";params["_callback"] = function(flag1, flag2) {if(window.console){console.log("mz_callback--1--" + flag1 + "_" + flag2);}if(flag1 == false && flag2 == false){callback();}};params["_baseurl"] = "http://s.x.cn.grpreach.com/ax";__mz_rpq = win.__mz_rpq || [];__mz_rpq.push(params);}else{}})(window);</script></div>
+</div>
+
+<div class="mt8" style="display:none;">
+<div id="ADV_2739"><script>LG('ADV_2739');</script></div>
+</div>
+<div class="bor6 mt10">
+			<ul class="tit6" id="tab04">
+                                <li id="wenku"><span class="here">相关文档</span></li>
+				<li><span>最新文档</span></li>
+				<li class="li1"><span>热门文档</span></li>
+			</ul>
+                         <ul class="list4" id="tab04_Content0" style="display: block;"><li><a href="http://wenku.it168.com/d_930434.shtml" target="_blank">DTCC 2013：主流开源NoSQL及分布式存储</a></li><li><a href="http://wenku.it168.com/d_930431.shtml" target="_blank">DTCC 2013：NoSQL一致性实践：我对CAP</a></li><li><a href="http://wenku.it168.com/d_845375.shtml" target="_blank">NoSQL数据库技术与大数据挑战</a></li><li><a href="http://wenku.it168.com/d_56155.shtml" target="_blank">MongoDB实战</a></li><li><a href="http://wenku.it168.com/d_64332.shtml" target="_blank">《Redis实战》电子书</a></li><li><a href="http://wenku.it168.com/d_1313540.shtml" target="_blank">2013 Oracle技术嘉年：Oracle, MySQL O</a></li><li><a href="http://wenku.it168.com/d_1205278.shtml" target="_blank">《NoSQL精粹》迷你书</a></li><li><a href="http://wenku.it168.com/d_799083.shtml" target="_blank">NOSQL数据库入门</a></li><li><a href="http://wenku.it168.com/d_107545.shtml" target="_blank">redis介绍</a></li><li class="ba0"><a href="http://wenku.it168.com/d_236880.shtml" target="_blank">Nosql数据库——MongoDB 和Redis</a></li></ul>
+			<ul class="list4" id="tab04_Content1">
+				<li><a href="http://wenku.it168.com/d_001600754.shtml" target="_blank">Java DB Server and Administration Gu</a></li>
+<li><a href="http://wenku.it168.com/d_001597477.shtml" target="_blank">c++面向对象chap4.pdf</a></li>
+<li><a href="http://wenku.it168.com/d_001600756.shtml" target="_blank">Java DB Tools and Utilities Guide-fo</a></li>
+<li><a href="http://wenku.it168.com/d_001600755.shtml" target="_blank">Java DB Tools and Utilities Guide-fo</a></li>
+<li><a href="http://wenku.it168.com/d_001597472.shtml" target="_blank">ArcGIS移动应用新主张.pdf</a></li>
+<li><a href="http://wenku.it168.com/d_001597474.shtml" target="_blank">c++面向对象chap1.pdf</a></li>
+<li><a href="http://wenku.it168.com/d_001597479.shtml" target="_blank">c++面向对象chap6.pdf</a></li>
+<li><a href="http://wenku.it168.com/d_001597483.shtml" target="_blank">Cocoa编程之新手上路：第三课_MVC.pdf</a></li>
+<li><a href="http://wenku.it168.com/d_001598672.shtml" target="_blank">CKRule BRMS决策表使用说明.docx</a></li>
+<li class="ba0"><a href="http://wenku.it168.com/d_001600758.shtml" target="_blank">Tuning Java DB-for10.10版本.pdf</a></li>
+
+			</ul>
+			<ul class="list4" id="tab04_Content2">
+				<li><a href="http://wenku.it168.com/d_001590853.shtml" target="_blank">正版Windows8如何安装VB6.0中文企业版(</a></li>
+<li><a href="http://wenku.it168.com/d_001594038.shtml" target="_blank">Unity 2D游戏开发从入门到精通.pdf</a></li>
+<li><a href="http://wenku.it168.com/d_001588315.shtml" target="_blank">NFC Test in Manufacturing.pptx</a></li>
+<li><a href="http://wenku.it168.com/d_001594108.shtml" target="_blank">高效编程十八式.pdf</a></li>
+<li><a href="http://wenku.it168.com/d_001594003.shtml" target="_blank">数据结构 第4章 树和二叉树.ppt</a></li>
+<li><a href="http://wenku.it168.com/d_001588770.shtml" target="_blank">GIS 地图开发房地产行业应用.pdf</a></li>
+<li><a href="http://wenku.it168.com/d_001589186.shtml" target="_blank">系统架构设计师教程（第3版）.pdf</a></li>
+<li><a href="http://wenku.it168.com/d_001598059.shtml" target="_blank">OpenCV3编程入门.pdf</a></li>
+<li><a href="http://wenku.it168.com/d_001590882.shtml" target="_blank">十八个PHP初学者必看的实例.pdf</a></li>
+<li class="ba0"><a href="http://wenku.it168.com/d_001587447.shtml" target="_blank">C++ Primer习题集（第5版）.pdf</a></li>
+
+			</ul>
+</div>	
+<script type="text/javascript">
+	iniMenu('tab04',0,'span',200);
+</script>
+<div class="bor6 mt10">
+			<ul class="tit6" id="tab02">
+				<li><span class="here">一周热文</span></li>
+				<li><span>一周热评</span></li>
+				<li class="li1"><span>一周热帖</span></li>
+			</ul>
+			<ul class="list4" id="tab02_Content0" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;blockArea&#39;, &#39;Click&#39;, &#39;hotArticle&#39;,2,true]);" style="display: block;">
+						<li><a href="http://tech.it168.com/a2015/0305/1708/000001708852.shtml" target="_blank">MongoDB 3.0正式版发布 写入效率高7倍</a></li>
+		<li><a href="http://tech.it168.com/a2015/0305/1708/000001708899.shtml" target="_blank">MySQL Cluster7.4发布实现每秒2亿查询</a></li>
+		<li><a href="http://tech.it168.com/a2015/0309/1709/000001709846.shtml" target="_blank">看完SQL Server 2014 Q/A:想不升级都难</a></li>
+		<li><a href="http://tech.it168.com/a2015/0303/1708/000001708417.shtml" target="_blank">10分钟让你明白大数据 网友观点大拆解</a></li>
+		<li><a href="http://tech.it168.com/a2015/0302/1707/000001707905.shtml" target="_blank">揭秘中国数据库研究鲜为人知的那些事</a></li>
+		<li><a href="http://tech.it168.com/a2015/0304/1708/000001708571.shtml" target="_blank">大数据再度上榜两会 IT界大佬提案扫描</a></li>
+		<li class="ba0"><a href="http://tech.it168.com/a2015/0303/1708/000001708352.shtml" target="_blank">阿里推国内首个面向政府开放大数据产品</a></li>
+	
+			</ul>
+			<ul class="list4" id="tab02_Content1" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;blockArea&#39;, &#39;Click&#39;, &#39;hotRecommendation&#39;,2,true]);">
+				<li><a href="http://tech.it168.com/a2015/0305/1709/000001709042.shtml" target="_blank">李文卓：揭秘美丽说数据体系建设三部曲</a></li>
+<li><a href="http://tech.it168.com/a2015/0309/1709/000001709846.shtml" target="_blank">看完SQL Server 2014 Q/A:想不升级都难</a></li>
+<li><a href="http://tech.it168.com/a2015/0303/1708/000001708417.shtml" target="_blank">10分钟让你明白大数据 网友观点大拆解</a></li>
+<li><a href="http://tech.it168.com/a2014/1121/1684/000001684418.shtml" target="_blank">Tom Kyte大神解析Oracle 12c新版本特性</a></li>
+<li><a href="http://tech.it168.com/a2014/1112/1681/000001681653.shtml" target="_blank">2014天猫双十一交易额571亿元</a></li>
+<li><a href="http://tech.it168.com/a2013/0916/1534/000001534516.shtml" target="_blank">专访童小军：Hadoop是未来大数据的标准</a></li>
+<li class="ba0"><a href="http://tech.it168.com/a2012/0724/1376/000001376129.shtml" target="_blank">拿例子说话：HTML 5 Audio标签使用技巧</a></li>
+
+			</ul>
+			<ul class="list4" id="tab02_Content2">
+				<li><a href="http://www.itpub.net/thread-240227-1-1.html" target="_blank" title="Ask-Tom 2004 上半年合订">Ask-Tom 2004 上半年合订</a></li>
+<li><a href="http://www.itpub.net/thread-1746969-1-1.html" target="_blank" title="你所不知道的DBWR----DBWR工作原理简述">你所不知道的DBWR----DBWR工作原理</a></li>
+<li><a href="http://www.itpub.net/thread-875132-1-1.html" target="_blank" title="详细解读 STATSPACK 报告">详细解读 STATSPACK 报告</a></li>
+<li><a href="http://www.itpub.net/thread-911665-1-1.html" target="_blank" title="11g新特性-重演(replay)">11g新特性-重演(replay)</a></li>
+<li><a href="http://www.itpub.net/thread-217951-1-1.html" target="_blank" title="关于Oracle10g跨平台传输表空间">关于Oracle10g跨平台传输表空间</a></li>
+
+				<li><a href="http://bbs.chinaunix.net/thread-4171621-1-1.html" target="_blank" title="Swift发布一年有余  技术革新还是炒旧饭，欢迎来辩！">Swift发布一年有余  技术革新还是炒</a></li>
+<li><a href="http://bbs.chinaunix.net/thread-4171625-1-1.html" target="_blank" title="【大话iT】百度云OS：Say GoodBye？">【大话iT】百度云OS：Say GoodBye？</a></li>
+<li><a href="http://bbs.chinaunix.net/thread-4171332-1-1.html" target="_blank" title="IT行业对软件架构存在误解，程序员你怎么看？">IT行业对软件架构存在误解，程序员</a></li>
+<li><a href="http://bbs.chinaunix.net/thread-4171378-1-1.html" target="_blank" title="技术讨论--学习正则表达式">技术讨论--学习正则表达式</a></li>
+<li class="ba0"><a href="http://bbs.chinaunix.net/thread-4170956-1-1.html" target="_blank" title="Docker 收购 SocketPlane 多主机容器网络会发生什么？">Docker 收购 SocketPlane 多主机容</a></li>
+
+			</ul>
+</div>	
+<script type="text/javascript">
+	iniMenu('tab02',0,'span',200);
+</script>
+<div id="ADV_19468"><script>LG('ADV_19468');</script></div>
+<div class="bor6 mt10">
+			<ul class="tit6" id="tab05">
+				<li><span class="here">推荐博文</span></li>
+				<li class="li1"><span>热门博文</span></li>
+				<li class="li1"><span>博文分类</span></li>
+			</ul>
+			<ul class="list4" id="tab05_Content0" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;blockArea&#39;, &#39;Click&#39;, &#39;recommendArticle&#39;,2,true]);" style="display: block;">
+				<li><a href="http://blog.chinaunix.net/uid-30104746-id-4892099.html" target="_blank" title="C语言中memset函数详解 ">C语言中memset函数详解</a></li>
+<li><a href="http://blog.chinaunix.net/uid-29401328-id-4890452.html" target="_blank" title="KGDB调试">KGDB调试</a></li>
+<li><a href="http://blog.chinaunix.net/uid-29401328-id-4890428.html" target="_blank" title="GDB远程调试开发板程序">GDB远程调试开发板程序</a></li>
+<li><a href="http://blog.chinaunix.net/uid-37090-id-4884713.html" target="_blank" title="Intellij IDEA使用">Intellij IDEA使用</a></li>
+<li><a href="http://blog.chinaunix.net/uid-29151369-id-4883495.html" target="_blank" title="一种用于KL25平台基于LPTMR定时器的软件计时模块">一种用于KL25平台基于LPTMR定时器的</a></li>
+<li><a href="http://blog.chinaunix.net/uid-26807100-id-4856474.html" target="_blank" title="反转链表（递归实现）">反转链表（递归实现）</a></li>
+<li><a href="http://blog.chinaunix.net/uid-301743-id-4854534.html" target="_blank" title="Java8读文件仅需一行代码">Java8读文件仅需一行代码</a></li>
+<li><a href="http://blog.chinaunix.net/uid-25909619-id-4831995.html" target="_blank" title="嵌入式Linux 挂载完根文件系统后，自动执行的文件分析">嵌入式Linux 挂载完根文件系统后，</a></li>
+<li><a href="http://blog.chinaunix.net/uid-26772321-id-4823545.html" target="_blank" title="关于嵌套循环效率研究">关于嵌套循环效率研究</a></li>
+<li class="ba0"><a href="http://blog.chinaunix.net/uid-30079234-id-4822406.html" target="_blank" title="Ｃ语言中关于时间的函数">Ｃ语言中关于时间的函数</a></li>
+
+
+			</ul>
+			<ul class="list4" id="tab05_Content1">
+				<li><a href="http://blog.itpub.net/23718752/viewspace-1460787" target="_blank" title="mongoDB初探第一篇">mongoDB初探第一篇</a></li>
+<li><a href="http://blog.itpub.net/26230597/viewspace-1460065" target="_blank" title="MySQL 数据库备份种类以及常用备份工具汇总">MySQL 数据库备份种类以及常用备份</a></li>
+<li><a href="http://blog.itpub.net/23718752/viewspace-1460044" target="_blank" title="海量数据迁移之sqlldr和datapump的缺点分析">海量数据迁移之sqlldr和datapump的</a></li>
+<li><a href="http://blog.itpub.net/23135684/viewspace-1460008" target="_blank" title="Oracle数据库实施产品兼容性与最佳实践探讨">Oracle数据库实施产品兼容性与最佳</a></li>
+<li><a href="http://blog.itpub.net/23135684/viewspace-1459938" target="_blank" title="Oracle ADG Heartbeat failed to connect to standby故障案例">Oracle ADG Heartbeat failed to c</a></li>
+<li><a href="http://blog.itpub.net/9240380/viewspace-1459819" target="_blank" title="oracle表分区一些策略与原则">oracle表分区一些策略与原则</a></li>
+<li><a href="http://blog.itpub.net/29047826/viewspace-1458773" target="_blank" title="create table as select 的优化小技巧">create table as select 的优化小技</a></li>
+<li><a href="http://blog.itpub.net/26736162/viewspace-1458750" target="_blank" title="undo表空间文件丢失恢复（3）--无备份无redo的情况下恢复">undo表空间文件丢失恢复（3）--无备</a></li>
+<li><a href="http://blog.itpub.net/17013648/viewspace-1458705" target="_blank" title="2015 最新OCM 10g考试资料汇总 Skillset 2（2） ">2015 最新OCM 10g考试资料汇总 Ski</a></li>
+<li class="ba0"><a href="http://blog.itpub.net/26736162/viewspace-1458663" target="_blank" title="undo表空间文件丢失恢复（2）--无备份有redo的情况下恢复">undo表空间文件丢失恢复（2）--无备</a></li>
+
+			</ul>
+			<ul class="list4" id="tab05_Content2" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;blockArea&#39;, &#39;Click&#39;, &#39;recommendProduct&#39;,2,true]);">                 
+		<li><a href="http://blog.chinaunix.net/architecture.html" target="_blank">架构与运维</a></li>
+		<li><a href="http://blog.chinaunix.net/program.html" target="_blank">程序设计</a></li>
+		<li><a href="http://blog.chinaunix.net/os.html" target="_blank">操作系统</a></li>
+		<li><a href="http://blog.itpub.net/oracle/" target="_blank">Oracle</a></li>
+		<li><a href="http://blog.chinaunix.net/database.html" target="_blank">数据库</a></li>
+		<li><a href="http://blog.itpub.net/linux/" target="_blank">linux</a></li>
+		<li><a href="http://blog.chinaunix.net/mysql.html" target="_blank">Mysql</a></li>
+		<li><a href="http://blog.chinaunix.net/java.html" target="_blank">Java</a></li>
+		<li><a href="http://blog.chinaunix.net/cplus.html" target="_blank">C++</a></li>
+		<li class="ba0"><a href="http://blog.chinaunix.net/bigdata.html" target="_blank">大数据</a></li>
+			</ul>
+</div>
+<script type="text/javascript">
+	iniMenu('tab05',0,'span',200);
+</script>
+
+
+<div class="bor6 mt10">
+			<div class="tit5"><a href="http://code.it168.com/">源码下载</a></div>
+			
+			
+			<ul class="list4" style="display:block;" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;blockArea&#39;, &#39;Click&#39;, &#39;recommendArticle&#39;,2,true]);">
+				<li><a href="http://code.it168.com/d-12273.shtml" title="C单片机0-9999每秒加1计数器源码">C单片机0-9999每秒加1计数器源码</a></li>
+<li><a href="http://code.it168.com/d-6336.shtml" title="仿111ttt完整DJ程序 v1.2">仿111ttt完整DJ程序 v1.2</a></li>
+<li><a href="http://code.it168.com/d-40830.shtml" title="Java 集合排序及java 集合类详解">Java 集合排序及java 集合类详解</a></li>
+<li><a href="http://code.it168.com/d-39655.shtml" title="Sohu门户运维那些事 PDF">Sohu门户运维那些事 PDF</a></li>
+<li><a href="http://code.it168.com/d-56972.shtml" title="OboutSuite双语言(C#/Vb)学习示例演示源码">OboutSuite双语言(C#/Vb)学习示例演示源码</a></li>
+<li><a href="http://code.it168.com/d-3227.shtml" title="智可蓝网ASP公司网站系统 v2.0">智可蓝网ASP公司网站系统 v2.0</a></li>
+<li><a href="http://code.it168.com/d-9396.shtml" title="ASP友情链接批量检查工具 v1.01">ASP友情链接批量检查工具 v1.01</a></li>
+<li><a href="http://code.it168.com/d-9819.shtml" title="无忧网络文章管理系统 v1.0 Build 0818 (全站静态)">无忧网络文章管理系统 v1.0 Build 0818 (全</a></li>
+<li><a href="http://code.it168.com/d-61197.shtml" title="目录明细格式化保存为文本文件 v1.0">目录明细格式化保存为文本文件 v1.0</a></li>
+<li class="ba0"><a href="http://code.it168.com/d-41627.shtml" title="Google sprite 谷歌纪念现代舞先驱玛莎&amp;#183;葛兰姆css动画效果">Google sprite 谷歌纪念现代舞先驱玛莎&amp;</a></li>
+
+			</ul>
+			
+		
+</div>
+<div class="bor6 mt10">
+			<ul class="tit6" id="tab01">
+				<li><span class="here">推荐文章</span></li>
+				<li class="li1"><span>推荐产品</span></li>
+			</ul>
+			<ul class="list4" id="tab01_Content0" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;blockArea&#39;, &#39;Click&#39;, &#39;recommendArticle&#39;,2,true]);" style="display: block;">
+				<li><a href="http://cloud.it168.com/a2014/0827/1660/000001660720.shtml" target="_blank">谁在用阿里云?云计算用户须知10个问题</a></li>
+<li><a href="http://www.it168.com/remen/activity/" target="_blank">IT168文库3周年庆，金币充值买1送1！</a></li>
+<li><a href="http://blog.chinaunix.net/uid-579346-id-4011564.html" target="_blank">实战：完善Windows Server自动化运维</a></li>
+<li><a href="http://wenku.it168.com/huiyi/2121" target="_blank">不容错过！12位SEO大佬精彩案例分享</a></li>
+<li><a href="http://wenku.it168.com/wenji/2313" target="_blank">百度直达号轻应用开发运营指南</a></li>
+<li><a href="http://blog.chinaunix.net/uid-26000296-id-4009690.html" target="_blank">liunx系统中时钟与同步详解</a></li>
+<li><a href="http://blog.chinaunix.net/uid-22312037-id-4008229.html" target="_blank">Android之开发环境搭建实例解析</a></li>
+<li><a href="http://blog.chinaunix.net/uid-59434-id-4008171.html" target="_blank">系统运维：运用Ntop监控网络流量</a></li>
+<li><a href="http://mobile.it168.com/a2013/1210/1571/000001571706.shtml" target="_blank">史诗级影音表现酷派大观4演绎视听盛宴</a></li>
+<li><a href="http://notebook.it168.com/topic/2013/12-20/Yoga2Pro/" target="_blank">360°旗舰翻转本 Yoga 2 Pro 图解评测</a></li>
+<li><a href="http://www.it168.com/remen/nsfocus13/" target="_blank">下一代防火墙</a></li>
+<li><a href="http://mobile.it168.com/a2013/1213/1573/000001573399.shtml" target="_blank">酷派大观4 CoolLife UI5.0系统绚丽登场</a></li>
+<li><a href="http://mobile.it168.com/a2014/0214/1592/000001592781.shtml" target="_blank">直降200元送情人好选择 魅族MX3仅1999</a></li>
+<li><a href="http://tech.it168.com/a2014/0903/1663/000001663196.shtml" target="_blank">阿里云的“工匠精神”和“情怀”</a></li>
+<li class="ba0"><a href="http://mobile.it168.com/a2014/0213/1592/000001592729.shtml" target="_blank">卖断货了怎么办?魅族MX3产量加倍</a></li>
+
+			</ul>
+			<ul class="list6" id="tab01_Content1" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;blockArea&#39;, &#39;Click&#39;, &#39;recommendProduct&#39;,2,true]);">
+				<li><a href="http://product.it168.com/list/b/03020022_i12899_1.shtml" target="_blank" title="iPhone5s土豪金">iPhone5s土豪金</a></li>
+<li><a href="http://product.it168.com/list/b/03021184_i12777_1.shtml" target="_blank" title="小米3">小米3</a></li>
+<li><a href="http://product.it168.com/detail/doc/644554/index.shtml" target="_blank" title="努比亚Z5S mini">努比亚Z5S mini</a></li>
+<li><a href="http://product.it168.com/detail/doc/644544/index.shtml" target="_blank" title="努比亚Z5S">努比亚Z5S</a></li>
+<li><a href="http://product.it168.com/detail/doc/615469/index.shtml" target="_blank" title="iPhone5c4G手机">iPhone5c4G手机</a></li>
+<li><a href="http://product.it168.com/detail/doc/628554/index.shtml" target="_blank" title="iPhone5s4G手机">iPhone5s4G手机</a></li>
+<li><a href="http://product.it168.com/detail/doc/647705/index.shtml" target="_blank" title="华为荣耀3C">华为荣耀3C</a></li>
+<li><a href="http://product.it168.com/detail/doc/657844/index.shtml" target="_blank" title="华为荣耀3X">华为荣耀3X</a></li>
+<li><a href="http://product.it168.com/detail/doc/614645/index.shtml" target="_blank" title="三星S5">三星S5</a></li>
+<li><a href="http://product.it168.com/list/b/0162_1.shtml" target="_blank" title="空气净化器">空气净化器</a></li>
+<li><a href="http://product.it168.com/detail/doc/665569/index.shtml" target="_blank" title="iPhone Air">iPhone Air</a></li>
+<li><a href="http://product.pcpop.com/000317875/Index.html" target="_blank" title="iPhone6">iPhone6</a></li>
+<li><a href="http://product.it168.com/list/b/1596_1.shtml" target="_blank" title="单反相机">单反相机</a></li>
+<li><a href="http://product.it168.com/detail/doc/629424/index.shtml" target="_blank" title="小米3电信版">小米3电信版</a></li>
+<li><a href="http://product.it168.com/list/b/1549_1.shtml" target="_blank" title="取暖器">取暖器</a></li>
+<li><a href="http://product.it168.com/list/b/0640_1.shtml" target="_blank" title="液晶电视">液晶电视</a></li>
+<li><a href="http://product.it168.com/list/b/1589_1.shtml" target="_blank" title="冰箱">冰箱</a></li>
+<li><a href="http://product.it168.com/list/b/1590_1.shtml" target="_blank" title="洗衣机">洗衣机</a></li>
+<li><a href="http://product.it168.com/list/b/1591_1.shtml" target="_blank" title="热水器">热水器</a></li>
+<li><a href="http://product.it168.com/list/b/1576_1.shtml" target="_blank" title="加湿器">加湿器</a></li>
+<li><a href="http://product.it168.com/detail/doc/646745/index.shtml" target="_blank" title="红米电信版">红米电信版</a></li>
+<li><a href="http://product.it168.com/list/b/15881542_1.shtml" target="_blank" title="格力空调">格力空调</a></li>
+<li><a href="http://product.it168.com/list/b/1588_1.shtml" target="_blank" title="空调">空调</a></li>
+<li><a href="http://product.it168.com/list/b/1591_1.shtml" target="_blank" title="热水器什么牌子好">热水器什么牌子好</a></li>
+<li><a href="http://product.it168.com/list/b/1591_1.shtml" target="_blank" title="空气能热水器">空气能热水器</a></li>
+<li><a href="http://product.it168.com/list/b/1576_1.shtml" target="_blank" title="加湿器哪个牌子好">加湿器哪个牌子好</a></li>
+<li><a href="http://product.it168.com/list/b/15887154_1.shtml" target="_blank" title="美的空调">美的空调</a></li>
+<li><a href="http://product.it168.com/list/b/15916359_1.shtml" target="_blank" title="万和热水器">万和热水器</a></li>
+<li><a href="http://product.it168.com/list/b/0302_s_2572-15437s_1.shtml" target="_blank" title="4G手机">4G手机</a></li>
+<li class="ba0"><a href="http://product.it168.com/detail/doc/527498/index.shtml" target="_blank" title="小米盒子">小米盒子</a></li>
+
+			</ul>
+</div>
+<script type="text/javascript">
+	iniMenu('tab01',0,'span',200);
+</script>
+<div class="mt10"><div id="ADV_16603"><script>LG('ADV_16603');</script></div></div>
+
+
+<script type="text/javascript" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/SequelLian9_124.js"></script>
+<script type="text/javascript">
+	var line = SequelLian.init();
+	line.ChannelId = 4; //频道id(参数)
+	line.ChannelPageId = 9; //频道页id(参数)
+	line.ChannelPageBlockId = 124; //频道页面块id(参数)
+	line.DivIds = "detailWord"; //需要操作a标签的div(用id获取div),可传多个(参数)   id与class必选其一,且只能先其一
+	line.OtherID=articleCode;
+	line.BindEvent();
+</script>
+
+
+	</div>
+	<div class="clear"></div>
+</div>
+<div id="ajax">
+</div>
+<div id="commonajax" style="display:none"></div>
+
+<!-- footer -->
+
+<div class="it168_fl" style="height:210px;display:none" id="erweima_thm">
+  <a href="http://cnrdn.com/3uyD" target="_blank" style="height: 210px;">
+    <div>史上最牛绝不坑爹的选购神器<br>安卓客户端</div><img style="width:100px" alt="" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/130x130.jpg" complete="complete" data-bd-imgshare-binded="1">
+	<div>点击或扫描下载</div>
+  </a>
+</div>
+
+
+
+
+
+<div class="it168_fl" style="height:210px;display:none" id="erweima_qiang">
+  <a href="http://s.it168.com/qfq/apk.html" target="_blank" style="height: 210px;">
+    <div>大学生专享 <br>月供300元买肾6 <br>安卓客户端</div><img style="width:100px" alt="" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/erweima_qufenqi.png" complete="complete" data-bd-imgshare-binded="1">
+	<div>点击或扫描下载</div>
+  </a>
+</div>
+
+
+<script>
+ var num = Math.ceil(Math.random()*10);
+ if(articleChannelCode=="2" || articleChannelCode=="19" || articleChannelCode=="20" || articleChannelCode=="18" ||  articleChannelCode=="32" ||  articleChannelCode=="44" || articleChannelCode=="43" || articleChannelCode=="68"||
+ articleChannelCode=="21" ||  articleChannelCode=="67"  ||  articleChannelCode=="4" )
+ {
+ 
+ }else
+ {
+     if(num % 2 == 0){
+	document.getElementById('erweima_thm').style.display='block';
+ }else{
+	document.getElementById('erweima_qiang').style.display='block';
+   }
+ }
+
+</script>
+
+
+<script src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/ClickPv.js" type="text/javascript"></script>
+<script type="text/javascript">
+  function dpjscallback(SensisID)
+	{
+	ArticleTruePV(1);
+	}
+</script>
+<script language="javascript" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/Global.js"></script>
+	<div class="it168_fl" style="margin: 0 0 220px 500px;height: 200px;">
+	  <a href="javascript:;" target="_self" style="height: 200px;">
+		<div>数据库技术大会</div><img style="width: 110px;" alt="数据库技术大会" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/cd872911-522f-4924-a21e-61e3d58d24fc.jpg" complete="complete" data-bd-imgshare-binded="1">
+		<div>点击或扫描关注</div>
+	  </a>
+	</div>
+
+	<div class="it168_fl2">
+	  <a target="_self">
+		<div>IT168企业级微信关注送礼</div><img alt="IT168企业级微信关注送礼" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/b7069c0f-38c6-4ed2-8e92-5bf5a2165330.jpg" complete="complete" data-bd-imgshare-binded="1">
+		<div>扫描关注</div>
+	  </a>
+	</div>
+
+<script>if(typeof(BLA)!='undefined'){BLA();}</script><script type="text/javascript" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/f96.js"></script><script src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/saved_resource"></script><script language="javascript" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/saved_resource(1)"></script><script language="javascript" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/red.js"></script><iframe id="_cnzid" height="0" width="0" style="display:none"></iframe>
+<script type="text/javascript" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/footer.js"></script><div class="clear"></div><link rel="StyleSheet" href="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/footer.css" type="text/css" media="screen"><div id="footer">	<p> <a rel="nofollow" href="http://www.it168.com/bottomfile/about.shtml">盛拓传媒简介</a> | <a rel="nofollow" href="http://www.it168.com/bottomfile/it168.shtml">关于IT168</a> | <a rel="nofollow" href="http://www.it168.com/bottomfile/hzhb.shtml">合作伙伴</a> | <a rel="nofollow" href="http://www.it168.com/bottomfile/ggfw.shtml">广告服务</a> | <a rel="nofollow" href="http://www.it168.com/bottomfile/sytk.shtml">使用条款</a> | <a rel="nofollow" href="http://www.it168.com/bottomfile/tgzn.shtml">投稿指南</a> | <a rel="nofollow" href="http://www.wintalent.cn:8031/wt5/sequelmedia/web/index">诚聘精英</a> | <a rel="nofollow" href="http://www.it168.com/bottomfile/lxwm.shtml">联系我们</a> | <a rel="nofollow" href="http://bbs.app111.com/">苹果论坛</a> | <a rel="nofollow" href="http://www.it168.com/bottomfile/sitemap/sitemap.html">网站导航</a> | <a rel="nofollow" href="http://archive.it168.com/">往日回顾</a> </p>	<address>	北京皓辰网域网络信息技术有限公司. 版权所有 <a rel="nofollow" href="http://www.it168.com/images/icp.jpg">京ICP证:060528号</a> 北京市公安局海淀分局网监中心备案编号：1101082001<br>	<a rel="nofollow" href="http://www.it168.com/1201/images/it168tv.pdf">广播电视节目制作经营许可证(京) 字第1234号</a> <a rel="nofollow" href="http://www.it168.com/huiyuan/it168.html">中国互联网协会会员</a> <a rel="nofollow" href="http://www.it168.com/icoimages/yczz.jpg">测绘资质证书（乙测资字11005067）</a> <a rel="nofollow" href="http://www.it168.com/1201/images/wlwh.pdf">网络文化经营许可证</a>	</address>	<div class="pic_div">	<a rel="nofollow" href="http://www.bj.cyberpolice.cn/index.jsp" class="pic1">网络110 报警服务</a> <a rel="nofollow" href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202008062400006" class="pic2">国家备案</a> <a rel="nofollow" href="http://ulic.baidu.com/client/clientDetailCerInfo.do?id=1602" class="pic3">百度联盟-认证</a> <a rel="nofollow" href="https://search.szfw.org/cert/l/CX20111226001272001316" class="pic4"></a>			</div>		</div>	
+
+
+<script type="text/javascript">
+var channelpropertyid=4; //频道id
+var channelpropertycateid="";//频道属性
+var articlePropertyID=10;//文章属性
+var SeriesId=""; //产品小类id
+var BrandId=""; //品牌id
+
+var articletag = 'NoSQL';
+
+/******微评参数*******/
+var MC_siteid = 2; 
+var MC_LoginUrl = "http://sso.it168.com/Login?return_url=" + location.href;
+var MC_action_pace = "http://"+location.hostname+"/Ajax/MicroComment/MC_Action.ashx/";
+var MC_Css = 1 ;
+var MC_aid = 1545780;
+/*********多数配置**************/
+	if (typeof (duoshuoImg) == 'undefined')    var	duoshuoImg='http://adshow.it168.com/newImage/23.gif';
+var duoshuoQuery = {
+  short_name:"it168",
+  component_style: {
+         'textbox' : "background: url("+duoshuoImg+") no-repeat 410px 0px;"
+     }
+};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	function mycallback(json) 
+	{
+		var data = json.response;
+		if (data != null && typeof (data) != "undefined" && data.length != 0) {
+			document.getElementById('duoshuo_commentcount').innerHTML=data['4:1545780'].comments; 
+		}
+	}
+	document.onkeydown=function(e){
+	  e = (e) ? e : event;
+    var code = (e.charCode) ? e.charCode : ((e.keyCode) ? e.keyCode : ((e.which) ? e.which : 0));
+	  if(code==37 && (1 > 1)){
+	    //进入上一页
+	    location.href = 'http://tech.it168.com/a2013/1016/1545/000001545780.shtml';
+	   }	 
+	  if(code==39 && (2 <= 1)){
+	   location.href = 'http://tech.it168.com/a2013/1016/1545/000001545780.shtml';
+	  }
+}
+</script>
+	<script type="text/javascript" charset="UTF-8" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/counts.jsonp"></script>
+<!-- Duoshuo Comment END -->
+<script language="javascript" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/pv.js"></script>
+<script>
+var click_channelid =24;
+function sendPV(upurl){    
+    var pvTrack = new PvTrack();
+    pvTrack.type = 11; // 频道类别ID
+    pvTrack.channel = 24; // 频道ID
+    pvTrack.pageType = 103;
+	pvTrack.referrer = upurl;
+    pvTrack.track();
+}
+window.setTimeout("sendPV('')", 500);
+</script>
+<script type="text/javascript" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/McCommon.js"></script>
+<script src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/care.js" language="javascript" type="text/javascript"> </script>
+<script language="javascript" type="text/javascript">
+    CAREACURSE.acurse('sjk.it168.com', 2, 'it168_dsurl_count', location.href);
+</script>
+
+<script type="text/javascript" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/StatisticsUserAct.js"></script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20433473-1']);
+  _gaq.push(['_addOrganic', 'baidu', 'word']);
+  _gaq.push(['_addOrganic', 'google', 'q']);
+  _gaq.push(['_addOrganic', 'soso', 'w']);
+  _gaq.push(['_addOrganic', 'yodao', 'q']);
+  _gaq.push(['_addOrganic', 'vnet', 'kw']);
+  _gaq.push(['_addOrganic', 'sogou', 'query']);
+  _gaq.push(['_addOrganic', '118114', 'kw']);
+  _gaq.push(['_addOrganic', '3721', 'name']);
+  _gaq.push(['_setDomainName', '.it168.com']);
+ _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = 
+true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + 
+'.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, 
+s);
+  })();
+/*************************************/
+if(articleChannelCode == "20")
+{
+document.getElementById("ADV_3009").style.display="inline";
+}
+
+
+/*给正文加nofollow*/
+$(function(){
+	$(".cont1 a").each(function(obj){
+	var href=$(this).attr("href");
+	if(typeof(href)!= "undefined" )
+	{
+	if(href.indexOf("it168.com")==-1 && href.indexOf("pcpop.com")==-1)
+	 {
+	   $(this).attr('rel','nofollow');
+	 }
+	}
+		
+	});
+});
+</script>
+<!--taobao 天猫 start-->
+<script type="text/javascript"> (function(win,doc){if((!tab_it168_iniMenu)||(typeof(Isalimamatk)!="undefined"))return; var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0]; if (!win.alimamatk_show) { s.charset = "gbk"; s.async = true; s.src = "http://a.alimama.cn/tkapi.js"; h.insertBefore(s, h.firstChild); }; var o = { pid: "mm_96676214_7484044_25040797",/*推广单元ID，用于区分不同的推广渠道*/ appkey: "",/*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/ unid: ""/*自定义统计字段*/ }; win.alimamatk_onload = win.alimamatk_onload || []; win.alimamatk_onload.push(o); })(window,document);</script>
+<!--taobao 天猫 end-->
+
+
+<script type="text/javascript" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/select_search_it168.js"></script>
+
+
+
+
+<div style="display:none"></div><script type="text/javascript" async="" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/visitor.js"></script><script type="text/javascript">var vglnk = {api_url: '//api.viglink.com/api', key: '084c74521c465af0d8f08b63422103cc'};</script><script type="text/javascript" async="" src="./NoSQL数据管理系统基础谈：CAP理论-IT168 技术开发专区_files/vglnk.js"></script><iframe frameborder="0" id="bdSharePopup_selectshare1426494657149bg" class="bdselect_share_bg" style="display: none;"></iframe><div id="bdSharePopup_selectshare1426494657149box" style="display: none;" share-type="selectshare" class="bdselect_share_box" data-bd-bind="1426494657148"><div class="selectshare-mod-triangle"><div class="triangle-border"></div><div class="triangle-inset"></div></div><div class="bdselect_share_head"><span>分享到</span><a class="bdselect_share_dialog_close"></a></div><div class="bdselect_share_content"><ul class="bdselect_share_list bdshare-button-style0-16"><div class="bdselect_share_partners"><a href="http://tech.it168.com/a2013/1016/1545/000001545780.shtml#" class="bds_weixin" data-cmd="weixin"></a><a href="http://tech.it168.com/a2013/1016/1545/000001545780.shtml#" class="bds_tsina" data-cmd="tsina"></a><a href="http://tech.it168.com/a2013/1016/1545/000001545780.shtml#" class="bds_tqq" data-cmd="tqq"></a><a href="http://tech.it168.com/a2013/1016/1545/000001545780.shtml#" class="bds_qzone" data-cmd="qzone"></a><a href="http://tech.it168.com/a2013/1016/1545/000001545780.shtml#" class="bds_renren" data-cmd="renren"></a></div><a href="http://tech.it168.com/a2013/1016/1545/000001545780.shtml#" class="bds_more" data-cmd="more"></a></ul></div></div><div id="bdimgshare_1426494657164" class="sr-bdimgshare sr-bdimgshare-list sr-bdimgshare-16 sr-bdimgshare-black" style="height: 36px; line-height: 26px; font-size: 12px; position: absolute; top: 2347px; left: 268.5px; width: 502px; display: none;" data-bd-bind="1426494657162"><div class="bdimgshare-bg"></div><div class="bdimgshare-content bdsharebuttonbox bdshare-button-style0-16"><label class="bdimgshare-lbl">图片分享</label><a href="http://tech.it168.com/a2013/1016/1545/000001545780.shtml#" onclick="return false;" class="bds_weixin" data-cmd="weixin" hidefocus=""></a><a href="http://tech.it168.com/a2013/1016/1545/000001545780.shtml#" onclick="return false;" class="bds_tsina" data-cmd="tsina" hidefocus=""></a><a href="http://tech.it168.com/a2013/1016/1545/000001545780.shtml#" onclick="return false;" class="bds_tqq" data-cmd="tqq" hidefocus=""></a><a href="http://tech.it168.com/a2013/1016/1545/000001545780.shtml#" onclick="return false;" class="bds_qzone" data-cmd="qzone" hidefocus=""></a><a href="http://tech.it168.com/a2013/1016/1545/000001545780.shtml#" onclick="return false;" class="bds_renren" data-cmd="renren" hidefocus=""></a><a href="http://tech.it168.com/a2013/1016/1545/000001545780.shtml#" onclick="return false;" class="bds_more" data-cmd="more" hidefocus=""></a></div></div></body></html>

@@ -1,0 +1,41 @@
+.tweetable_follow {
+	display: block;
+	margin: 6px 6px 0 6px;
+	font-weight: bold;
+}
+
+.tweetable_latest_tweets {
+	
+	padding:10px;
+}
+
+.tweetable_latest_tweets li {
+	margin: 0;
+	list-style:none;
+	padding: 10px;
+    background:#fff;
+    margin-bottom:10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 -1px 0 #FFFFFF inset;
+}
+    .tweetable_latest_tweets li a {
+        color:#000;
+    }
+
+.twitter_status {
+	width: 100%;
+	display:block;
+	margin: 0;
+	padding: 0;
+}
+
+.twitter_meta {
+	display: block;
+	font-size: 0.8em;
+	font-style: italic;
+	color: #9a9898;
+}
+
+.twp-container {
+	margin-left: auto !important;
+	margin-right: auto !important;
+}

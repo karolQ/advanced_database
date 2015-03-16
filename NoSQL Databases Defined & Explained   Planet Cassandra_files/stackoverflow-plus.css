@@ -1,0 +1,44 @@
+/*
+ *@package name - Wordpress StackoverflowPlus
+ *@package version - 1.0
+ *@author - Amyth Arora
+ *@author URI - http://techstricks.com
+ *@author email - admin@techstricks.com
+ *@script - Basic Stylesheet foe WPStackoverflow+
+*/
+
+/*General*/
+.wsp-left {float: left;} .wsp-right{float: right;} .wsp-clear{clear: both;}
+#wsp-header-img{margin: 5px 0 20px 0; display:none;}
+#wsp-profile-image{background: #eee;padding: 2.5px;border: 1px solid #ddd; margin-right: 8px;width: 60px;height: 60px;}
+#wsp-accept-rate{font-weight: bold;color: #508850 !important;font-size: 11px;}
+#wsp-profile-button {margin-top: 8px !important;}
+#wsp-profile-button a{text-decoration: none;padding: 4px 8px;color: white;background: #777;}
+#wsp-profile-button a:hover{background: #f90;}
+/* The Feed */
+#wsp-feed-title{font-weight: bold;font-size: 12px;text-transform: uppercase;margin: 5px 0;}
+
+/*Footer*/
+#wsp-footer-credit{margin-top: 15px;font-size: 9px !important;}
+#wsp-footer-credit a, #wsp-footer-credit a:visited{color: #555;}
+
+/* Circled Badges */
+#wsp-badges{margin: 5px 0;}
+.badge {-webkit-border-radius:50%;-moz-border-radius:50%;border-radius: 50%;width: 9px;height: 10px;margin: 5px 4px; }
+#wsp-badges span, .badge{float: left;}
+.gold {background: #ffcc00;} .silver{background: #c5c5c5;} .bronze{background: #cc9966;}
+#wsp-widget {
+    padding:10px;
+}
+    #wsp-widget #wsp-layout-general .wsp-feed {
+       
+    }
+    #wsp-widget #wsp-layout-general .wsp-feed .wsp-feed-item{
+         background:#fff;
+        padding:10px;
+        margin-bottom:10px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 -1px 0 #FFFFFF inset;
+    }
+        #wsp-widget #wsp-layout-general .wsp-feed .wsp-feed-item a {
+            color:#206CAC;
+        }

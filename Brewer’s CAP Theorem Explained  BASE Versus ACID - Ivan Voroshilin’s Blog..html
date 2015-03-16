@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)http://ivoroshilin.com/2012/12/13/brewers-cap-theorem-explained-base-versus-acid/ -->
+<html class="js video maskImage placeholder" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Brewer’s CAP Theorem Explained: BASE Versus ACID - Ivan Voroshilin’s Blog.</title>
+  <meta name="author" content="Ivan Voroshilin">
+
+  
+  <meta name="description" content="CAP theorem explained, eventual consistency versus strong consistency">
+
+  
+  <meta name="keywords" content="ACID, BASE, Brewer, CAP, Clustering, Distributed system, Eventual consistency, High availability, Scalability">
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+
+  
+  <link rel="canonical" href="http://vibneiro.github.io/2012/12/13/brewers-cap-theorem-explained-base-versus-acid/">
+  <link href="http://ivoroshilin.com/favicon.png" rel="icon">
+  <link href="./Brewer’s CAP Theorem Explained  BASE Versus ACID - Ivan Voroshilin’s Blog._files/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://ivoroshilin.com/octopress/atom.xml" rel="alternate" title="Ivan Voroshilin&#39;s Blog." type="application/atom+xml">
+  <script type="text/javascript" src="./Brewer’s CAP Theorem Explained  BASE Versus ACID - Ivan Voroshilin’s Blog._files/jXHR.js"></script><script async="" src="./Brewer’s CAP Theorem Explained  BASE Versus ACID - Ivan Voroshilin’s Blog._files/analytics.js"></script><script async="" src="./Brewer’s CAP Theorem Explained  BASE Versus ACID - Ivan Voroshilin’s Blog._files/analytics.js"></script><script async="" src="./Brewer’s CAP Theorem Explained  BASE Versus ACID - Ivan Voroshilin’s Blog._files/analytics.js"></script><script src="./Brewer’s CAP Theorem Explained  BASE Versus ACID - Ivan Voroshilin’s Blog._files/modernizr-2.0.js"></script>
+  <script src="./Brewer’s CAP Theorem Explained  BASE Versus ACID - Ivan Voroshilin’s Blog._files/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="./Brewer’s CAP Theorem Explained  BASE Versus ACID - Ivan Voroshilin’s Blog._files/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="./Brewer’s CAP Theorem Explained  BASE Versus ACID - Ivan Voroshilin’s Blog._files/css" rel="stylesheet" type="text/css">
+<link href="./Brewer’s CAP Theorem Explained  BASE Versus ACID - Ivan Voroshilin’s Blog._files/css(1)" rel="stylesheet" type="text/css">
+
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-37693662-1', 'ivoroshilin.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+<style type="text/css" id="aboutme-ivan_voroshilin-1426485474907363-css">/* about.me embed.css *//* reset for aboutme-embed */#aboutme-ivan_voroshilin-1426485474907363 div,#aboutme-ivan_voroshilin-1426485474907363 span,#aboutme-ivan_voroshilin-1426485474907363 img {margin: 0;padding: 0;border: 0;outline: 0;font-weight: inherit;font-style: inherit;font-size: 100%;font-family: inherit;vertical-align: baseline;text-align: left;background: none;}/* reset for aboutme-default */.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 div,.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 p,.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 img,.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 ol,.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 ul,.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 li {display: block;margin: 0;padding: 0;border: 0;outline: 0;background: none;font-weight: inherit;font-style: inherit;font-size: 100%;font-family: inherit;line-height: inherit;vertical-align: baseline;text-shadow: none;box-shadow: none;}.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 span,.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 a,.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 sub,.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 sup {display: inline;margin: 0;padding: 0;border: 0;outline: 0;background: none;font-weight: inherit;font-style: inherit;font-size: 100%;font-family: inherit;line-height: inherit;vertical-align: baseline;text-shadow: none;box-shadow: none;}.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 b,.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 strong {display: inline;margin: 0;padding: 0;border: 0;outline: 0;background: none;font-weight: bold;font-style: inherit;font-size: 100%;font-family: inherit;line-height: inherit;vertical-align: baseline;text-shadow: none;box-shadow: none;}.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 em,.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 i {display: inline;margin: 0;padding: 0;border: 0;outline: 0;background: none;font-weight: inherit;font-style: italic;font-size: 100%;font-family: inherit;line-height: inherit;vertical-align: baseline;text-shadow: none;box-shadow: none;}/* base styles for aboutme-embed */.aboutme-embed#aboutme-ivan_voroshilin-1426485474907363 {margin: 10px 0;}.aboutme-embed#aboutme-ivan_voroshilin-1426485474907363 .aboutme-img img {display: block;border: 0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;width: 100%;margin-bottom: 8px;}.aboutme-embed#aboutme-ivan_voroshilin-1426485474907363 .aboutme-name {font-size: 140%;font-weight: bold;margin-bottom: 4px;}.aboutme-embed#aboutme-ivan_voroshilin-1426485474907363 .aboutme-headline {font-size: 120%;margin-bottom: 8px;}.aboutme-embed#aboutme-ivan_voroshilin-1426485474907363 .aboutme-bio {margin-bottom: 15px;}.aboutme-embed#aboutme-ivan_voroshilin-1426485474907363 .aboutme-bio p {margin: 0;margin-bottom: 8px;}.aboutme-embed#aboutme-ivan_voroshilin-1426485474907363 .aboutme-apps {}.aboutme-embed#aboutme-ivan_voroshilin-1426485474907363 .aboutme-apps a {border: 0 !important;display: inline-block !important;width: 32px !important;height: 32px !important;margin: 0 2px 5px 0 !important;padding: 0 !important;text-decoration: none !important;background-repeat: no-repeat !important;background-position: left top !important;}.aboutme-embed#aboutme-ivan_voroshilin-1426485474907363 .aboutme-apps a.app-github { background-image: url(http://dcbdluf1ahqio.cloudfront.net/github/32x32.png); }.aboutme-embed#aboutme-ivan_voroshilin-1426485474907363 .aboutme-apps a.app-twitter { background-image: url(http://dcbdluf1ahqio.cloudfront.net/twitter/32x32.png); }.aboutme-embed#aboutme-ivan_voroshilin-1426485474907363 .aboutme-apps a.app-linkedin { background-image: url(http://dcbdluf1ahqio.cloudfront.net/linkedin/32x32.png); }.aboutme-embed#aboutme-ivan_voroshilin-1426485474907363 .aboutme-apps a.app-googleplus { background-image: url(http://dcbdluf1ahqio.cloudfront.net/googleplus/32x32.png); }/* styles for horizontal layout */.aboutme-layout-horizontal#aboutme-ivan_voroshilin-1426485474907363 .aboutme-content {display: table;width: 100%;}.aboutme-layout-horizontal#aboutme-ivan_voroshilin-1426485474907363 .aboutme-img {display: table-cell;vertical-align: top;padding-right: 15px;margin-bottom: 0;}.aboutme-layout-horizontal#aboutme-ivan_voroshilin-1426485474907363 .aboutme-img img {margin-bottom: 0;}.aboutme-layout-horizontal#aboutme-ivan_voroshilin-1426485474907363 .aboutme-text {display: table-cell;vertical-align: top;}/* styles for aboutme-default */.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 {font-family: Helvetica, Arial, Sans-Serif;font-size: 16px;font-weight: normal;font-style: normal;line-height: 1.4;color: #333;background-color: #fff;padding: 10px;border: 1px solid #eee;border-color: rgba(0,0,0,0.2);box-shadow: 1px 1px 5px rgba(0,0,0,0.1);border-radius: 2px;margin: 10px 0;}.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 a {color: #2b82ad;text-decoration: none;}.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 a:hover {color: #3aa9e9;text-decoration: none;}.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 p,.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 ol,.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 ul {margin-bottom: 0.75em !important;}.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 .aboutme-img img {border: 1px solid;border-color: #999;border-color: rgba(0,0,0,0.5);}.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 .aboutme-name {font-size: 140%;font-weight: bold;margin-bottom: 4px;}.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 .aboutme-headline {font-size: 120%;margin-bottom: 8px;}.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 .aboutme-bio {font-family: Georgia, Times, Serif;font-size: 14px;}.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 ul {list-style: disc;}.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 ol {list-style: decimal;}.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 ul,.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 ol {list-style-position: outside;padding-left: 2em;}.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 ul li,.aboutme-default#aboutme-ivan_voroshilin-1426485474907363 ol li {display: list-item;padding: 0;margin: 0;}</style><script type="text/javascript" async="" src="./Brewer’s CAP Theorem Explained  BASE Versus ACID - Ivan Voroshilin’s Blog._files/embed.js"></script><style type="text/css">object,embed{-webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;-ms-animation-duration:.001s;-ms-animation-name:playerInserted;-o-animation-duration:.001s;-o-animation-name:playerInserted;animation-duration:.001s;animation-name:playerInserted;}@-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}</style><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="http://ivoroshilin.com/">Ivan Voroshilin’s Blog.</a></h1>
+  
+    <h2>Algorithmic contests, distributed systems and software architecture</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://ivoroshilin.com/octopress/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="vibneiro.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search">
+  </fieldset>
+</form>
+  
+<fieldset class="mobile-nav"><select><option value="">Navigate…</option><option value="http://ivoroshilin.com/">» Main page</option><option value="http://ivoroshilin.com/blog/archives">» All posts</option><option value="http://ivoroshilin.com/talks">» Talks</option><option value="http://ivoroshilin.com/about">» About</option><option value="http://ivoroshilin.com/octopress/atom.xml">» RSS</option></select></fieldset><ul class="main-navigation">
+  <li><a href="http://ivoroshilin.com/">Main page</a></li>
+  <li><a href="http://ivoroshilin.com/blog/archives">All posts</a></li>
+  <li><a href="http://ivoroshilin.com/talks">Talks</a></li>
+  <li><a href="http://ivoroshilin.com/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Brewer’s CAP Theorem Explained: BASE Versus ACID</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class="entry-date" datetime="2012-12-13T17:21:22+04:00"><span class="date"><span class="date-month">Dec</span> <span class="date-day">13</span><span class="date-suffix">th</span>, <span class="date-year">2012</span></span> <span class="time">5:21 pm</span></time>
+        
+           | <a href="http://ivoroshilin.com/2012/12/13/brewers-cap-theorem-explained-base-versus-acid/#disqus_thread" data-disqus-identifier="http://vibneiro.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>The goal of this article is to give more clarity to the theorem and show pros and cons of ACID and BASE models that might stand in the way of implementing distributed systems.</p>
+
+<h2>What is CAP about?</h2>
+
+<p>The<em>&nbsp;(CAP) theorem</em>&nbsp;(<strong>C</strong>onsistency, <strong>A</strong>vailability and <strong>P</strong>artitioning tolerance) was given by Eric Brewer, a professor at the University of California, Berkeley&nbsp;and one of the founders of Google, in 2001 in the keynote of Principles of Distributed Computing.</p>
+
+<p>The&nbsp;theorem states:</p>
+
+<blockquote>_**Though its desirable to have Consistency, High-Availability and Partition-tolerance in every system, unfortunately no system can achieve all three at the same time**._</blockquote>
+
+
+<p>In other words&nbsp;a system can have at most two of three desirable properties at the same time <strong>in presence of errors</strong>.</p>
+
+<p>Let’s first give definitions to these 3 terms:</p>
+
+<p><strong>Consistency:&nbsp;</strong>A service that is&nbsp;<em>consistent</em>&nbsp;should follow the rule of ordering for updates that spread across all replicas in a cluster - “what you write is what you read”, regardless of location.<em>&nbsp;</em>For example,&nbsp;&nbsp;Client A writes 1 then 2 to location X, Client B cannot read 2 followed by 1. &nbsp;This rule has another name&nbsp;<strong>“Strong consistency”.</strong><strong>
+</strong></p>
+
+<p><strong>Availability:&nbsp;</strong>A service should be available. There should be a guarantee that every request receives a response about whether it was successful or failed. If the system is not available it can be still consistent. However,&nbsp;<em>consistency</em> and <em>availability </em>cannot be achieved at the same time. This means that one has two choices on what to leave. <em>Relaxing consistency</em> will allow the system to remain highly available under the partitioning&nbsp;conditions (see next definition) and <em>strong consistency</em> means that under certain conditions the system will not be available.</p>
+
+<p><strong>Partition tolerance:&nbsp;</strong>The system continues to operate despite arbitrary message loss or failure of part of the system. A simple example, when we have a cluster of N replicated nodes and for some reason a network is unavailable among some number of &nbsp;nodes (e.g. a network cable got chopped). This leads to inability to synchronize data. Thus, only some part of the system doesn’t work, the other one does.&nbsp;If you have a partition in your network, you lose either&nbsp;<em>consistency</em>&nbsp;(because you allow updates to both sides of the partition) or you lose&nbsp;<em>availability</em>&nbsp;(because you detect the error and shut down the system until the error condition is resolved).</p>
+
+<p>There are lots of articles about this theorem these days around but not many of them reveal real meaning behind this, neither<strong>&nbsp;</strong><em>CAP theorem</em> talks about the normal operation of a distributed system when there are no errors.&nbsp;A simple meaning of this theorem is&nbsp;<strong>“It is impossible for a protocol to guarantee both consistency and availability in a partition prone distributed system”.&nbsp;</strong>This was mentioned above in examples.</p>
+
+<p>Most of the NoSQL database system architectures favour one factor over the other:</p>
+
+<ul>
+<li><p><a href="http://en.wikipedia.org/wiki/BigTable">BigTable</a>, used by Google App engine, and&nbsp;<a href="http://hadoop.apache.org/hbase/">HBase</a>, which runs over Hadoop, claim to be strongly&nbsp;<em>consistent</em>&nbsp;within a data-center and <em>highly available</em> meaning there’s an eventual consistency between data-centers.&nbsp;Updates are propagated to all replicas <em>asynchronously</em>.</p></li>
+<li><p><a href="http://research.google.com/archive/spanner.html">Google Spanner</a>,&nbsp;a new globally-distributed, and synchronously-replicated database - the successor to BigTable. Updates are propagated to all replicas <em>synchronously</em>. Google Spanner&nbsp;supports<em> strong consistenc_y even in the the presence of wide-area replication unlike BigTable which can only support </em>eventual-consistent_ (see below for definitions)&nbsp;replication across data-centers.</p></li>
+<li><p><a href="http://www.allthingsdistributed.com/2007/10/amazons_dynamo.html">Amazon’s Dynamo</a>,&nbsp;<a href="http://www.royans.net/arch/category/cassandra/">Cassandra</a>&nbsp;and<a href="http://wiki.basho.com/"> Riak</a> instead sacrifice <em>consistency</em> in favor of availability and partition tolerance.&nbsp;They achieve a weaker form of consistency known as <em>eventual consistency</em>&nbsp;– updates are propagated to all replicas asynchronously, without guarantees on the order of updates across replicas and when they will be applied.</p></li>
+<li><p><a href="http://www.oracle.com/technetwork/products/nosqldb/overview/index.html">Oracle NoSQL</a>&nbsp;allows to choose a consistency policy which might affect&nbsp;performance depending on a level selected.</p></li>
+<li><p><a href="http://cassandra.apache.org/">Apache Cassandra</a> is&nbsp;similar to BigTable, but it has a <em>tunable consistency model</em>.</p></li>
+</ul>
+
+
+<h2>ACID property</h2>
+
+<p>Let’s recall in brief what<em> <a href="http://en.wikipedia.org/wiki/ACID">ACID</a></em>&nbsp;(<strong>A</strong>tomicity,&nbsp;<strong>C</strong>onsistency,&nbsp;<strong>I</strong>solation and&nbsp;<strong>D</strong>urability) means in &nbsp;traditional RDBMS community before moving to the next topic.</p>
+
+<p>ACID transactions provide 4 properties which must be guaranteed:</p>
+
+<p><strong>Atomicity:</strong>&nbsp;All of the operations in the transaction will complete, or none will. If one part of the transaction fails, the entire transaction fails.</p>
+
+<p><strong>Consistency:</strong>&nbsp;The database will be in a consistent state when the transaction begins and ends. This property&nbsp;ensures that any transaction will bring the database from one valid state to another. In high availability environment this rule must be satisfied for all nodes in a cluster.</p>
+
+<p><strong>Isolation:</strong>&nbsp;The transaction will behave as if it is the only operation being performed upon the database.&nbsp;Each transaction has to execute in total isolation from the rest.</p>
+
+<p><strong>Durability:</strong>&nbsp;Upon completion of the transaction, the operation will not be reversed.</p>
+
+<p>ACID is guaranteed by&nbsp;<a href="http://en.wikipedia.org/wiki/Two-phase_commit_protocol"><em>A Two-phase</em>&nbsp;commit</a> - a distributed algorithm that ensures this across multiple database instances when performing transaction.</p>
+
+<h2>Eventual consistency (BASE) != Strong consistency</h2>
+
+<p><em>Eventual consistency </em>(normally asynchronous transactions)&nbsp;is a form of a weaker consistency which allows to improve speed and availability, because&nbsp;<em>ACID</em> provides <em>strong consistency </em>(synchronous transactions)&nbsp;for partitioned databases and thus gets in the way of availability.&nbsp;A transaction that involves N nodes in a cluster that uses <em>2-phase commit</em> also reduces the<em> availability.</em>&nbsp;The term e_ventual consistency or as it is called&nbsp;<strong>BASE&nbsp;</strong>(<strong>B</strong>asically&nbsp;<strong>A</strong>vailable,&nbsp;<strong>S</strong>oft state,&nbsp;<strong>E</strong>ventual consistency)<em>&nbsp;is the opposite of <strong>ACID</strong> (<strong>A</strong>tomicity, <strong>C</strong>onsistency, <strong>I</strong>solation and <strong>D</strong>urability). Where&nbsp;<strong>ACID</strong>&nbsp;is pessimistic and requires consistency at the end of every operation, <strong>BASE</strong> is optimistic and accepts that the database consistency will be in a state of flux.&nbsp;</em>The e_ventual consistency&nbsp;<em><em>is simply an acknowledgement that there is an&nbsp;unbounded delay in propagating a change made on one machine to all the other copies which might lead to stale data.&nbsp;For instance, a distributed system maintains copies of shared data on multiple machines in a cluster to ensure high availability. When data gets updated in a cluster there might be some interval of time during which some of the copies will be updated, but others won’t. </em>Eventually</em> the changes will be propagated to all remaining machines. That’s why it is named <em>eventual consistency</em>. &nbsp;<em>BASE</em>&nbsp;trades consistency for availability and doesn’t give any ordering guarantees at all. &nbsp;Eventual consistency has nothing to do with a single node systems since there’s no need for propagation.&nbsp;If the database system only supports eventual consistency, then the application will need to handle&nbsp;the possibility of reading stale (inconsistent) data.&nbsp;There are different techniques how it can be achieved as well as other forms of weak consistency and out of scope of this article.&nbsp;&nbsp;Eventual consistency is only one form from the list of&nbsp;<a href="http://en.wikipedia.org/wiki/Consistency_model">consistency-models</a>&nbsp;which are out of scope of this article.</p>
+
+<h2>NRW notation (Read-Your-Writes)</h2>
+
+<p><em>NRW (Node, Read, Write)</em> &nbsp;allows to analyse and tune how a distributed database will trade off consistency, read / write performance.</p>
+
+<ul>
+<li><p>N = the number of nodes that keep copies of a record distributed to.</p></li>
+<li><p>W = the number of nodes that must successfully acknowledge a write to be successfully committed.</p></li>
+<li><p>R = the number of nodes that must send back the same value of a unit of data for it to be accepted as read by the system.</p></li>
+</ul>
+
+
+<p>The majority of NoSQL databases use N&gt;W&gt;1 - more than one write must complete, but not all nodes need to be updated immediately.</p>
+
+<p>When:</p>
+
+<ul>
+<li><p>W &lt; N - high write availability</p></li>
+<li><p>R &lt; N - high read availability</p></li>
+<li><p>W+R &gt; N -&nbsp;is a strong consistency, read/write are fully overlapped</p></li>
+<li><p>W+R &lt;= N - is an eventual consistency,&nbsp;meaning that there is no overlap in the read and write set;</p></li>
+</ul>
+
+
+<p>You can &nbsp;set these parameters and see what you will get <a href="http://pbs.cs.berkeley.edu/#demo">online</a>.Thus,&nbsp;varying the parameters we can tune&nbsp;a wide variety of scenarios with different properties of availability,&nbsp;consistency, reliability, and speed.</p>
+
+<h2>Conclusion</h2>
+
+<p>A <em>strongly consistent</em> system gives up <em>availability</em> upon a certain kind of failure, and<em> eventually-consistent</em> system gives up consistency upon a certain kind of failure which improves <em>availability</em>.&nbsp;The bottom line: It is impossible to guarantee consistency while providing high availability and network partition tolerance.&nbsp;This makes ACID databases less powerful for highly distributed environments and led to the emergence of alternate data stores that are target to high availability and high performance. The eventual consistency is one of approaches to achieve this.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">vibneiro</span></span>
+
+      
+
+
+
+
+<time class="entry-date" datetime="2012-12-13T17:21:22+04:00"><span class="date"><span class="date-month">Dec</span> <span class="date-day">13</span><span class="date-suffix">th</span>, <span class="date-year">2012</span></span> <span class="time">5:21 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class="category" href="http://ivoroshilin.com/categories/scalability/">scalability</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="http://ivoroshilin.com/2013/01/11/when-asymptotic-analysis-of-complexity-doesnt-work/" title="Next Post: Asymptotic complexity: beware of hidden constants">Asymptotic complexity: beware of hidden constants »</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><iframe id="dsq-2" data-disqus-uid="2" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./Brewer’s CAP Theorem Explained  BASE Versus ACID - Ivan Voroshilin’s Blog._files/saved_resource.html" style="width: 100% !important; border: none !important; overflow: hidden !important; height: 321px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe><iframe id="dsq-indicator-north" data-disqus-uid="indicator-north" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" style="width: 789px !important; border: none !important; overflow: hidden !important; top: 0px !important; min-width: 789px !important; max-width: 789px !important; position: fixed !important; z-index: 2147483646 !important; height: 29px !important; min-height: 29px !important; max-height: 29px !important; display: none !important;"></iframe><iframe id="dsq-indicator-south" data-disqus-uid="indicator-south" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" style="width: 789px !important; border: none !important; overflow: hidden !important; bottom: 0px !important; min-width: 789px !important; max-width: 789px !important; position: fixed !important; z-index: 2147483646 !important; height: 29px !important; min-height: 29px !important; max-height: 29px !important; display: none !important;"></iframe></div>
+  </section>
+
+</div>
+
+<aside class="sidebar thirds">
+  
+    <section class="first odd">
+  <h1>Welcome to my blog</h1>
+  <script src="./Brewer’s CAP Theorem Explained  BASE Versus ACID - Ivan Voroshilin’s Blog._files/ivan_voroshilin"></script><div id="aboutme-ivan_voroshilin-1426485474907363" class=" aboutme-embed aboutme-default aboutme-layout-vertical" style="visibility: inherit; display: block;"><div xmlns="http://www.w3.org/1999/xhtml" class="aboutme-content"><div class="aboutme-img" style="width: auto;"><a href="http://about.me/ivan_voroshilin" target="_top"><img src="./Brewer’s CAP Theorem Explained  BASE Versus ACID - Ivan Voroshilin’s Blog._files/ivan_voroshilin_1426278389_94.jpg"></a></div><div class="aboutme-text"><div class="aboutme-name"><a href="http://about.me/ivan_voroshilin" target="_top">Ivan Voroshilin</a></div><div class="aboutme-bio"><p>Software Developer with 11+ years’ experience, passionate about programming, open source projects, who specializes in algorithms, distributed systems and software architecture.</p><p><strong>I've worked for…</strong></p><p><strong><a href="http://ubs.com/" target="_blank">Deutche Bank,</a></strong> <strong><a href="http://ubs.com/" target="_blank">UBS</a>, <a href="http://luxoft.com/" target="_blank">Luxoft</a>, <a href="http://www.forbes.com/companies/surgutneftegas/" target="_blank">Surgutneftegas,</a> <a target="_blank" href="http://www.sberbank-cib.ru/index_eng.jsp">Sberbank CIB</a></strong></p></div><div class="aboutme-apps"><a href="https://github.com/vibneiro" class="app-github" title="Github" target="_top">&nbsp;</a><a href="http://www.twitter.com/vibneiro" class="app-twitter" title="Twitter" target="_top">&nbsp;</a><a href="http://www.linkedin.com/in/ivoroshilin" class="app-linkedin" title="LinkedIn" target="_top">&nbsp;</a><a href="http://plus.google.com/113220412138006945929/" class="app-googleplus" title="Google+" target="_top">&nbsp;</a></div></div></div></div>
+
+</section>
+<section class="even">
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="http://ivoroshilin.com/2015/03/13/migrated-to-octopress/">The Blog Has Migrated to a New Platform</a>
+      </li>
+    
+      <li class="post">
+        <a href="http://ivoroshilin.com/2015/02/05/toughest-backtracking-problems-in-algorithmic-competitions/">Toughest Backtracking Problems in Algorithmic Competitions</a>
+      </li>
+    
+      <li class="post">
+        <a href="http://ivoroshilin.com/2014/12/16/docker-creating-and-testing-httprest-server-on-top-of-akkaspray/">Dockerizing Spray HTTP Server</a>
+      </li>
+    
+      <li class="post">
+        <a href="http://ivoroshilin.com/2014/10/30/docker-a-birds-eye-view/">Docker: A Bird’s-eye View</a>
+      </li>
+    
+      <li class="post">
+        <a href="http://ivoroshilin.com/2014/10/12/the-flip-side-of-rule-engines-and-some-tips-on-when-not-use-ones/">The Flip Side of Rule Engines on Example of Drools and Some Valuable Tips</a>
+      </li>
+    
+      <li class="post">
+        <a href="http://ivoroshilin.com/2014/09/15/project-euler-a-list-of-interesting-problems/">Project Euler: A List of Interesting Problems</a>
+      </li>
+    
+      <li class="post">
+        <a href="http://ivoroshilin.com/2014/08/14/command-and-query-responsibility-segregation-and-event-sourcing-what-you-should-think-about-in-advance/">Command and Query Responsibility Segregation and Event Sourcing: What You Should Think About in Advance</a>
+      </li>
+    
+      <li class="post">
+        <a href="http://ivoroshilin.com/2014/03/18/distributed-transactions-and-scalability-issues-in-large-scale-distributed-systems/">Distributed Transactions and Scalability Issues in Large-scale Distributed Systems</a>
+      </li>
+    
+      <li class="post">
+        <a href="http://ivoroshilin.com/2014/02/17/service-discovery-in-distributed-systems/">Service Discovery in Distributed Systems</a>
+      </li>
+    
+      <li class="post">
+        <a href="http://ivoroshilin.com/2013/10/29/highload-conference-2013/">HighLoad Conference 2013</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section class="odd">
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos"><li><a href="https://github.com/vibneiro/octopress">octopress</a><p></p></li><li><a href="https://github.com/vibneiro/DockerSprayHttpServer">DockerSprayHttpServer</a><p>Rest service based on spray with docker</p></li><li><a href="https://github.com/vibneiro/Scala-tutorial">Scala-tutorial</a><p></p></li><li><a href="https://github.com/vibneiro/Combinatorics">Combinatorics</a><p>Utility classes based on lazy Iterators for combinatorics such as C(n,k), P(n,k).</p></li><li><a href="https://github.com/vibneiro/ChessBoardSolver">ChessBoardSolver</a><p>Chess Problem</p></li><li><a href="https://github.com/vibneiro/Project-Euler">Project-Euler</a><p>My solutions from Project Euler (https://projecteuler.net)</p></li><li><a href="https://github.com/vibneiro/googleJam2008">googleJam2008</a><p>Google code jam 2008: A and B Rounds: solutions</p></li><li><a href="https://github.com/vibneiro/googleJam2012">googleJam2012</a><p>Google code jam 2012: Qualification Round: solutions</p></li><li><a href="https://github.com/vibneiro/googleJam2013">googleJam2013</a><p>Google code jam 2013: Qualification Round: solutions</p></li></ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'vibneiro',
+            count: 10,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="./Brewer’s CAP Theorem Explained  BASE Versus ACID - Ivan Voroshilin’s Blog._files/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    <span class="toggle-sidebar"></span></div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright © 2015 - Ivan Voroshilin
+</p>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-37693662-1', 'ivoroshilin.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'vibneiro';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://vibneiro.github.io/2012/12/13/brewers-cap-theorem-explained-base-versus-acid/';
+        var disqus_url = 'http://vibneiro.github.io/2012/12/13/brewers-cap-theorem-explained-base-versus-acid/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-37693662-1', 'ivoroshilin.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+
+
+
+</body></html>
