@@ -34,7 +34,8 @@ for items in cityarr:
                 ur.update({'name':names},dic,True,True)
                 print(i)
                 time.sleep(0.5)
-            except:print("failure")
+            except:
+                print("failure")
 
 
 
